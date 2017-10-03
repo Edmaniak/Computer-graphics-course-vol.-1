@@ -38,6 +38,9 @@ public class SimpleDraw {
 
 		frame.pack();
 		frame.setVisible(true);
+		
+		Line line = new Line(100,100,200,200);
+		canvas.draw(line);
 
 	}
 

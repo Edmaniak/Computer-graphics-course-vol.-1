@@ -41,6 +41,11 @@ public class Canvas extends JPanel {
 		clear();
 		repaint();
 	}
+	
+	public void draw(GraphicalObject o) {
+		o.render(fill);
+		repaint();
+	}
 
 	public Color getBgColor() {
 		return bgColor;
