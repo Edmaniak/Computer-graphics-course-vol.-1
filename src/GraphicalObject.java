@@ -1,5 +1,6 @@
+import java.awt.event.MouseAdapter;
 import java.awt.image.BufferedImage;
 
 public interface GraphicalObject {
-	public void render(BufferedImage bf);
+	public MouseAdapter getHandler();
 }

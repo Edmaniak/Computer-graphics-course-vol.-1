@@ -1,21 +1,25 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
 public class Canvas extends JPanel {
 	private BufferedImage fill;
+
 	private Color bgColor;
 	private Dimension dimensions;
-	private Color defColor = Color.WHITE;
+	private Color defColor = Color.BLACK;
 
 	public Canvas(Dimension d) {
 		setDimensions(d);
 		fill = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_RGB);
 		setPreferredSize(d);
-		start();
+		clear();
+		
 	}
 
 	public Canvas(Dimension d, Color bgColor) {
@@ -35,15 +39,14 @@ public class Canvas extends JPanel {
 
 	public void clear() {
 		setBgColor(defColor);
-	}
-
-	public void start() {
-		clear();
 		repaint();
 	}
 	
-	public void draw(GraphicalObject o) {
-		o.render(fill);
+	public BufferedImage getFill() {
+		return fill;
+	}
+	
+	public void draw() {
 		repaint();
 	}
 
