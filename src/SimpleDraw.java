@@ -3,13 +3,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.List;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,18 +13,17 @@ import javax.swing.WindowConstants;
 
 public class SimpleDraw {
 
-	private String version = "0.01";
+	public String title = "simpleDraw";
 	private Canvas canvas;
 	private JFrame frame;
-	private JToolBar toolBar;
+	public static JToolBar toolBar;
 	private JPanel tooltipPanel;
-	private JLabel tooltip;
-	private List<JButton> buttons;
-	private GraphicalObject selected;
-	private MouseListener currentMouseListener;
+	public static JLabel tooltip;
+
+	private GraphicalObject selectedTool;
+	private Color colorToUse = AppColor.DEFAULT_DRAW;
 
 	public SimpleDraw(Dimension d) {
-		String title = "simpleDRAW " + version;
 
 		frame = new JFrame(title);
 		frame.setLayout(new BorderLayout());
@@ -65,69 +58,70 @@ public class SimpleDraw {
 
 	private void generateButtons() {
 		// Button for new canvas
-		JButton newCanvas = new JButton(new ImageIcon("res/new.png"));
-		newCanvas.setToolTipText("New canvas");
+		ToolButton newCanvas = new ToolButton("New canvas", "res/new.png");
 		newCanvas.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				canvas.clear();
-
-			}
-		});
-		newCanvas.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				tooltip.setText(newCanvas.getToolTipText());
+				if (colorToUse != AppColor.DEFAULT_DRAW)
+					canvas.setBgColor(colorToUse);
+				else
+					canvas.clear();
 			}
 		});
 		toolBar.add(newCanvas);
 
-		// Button for making dots
-		JButton brush = new JButton(new ImageIcon("res/point.png"));
-		brush.setToolTipText("Draw a point");
+		// Button for making brush line
+		ToolButton brush = new ToolButton("Draw a point", "res/brush.png");
 		brush.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				changeTool(new Brush(canvas));
-			}
-		});
-		brush.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				tooltip.setText(brush.getToolTipText());
+				changeTool(new Brush(canvas, colorToUse));
 			}
 		});
 		toolBar.add(brush);
 
+		// Button for making dots
+		ToolButton dots = new ToolButton("Draw a point", "res/point.png");
+		dots.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				changeTool(new Dot(canvas, colorToUse));
+			}
+		});
+		toolBar.add(dots);
+
 		// Button for making lines
-		JButton line = new JButton(new ImageIcon("res/line.png"));
-		line.setToolTipText("Draw a line");
+		ToolButton line = new ToolButton("Draw a line", "res/line.png");
 		line.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				changeTool(new Line(canvas));
-			}
-		});
-		line.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				tooltip.setText(line.getToolTipText());
+				changeTool(new Line(canvas, colorToUse));
 			}
 		});
 		toolBar.add(line);
 
+		// Color picker
+		ToolButton colorPicker = new ToolButton("Pick a color");
+		colorPicker.setText("COLOR");
+		colorPicker.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ColorPicker colorPallete = new ColorPicker();
+				colorPallete.openDialog();
+				colorToUse = colorPallete.getChoosedColor();
+				colorPicker.setBackground(colorToUse);
+				selectedTool.setColor(colorToUse);
+			}
+		});
+		toolBar.add(colorPicker);
+
 	}
 
 	private void changeTool(GraphicalObject go) {
-		selected = go;
-		freeListeners();
-		canvas.addMouseListener(selected.getHandler());
-	}
-
-	private void freeListeners() {
-		for (MouseListener listener : canvas.getMouseListeners()) {
-			canvas.removeMouseListener(listener);
-		}
+		selectedTool = go;
+		canvas.setMouseClickHandler(go.clickHandler);
+		canvas.setMouseMotionHandler(go.motionHandler);
+		canvas.setCursor(go.cursor);
 	}
 
 	public static void main(String[] args) {

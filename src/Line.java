@@ -1,74 +1,86 @@
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Line implements GraphicalObject {
+public class Line extends GraphicalObject {
 
 	private Vector2D origin;
 	private Vector2D end;
-	private Color color = Color.white;
-	private MouseAdapter handler;
-	private Canvas myCanvas;
+	private List<Vector2D> renderedPoints;
 
-	Line(int x1, int y1, int x2, int y2) {
-		origin = new Vector2D(x1, y1);
-		end = new Vector2D(x2, y2);
-	}
-
-	Line(int x1, int y1, int x2, int y2, Color color) {
-		origin = new Vector2D(x1, y1);
-		end = new Vector2D(x2, y2);
-		this.color = color;
-	}
-
-	public Line(Canvas canvas) {
-		myCanvas = canvas;
-		handler = new MouseAdapter() {
+	public Line(Canvas canvas, Color color) {
+		super(canvas, color);
+		renderedPoints = new ArrayList<>();
+		clickHandler = new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (origin == null) {
 					origin = new Vector2D(e.getX(), e.getY());
-					Brush b = new Brush(myCanvas);
-					b.render(origin);
-				} else {
-					end = new Vector2D(e.getX(), e.getY());
-					Brush b = new Brush(myCanvas);
-					b.render(end);
+					renderedPoints.add(new Vector2D(e.getX(), e.getY()));
 				}
-				render();
+				myCanvas.repaint();
 			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				clear();
+			}
+
 		};
+
+		motionHandler = new MouseAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				end = new Vector2D(e.getX(), e.getY());
+				renderedPoints.add(end);
+				render(origin, end);
+				for (int i = 0; i < renderedPoints.size()-1; i+=2) {
+					render(renderedPoints.get(i),renderedPoints.get(i+1));
+				}
+				myCanvas.repaint();
+			};
+		};
+
 	}
 
-	public void render() {
-		if (origin != null && end != null) {
-			System.out.println(origin + " " + end);
-			float k = (float) (origin.y - end.y) / (float) (end.x - origin.x);
-			System.out.println("K:" + k);
-			if (k < 1) {
-				int deltaX = end.x - origin.x;
-				for (int x = 0; x <= deltaX; x++) {
-					int y = (int) (k * (int) x);
-					myCanvas.getFill().setRGB(origin.x + x, origin.y - y, color.hashCode());
+	private void clear() {
+		origin = null;
+		end = null;
+	}
+
+	public void render(Vector2D x1y1, Vector2D x2y2) {
+		if (x1y1 != null && end != null) {
+			int dx = x2y2.x - x1y1.x;
+			int dy = x2y2.y - x1y1.y;
+
+			if (Math.abs(dy) <= Math.abs(dx)) {
+				if (x2y2.x < x1y1.x)
+					Vector2D.reverse(x1y1, x2y2);
+
+				float k = (float) dy / dx;
+				float fy = (float) x1y1.y;
+
+				for (int x = x1y1.x; x <= x2y2.x; x++) {
+					int y = (int) Math.round(fy);
+					myCanvas.drawPixel(x, y, color);
+					fy += k;
 				}
-			}
-			if (k > 1) {
-				int deltaY = origin.y - end.y;
-				for (int y = 0; y <= deltaY; y++) {
-					int x = (int) (y / (int) k);
-					myCanvas.getFill().setRGB(origin.x + x, origin.y - y, color.hashCode());
+			} else {
+				if (end.y < x1y1.y)
+					Vector2D.reverse(x1y1, x2y2);
+
+				float k = (float) dx / dy;
+				float fx = (float) x1y1.x;
+
+				for (int y = x1y1.y; y <= x2y2.y; y++) {
+					int x = (int) Math.round(fx);
+					myCanvas.drawPixel(x, y, color);
+					fx += k;
 				}
+
 			}
-			myCanvas.repaint();
-			origin = null;
-			end = null;
 		}
-
-	}
-
-	@Override
-	public MouseAdapter getHandler() {
-		return handler;
 	}
 }
