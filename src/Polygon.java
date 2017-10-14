@@ -23,49 +23,52 @@ public class Polygon extends GraphicalObject {
 		};
 	}
 
+
 	public void render(Vector2D newPoint) {
 		System.out.println(points.size());
-		if (points.size() == 2) {
-			new Line(myCanvas, color).render(points.get(0), points.get(1));
+		if(points.size() == 2) {
+			renderArm(points.get(0),points.get(1));
 		}
-		if (points.size() == 3) {
-			renderArm(points.get(0), points.get(2));
-			renderArm(points.get(1), points.get(2));
+		if(points.size() == 3) {
+			renderArm(points.get(0),points.get(2));
+			renderArm(points.get(1),points.get(2));
 		}
 		myCanvas.repaint();
+		
 	}
+	
+	public void renderArm(Vector2D x1y1, Vector2D x2y2) {
+		
+			int dx = x2y2.x - x1y1.x;
+			int dy = x2y2.y - x1y1.y;
 
-	private void renderArm(Vector2D x1y1, Vector2D x2y2) {
+			if (Math.abs(dy) <= Math.abs(dx)) {
+				if (x2y2.x < x1y1.x)
+					Vector2D.reverse(x1y1, x2y2);
 
-		int dx = x2y2.x - x1y1.x;
-		int dy = x2y2.y - x1y1.y;
+				float k = (float) dy / dx;
+				float fy = (float) x1y1.y;
 
-		if (Math.abs(dy) <= Math.abs(dx)) {
-			if (x2y2.x < x1y1.x)
-				Vector2D.reverse(x1y1, x2y2);
+				for (int x = x1y1.x; x <= x2y2.x; x++) {
+					int y = (int) Math.round(fy);
+					myCanvas.drawPixel(x, y, color);
+					fy += k;
+				}
+			} else {
+				if (x2y2.y < x1y1.y)
+					Vector2D.reverse(x1y1, x2y2);
 
-			float k = (float) dy / dx;
-			float fy = (float) x1y1.y;
+				float k = (float) dx / dy;
+				float fx = (float) x1y1.x;
 
-			for (int x = x1y1.x; x <= x2y2.x; x++) {
-				int y = (int) Math.round(fy);
-				myCanvas.drawPixel(x, y, color);
-				fy += k;
+				for (int y = x1y1.y; y <= x2y2.y; y++) {
+					int x = (int) Math.round(fx);
+					myCanvas.drawPixel(x, y, color);
+					fx += k;
+				}
+
 			}
-		} else {
-			if (x2y2.y < x1y1.y)
-				Vector2D.reverse(x1y1, x2y2);
-
-			float k = (float) dx / dy;
-			float fx = (float) x1y1.x;
-
-			for (int y = x1y1.y; y <= x2y2.y; y++) {
-				int x = (int) Math.round(fx);
-				myCanvas.drawPixel(x, y, color);
-				fx += k;
-			}
-
-		}
+		
 	}
 
 	@Override
