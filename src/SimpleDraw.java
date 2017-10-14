@@ -100,6 +100,16 @@ public class SimpleDraw {
 		});
 		toolBar.add(line);
 
+		// Button for making circles
+		ToolButton circle = new ToolButton("Draw a circle or an arc", "res/circle.png");
+		circle.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				changeTool(new Circle(canvas, colorToUse));
+			}
+		});
+		toolBar.add(circle);
+
 		// Color picker
 		ToolButton colorPicker = new ToolButton("Pick a color");
 		colorPicker.setText("COLOR");

@@ -8,44 +8,32 @@ public class Line extends GraphicalObject {
 
 	private Vector2D origin;
 	private Vector2D end;
-	private List<Vector2D> renderedPoints;
 
 	public Line(Canvas canvas, Color color) {
 		super(canvas, color);
-		renderedPoints = new ArrayList<>();
 		clickHandler = new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				if (origin == null) {
-					origin = new Vector2D(e.getX(), e.getY());
-					renderedPoints.add(new Vector2D(e.getX(), e.getY()));
+				if (canDraw(new Vector2D(e.getX(), e.getY()))) {
+					if (origin == null) {
+						origin = new Vector2D(e.getX(), e.getY());
+					}
 				}
-				myCanvas.repaint();
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				clear();
-			}
-
-		};
-
-		motionHandler = new MouseAdapter() {
-			@Override
-			public void mouseDragged(MouseEvent e) {
-				end = new Vector2D(e.getX(), e.getY());
-				renderedPoints.add(end);
-				render(origin, end);
-				for (int i = 0; i < renderedPoints.size()-1; i+=2) {
-					render(renderedPoints.get(i),renderedPoints.get(i+1));
+				if (canDraw(new Vector2D(e.getX(), e.getY()))) {
+					end = new Vector2D(e.getX(), e.getY());
+					render(origin, end);
 				}
-				myCanvas.repaint();
-			};
+			}
 		};
 
 	}
 
-	private void clear() {
+	@Override
+	protected void clear() {
 		origin = null;
 		end = null;
 	}
@@ -68,7 +56,7 @@ public class Line extends GraphicalObject {
 					fy += k;
 				}
 			} else {
-				if (end.y < x1y1.y)
+				if (x2y2.y < x1y1.y)
 					Vector2D.reverse(x1y1, x2y2);
 
 				float k = (float) dx / dy;
@@ -82,5 +70,7 @@ public class Line extends GraphicalObject {
 
 			}
 		}
+		myCanvas.repaint();
+		clear();
 	}
 }

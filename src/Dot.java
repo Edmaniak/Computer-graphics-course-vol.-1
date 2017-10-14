@@ -22,4 +22,9 @@ public class Dot extends GraphicalObject {
 		myCanvas.repaint();
 	}
 
+	@Override
+	protected void clear() {
+		
+	}
+
 }
