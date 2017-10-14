@@ -33,15 +33,15 @@ public class Circle extends GraphicalObject {
 	public void render(Vector2D center, int radius) {
 		int x = 0;
 		int y = radius;
-		int p = 1 - radius;
+		int d = 1 - radius;
 		drawSymetrically(center.x, center.y, x, y);
 		while (x < y) {
 			x++;
-			if (p < 0) {
-				p += 2 * x + 1;
+			if (d < 0) {
+				d += 2 * x + 1;
 			} else {
 				y--;
-				p += 2 * (x - y) + 1;
+				d += 2 * (x - y) + 1;
 			}
 			drawSymetrically(center.x, center.y, x, y);
 		}
