@@ -38,37 +38,35 @@ public class Line extends GraphicalObject {
 		end = null;
 	}
 
-	public void render(Vector2D x1y1, Vector2D x2y2) {
-		if (x1y1 != null && end != null) {
-			int dx = x2y2.x - x1y1.x;
-			int dy = x2y2.y - x1y1.y;
+	public void render(Vector2D o, Vector2D e) {
+		int dx = e.x - o.x;
+		int dy = e.y - o.y;
 
-			if (Math.abs(dy) <= Math.abs(dx)) {
-				if (x2y2.x < x1y1.x)
-					Vector2D.reverse(x1y1, x2y2);
+		if (Math.abs(dy) <= Math.abs(dx)) {
+			if (e.x < o.x)
+				Vector2D.reverse(o, e);
 
-				float k = (float) dy / dx;
-				float fy = (float) x1y1.y;
+			float k = (float) dy / dx;
+			float fy = (float) o.y;
 
-				for (int x = x1y1.x; x <= x2y2.x; x++) {
-					int y = (int) Math.round(fy);
-					myCanvas.drawPixel(x, y, color);
-					fy += k;
-				}
-			} else {
-				if (x2y2.y < x1y1.y)
-					Vector2D.reverse(x1y1, x2y2);
-
-				float k = (float) dx / dy;
-				float fx = (float) x1y1.x;
-
-				for (int y = x1y1.y; y <= x2y2.y; y++) {
-					int x = (int) Math.round(fx);
-					myCanvas.drawPixel(x, y, color);
-					fx += k;
-				}
-
+			for (int x = o.x; x <= e.x; x++) {
+				int y = (int) Math.round(fy);
+				myCanvas.drawPixel(x, y, color);
+				fy += k;
 			}
+		} else {
+			if (e.y < o.y)
+				Vector2D.reverse(o, e);
+
+			float k = (float) dx / dy;
+			float fx = (float) o.x;
+
+			for (int y = o.y; y <= e.y; y++) {
+				int x = (int) Math.round(fx);
+				myCanvas.drawPixel(x, y, color);
+				fx += k;
+			}
+
 		}
 		myCanvas.repaint();
 		clear();

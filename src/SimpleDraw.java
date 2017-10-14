@@ -66,6 +66,8 @@ public class SimpleDraw {
 					canvas.setBgColor(colorToUse);
 				else
 					canvas.clear();
+				if (selectedTool != null)
+					selectedTool.clear();
 			}
 		});
 		toolBar.add(newCanvas);
