@@ -100,6 +100,16 @@ public class SimpleDraw {
 		});
 		toolBar.add(line);
 
+		// Button for making n-gons
+		ToolButton polygon = new ToolButton("Draw a polygon", "res/polygon.png");
+		polygon.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				changeTool(new Polygon(canvas, colorToUse));
+			}
+		});
+		toolBar.add(polygon);
+
 		// Button for making circles
 		ToolButton circle = new ToolButton("Draw a circle or an arc", "res/circle.png");
 		circle.addActionListener(new ActionListener() {
