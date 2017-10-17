@@ -63,9 +63,9 @@ public class SimpleDraw {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (colorToUse != AppColor.DEFAULT_DRAW)
-					canvas.setBgColor(colorToUse);
+					canvas.clear(colorToUse);
 				else
-					canvas.clear();
+					canvas.clear(AppColor.DEFAULT_BG);
 				if (selectedTool != null)
 					selectedTool.clear();
 			}
@@ -141,8 +141,8 @@ public class SimpleDraw {
 
 	private void changeTool(GraphicalObject go) {
 		selectedTool = go;
-		canvas.setMouseClickHandler(go.clickHandler);
 		canvas.setMouseMotionHandler(go.motionHandler);
+		canvas.setMouseClickHandler(go.clickHandler);
 		canvas.setCursor(go.cursor);
 	}
 

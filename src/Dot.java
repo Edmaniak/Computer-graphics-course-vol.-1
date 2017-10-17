@@ -13,6 +13,10 @@ public class Dot extends GraphicalObject {
 			public void mousePressed(MouseEvent e) {
 				render(new Vector2D(e.getX(), e.getY()));
 			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				myCanvas.drawInto();
+			}
 		};
 	}
 

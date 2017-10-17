@@ -10,20 +10,34 @@ public class Circle extends GraphicalObject {
 
 	public Circle(Canvas canvas, Color color) {
 		super(canvas, color);
+		
 		clickHandler = new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (center == null)
 					center = new Vector2D(e.getX(), e.getY());
-				else {
-					radPoint = new Vector2D(e.getX(), e.getY());
-					int radius = (int)Math.sqrt(Math.pow((radPoint.x - center.x),2)+Math.pow((radPoint.y - center.y),2));
-					render(center, radius);	
-				}
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				myCanvas.drawInto();
+				clear();
 			}
 		};
+		
+		motionHandler = new MouseAdapter() {
+
+			public void mouseDragged(MouseEvent e) {
+				radPoint = new Vector2D(e.getX(), e.getY());
+				int radius = (int) Math.sqrt(Math.pow((radPoint.x - center.x), 2) + Math.pow((radPoint.y - center.y), 2));
+				myCanvas.mix();
+				render(center, radius);
+				myCanvas.repaint();
+			}
+
+		};
 	}
-	
+
 	@Override
 	protected void clear() {
 		center = null;
@@ -45,19 +59,17 @@ public class Circle extends GraphicalObject {
 			}
 			drawSymetrically(center.x, center.y, x, y);
 		}
-		myCanvas.repaint();
-		clear();
 	}
 
 	public void drawSymetrically(int xcenter, int ycenter, int x, int y) {
-		myCanvas.drawPixel(xcenter + x, ycenter + y, color);
-		myCanvas.drawPixel(xcenter - x, ycenter + y, color);
-		myCanvas.drawPixel(xcenter + x, ycenter - y, color);
-		myCanvas.drawPixel(xcenter - x, ycenter - y, color);
-		myCanvas.drawPixel(xcenter + y, ycenter + x, color);
-		myCanvas.drawPixel(xcenter - y, ycenter + x, color);
-		myCanvas.drawPixel(xcenter + y, ycenter - x, color);
-		myCanvas.drawPixel(xcenter - y, ycenter - x, color);
+		myCanvas.putPixel(xcenter + x, ycenter + y, color);
+		myCanvas.putPixel(xcenter - x, ycenter + y, color);
+		myCanvas.putPixel(xcenter + x, ycenter - y, color);
+		myCanvas.putPixel(xcenter - x, ycenter - y, color);
+		myCanvas.putPixel(xcenter + y, ycenter + x, color);
+		myCanvas.putPixel(xcenter - y, ycenter + x, color);
+		myCanvas.putPixel(xcenter + y, ycenter - x, color);
+		myCanvas.putPixel(xcenter - y, ycenter - x, color);
 	}
 
 }

@@ -55,7 +55,7 @@ public class Polygon extends GraphicalObject {
 
 			for (int x = x1y1.x; x <= x2y2.x; x++) {
 				int y = (int) Math.round(fy);
-				myCanvas.drawPixel(x, y, color);
+				myCanvas.putPixel(x, y, color);
 				fy += k;
 			}
 		} else {
@@ -67,7 +67,7 @@ public class Polygon extends GraphicalObject {
 
 			for (int y = x1y1.y; y <= x2y2.y; y++) {
 				int x = (int) Math.round(fx);
-				myCanvas.drawPixel(x, y, color);
+				myCanvas.putPixel(x, y, color);
 				fx += k;
 			}
 

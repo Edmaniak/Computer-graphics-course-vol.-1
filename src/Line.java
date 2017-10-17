@@ -35,7 +35,7 @@ public class Line extends GraphicalObject {
 				if (canDrawAt(new Vector2D(e.getX(), e.getY()))) {
 					end = new Vector2D(e.getX(), e.getY());
 					myCanvas.mix();
-					render(origin, end);
+					render();
 					myCanvas.repaint();
 				}
 			}
@@ -49,35 +49,55 @@ public class Line extends GraphicalObject {
 		end = null;
 	}
 
-	public void render(Vector2D o, Vector2D e) {
-		int dx = e.x - o.x;
-		int dy = e.y - o.y;
-
+	public void render() {
+		System.out.println("o " + origin + " "+ "e"+ end );
+		float dx = end.x - origin.x;
+		float dy = end.y - origin.y;
+		System.out.println("dx" + dx + " " + "dy" + dy);
 		if (Math.abs(dy) <= Math.abs(dx)) {
-			if (e.x < o.x)
-				Vector2D.reverse(o, e);
+			if (origin.x == end.x && origin.y == end.y) {
+				myCanvas.putPixel(origin.x, origin.y, color);
+			} else {
+				if (end.x < origin.x) {
+					int tmp = end.x;
+					end.x = origin.x;
+					origin.x = tmp;
+					tmp = end.y;
+					end.y = origin.y;
+					origin.y = tmp;
+				}
 
-			float k = (float) dy / dx;
-			float fy = (float) o.y;
+				float k = (float) dy / dx;
+				float fy = (float) origin.y;
 
-			for (int x = o.x; x <= e.x; x++) {
-				int y = (int) Math.round(fy);
-				myCanvas.drawPixel(x, y, color);
-				fy += k;
+				for (int x = origin.x; x <= end.x; x++) {
+					int y = (int) Math.round(fy);
+					myCanvas.putPixel(x, y, color);
+					fy += k;
+				}
+				System.out.println("F" + k);
 			}
 		} else {
-			if (e.y < o.y)
-				Vector2D.reverse(o, e);
-
-			float k = (float) dx / dy;
-			float fx = (float) o.x;
-
-			for (int y = o.y; y <= e.y; y++) {
-				int x = (int) Math.round(fx);
-				myCanvas.drawPixel(x, y, color);
-				fx += k;
+			if (end.y < origin.y) {
+				int tmp = end.x;
+				end.x = origin.x;
+				origin.x = tmp;
+				tmp = end.y;
+				end.y = origin.y;
+				origin.y = tmp;
 			}
 
+			float k = (float) dx / dy;
+			float fx = (float) origin.x;
+
+			for (int y = origin.y; y <= end.y; y++) {
+				int x = (int) Math.round(fx);
+				myCanvas.putPixel(x, y, color);
+				fx += k;
+			}
+			System.out.println("S" + k);
+
 		}
+
 	}
 }

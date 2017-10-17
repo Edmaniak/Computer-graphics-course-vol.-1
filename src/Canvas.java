@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 public class Canvas extends JPanel implements MouseMotionListener {
 	
 	private BufferedImage activeBuffer;
-	private BufferedImage buffer;
+	private BufferedImage mainBuffer;
 	private Color bgColor;
 	private Dimension dimensions;
 	private MouseListener mouseEventHandler;
@@ -23,9 +23,8 @@ public class Canvas extends JPanel implements MouseMotionListener {
 	public Canvas(Dimension d) {
 		setDimensions(d);
 		activeBuffer = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_RGB);
-		buffer = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_RGB);
+		mainBuffer = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_RGB);
 		setPreferredSize(d);
-		clear();
 		addMouseMotionListener(this);
 	}
 
@@ -40,14 +39,17 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		g.drawImage(activeBuffer, 0,0, null);
 	}
 	
-	public void clear() {
-		setBgColor(AppColor.DEFAULT_BG);
+	public void clear(Color c) {
+		setBgColor(c);
+		activeBuffer = new BufferedImage(dimensions.width, dimensions.height, BufferedImage.TYPE_INT_RGB);
+		mainBuffer = new BufferedImage(dimensions.width, dimensions.height, BufferedImage.TYPE_INT_RGB);
 		repaint();
 	}
 	
+	// Metoda pro mix originalniho bufferu a dynamicky kreslenych grafickych objektu
 	public void mix() {
 		Graphics g = activeBuffer.getGraphics();
-		g.drawImage(buffer, 0, 0, null); 
+		g.drawImage(mainBuffer, 0, 0, null);  
 		repaint();
 	}
 
@@ -75,8 +77,9 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		mouseMotionHandler = mouseHandler;
 	}
 	
+	// Zapise hotovy graficky objekt tvoreny v ramci mouse I/O do hlavniho bufferu
 	public void drawInto() {
-		buffer = deepCopy(activeBuffer);
+		mainBuffer = deepCopy(activeBuffer);
 	}
 	
 	private static BufferedImage deepCopy(BufferedImage bi) {
@@ -90,7 +93,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		activeBuffer.setRGB(position.x, position.y, color.hashCode());
 	}
 	
-	public void drawPixel(int x, int y,Color color) {
+	public void putPixel(int x, int y,Color color) {
 		activeBuffer.setRGB(x, y, color.hashCode());
 	}
 
