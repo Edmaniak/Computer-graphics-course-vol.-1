@@ -14,7 +14,7 @@ public class Line extends GraphicalObject {
 		clickHandler = new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				if (canDraw(new Vector2D(e.getX(), e.getY()))) {
+				if (canDrawAt(new Vector2D(e.getX(), e.getY()))) {
 					if (origin == null) {
 						origin = new Vector2D(e.getX(), e.getY());
 					}
@@ -23,9 +23,20 @@ public class Line extends GraphicalObject {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				if (canDraw(new Vector2D(e.getX(), e.getY()))) {
+				if (canDrawAt(new Vector2D(e.getX(), e.getY()))) {
+					myCanvas.drawInto();
+					clear();
+				}
+			}
+		};
+
+		motionHandler = new MouseAdapter() {
+			public void mouseDragged(MouseEvent e) {
+				if (canDrawAt(new Vector2D(e.getX(), e.getY()))) {
 					end = new Vector2D(e.getX(), e.getY());
+					myCanvas.mix();
 					render(origin, end);
+					myCanvas.repaint();
 				}
 			}
 		};
@@ -68,7 +79,5 @@ public class Line extends GraphicalObject {
 			}
 
 		}
-		myCanvas.repaint();
-		clear();
 	}
 }

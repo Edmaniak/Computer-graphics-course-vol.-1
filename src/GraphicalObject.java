@@ -21,7 +21,7 @@ public abstract class GraphicalObject {
 
 	protected abstract void clear();
 
-	protected boolean canDraw(Vector2D point) {
+	protected boolean canDrawAt(Vector2D point) {
 		if (point.x >= 0 && point.x < myCanvas.getWidth() && point.y >= 0 && point.y < myCanvas.getHeight())
 			return true;
 		clear();

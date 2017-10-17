@@ -6,11 +6,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 
 import javax.swing.JPanel;
 
 public class Canvas extends JPanel implements MouseMotionListener {
 	
+	private BufferedImage activeBuffer;
 	private BufferedImage buffer;
 	private Color bgColor;
 	private Dimension dimensions;
@@ -19,6 +22,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
 
 	public Canvas(Dimension d) {
 		setDimensions(d);
+		activeBuffer = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_RGB);
 		buffer = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_RGB);
 		setPreferredSize(d);
 		clear();
@@ -33,11 +37,17 @@ public class Canvas extends JPanel implements MouseMotionListener {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(buffer, 0, 0, null);
+		g.drawImage(activeBuffer, 0,0, null);
 	}
 	
 	public void clear() {
 		setBgColor(AppColor.DEFAULT_BG);
+		repaint();
+	}
+	
+	public void mix() {
+		Graphics g = activeBuffer.getGraphics();
+		g.drawImage(buffer, 0, 0, null); 
 		repaint();
 	}
 
@@ -47,7 +57,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
 
 	public void setBgColor(Color bgColor) {
 		this.bgColor = bgColor;
-		Graphics newBgCol = buffer.getGraphics();
+		Graphics newBgCol = activeBuffer.getGraphics();
 		newBgCol.setColor(bgColor);
 		newBgCol.fillRect(0, 0, dimensions.width, dimensions.height);
 		repaint();
@@ -65,12 +75,23 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		mouseMotionHandler = mouseHandler;
 	}
 	
+	public void drawInto() {
+		buffer = deepCopy(activeBuffer);
+	}
+	
+	private static BufferedImage deepCopy(BufferedImage bi) {
+		 ColorModel cm = bi.getColorModel();
+		 boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+		 WritableRaster raster = bi.copyData(null);
+		 return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+	}
+	
 	public void drawPixel(Vector2D position,Color color) {
-		buffer.setRGB(position.x, position.y, color.hashCode());
+		activeBuffer.setRGB(position.x, position.y, color.hashCode());
 	}
 	
 	public void drawPixel(int x, int y,Color color) {
-		buffer.setRGB(x, y, color.hashCode());
+		activeBuffer.setRGB(x, y, color.hashCode());
 	}
 
 	public Dimension getDimensions() {

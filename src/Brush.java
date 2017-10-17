@@ -12,7 +12,7 @@ public class Brush extends GraphicalObject {
 		motionHandler = new MouseAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
-				if (canDraw(new Vector2D(e.getX(), e.getY()))) {
+				if (canDrawAt(new Vector2D(e.getX(), e.getY()))) {
 					if (lastPosition != null)
 						render(lastPosition, new Vector2D(e.getX(), e.getY()));
 					lastPosition = new Vector2D(e.getX(), e.getY());
