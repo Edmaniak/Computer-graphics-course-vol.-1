@@ -96,6 +96,5 @@ public class Line extends GraphicalObject {
 				fx += k;
 			}
 		}
-
 	}
 }

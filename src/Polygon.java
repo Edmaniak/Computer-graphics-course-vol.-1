@@ -8,7 +8,6 @@ public class Polygon extends GraphicalObject {
 
 	private List<Vector2D> points;
 	private Vector2D point;
-	private Vector2D oldPoint;
 
 	public Polygon(Canvas canvas, Color color) {
 		super(canvas, color);
@@ -16,9 +15,35 @@ public class Polygon extends GraphicalObject {
 		clickHandler = new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				point = new Vector2D(e.getX(), e.getY());
-				points.add(point);
-				render(point);
+				if (points.size() == 0) {
+					point = new Vector2D(e.getX(), e.getY());
+					points.add(point);
+				}
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				myCanvas.drawInto();
+				points.add(new Vector2D(e.getX(), e.getY()));
+			}
+		};
+		motionHandler = new MouseAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				myCanvas.mix();
+				if (points.size() == 1) {
+					Vector2D newP = new Vector2D(e.getX(), e.getY());
+					Vector2D p2 = new Vector2D(points.get(points.size() - 1));
+					renderArm(newP, p2);
+				} else {
+					Vector2D newP1 = new Vector2D(e.getX(), e.getY());
+					Vector2D newP2 = new Vector2D(e.getX(), e.getY());
+					Vector2D p1 = new Vector2D(points.get(points.size() - 1));
+					Vector2D p2 = new Vector2D(points.get(points.size() - 2));
+					renderArm(newP1, p1);
+					renderArm(newP2, p2);
+				}
+				myCanvas.repaint();
 			}
 		};
 	}
@@ -28,51 +53,52 @@ public class Polygon extends GraphicalObject {
 		return points.get(points.size() - i - 1);
 	}
 
-	public void render(Vector2D newPoint) {
+	public void renderArm(Vector2D o, Vector2D e) {
 
-		if (points.size() == 2) {
-			renderArm(getPrevious(1), newPoint);
-		}
-		if (points.size() > 2) {
-			renderArm(getPrevious(2), newPoint);
-			renderArm(getPrevious(1), newPoint);
-		}
-		myCanvas.repaint();
-
-	}
-
-	private void renderArm(Vector2D x1y1, Vector2D x2y2) {
-
-		int dx = x2y2.x - x1y1.x;
-		int dy = x2y2.y - x1y1.y;
+		float dx = e.x - o.x;
+		float dy = e.y - o.y;
 
 		if (Math.abs(dy) <= Math.abs(dx)) {
-			if (x2y2.x < x1y1.x)
-				Vector2D.reverse(x1y1, x2y2);
+			if (o.x == e.x && o.y == e.y) {
+				myCanvas.putPixel(o.x, o.y, color);
+			} else {
+				if (e.x < o.x) {
+					int a = e.x;
+					e.x = o.x;
+					o.x = a;
+					a = e.y;
+					e.y = o.y;
+					o.y = a;
+				}
 
-			float k = (float) dy / dx;
-			float fy = (float) x1y1.y;
+				float k = (float) dy / dx;
+				float fy = (float) o.y;
 
-			for (int x = x1y1.x; x <= x2y2.x; x++) {
-				int y = (int) Math.round(fy);
-				myCanvas.putPixel(x, y, color);
-				fy += k;
+				for (int x = o.x; x <= e.x; x++) {
+					int y = (int) Math.round(fy);
+					myCanvas.putPixel(x, y, color);
+					fy += k;
+				}
 			}
 		} else {
-			if (x2y2.y < x1y1.y)
-				Vector2D.reverse(x1y1, x2y2);
+			if (e.y < o.y) {
+				int a = e.x;
+				e.x = o.x;
+				o.x = a;
+				a = e.y;
+				e.y = o.y;
+				o.y = a;
+			}
 
 			float k = (float) dx / dy;
-			float fx = (float) x1y1.x;
+			float fx = (float) o.x;
 
-			for (int y = x1y1.y; y <= x2y2.y; y++) {
+			for (int y = o.y; y <= e.y; y++) {
 				int x = (int) Math.round(fx);
 				myCanvas.putPixel(x, y, color);
 				fx += k;
 			}
-
 		}
-
 	}
 
 	@Override
