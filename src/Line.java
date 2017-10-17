@@ -7,7 +7,6 @@ import java.util.List;
 public class Line extends GraphicalObject {
 
 	private Vector2D origin;
-	private Vector2D end;
 
 	public Line(Canvas canvas, Color color) {
 		super(canvas, color);
@@ -33,70 +32,69 @@ public class Line extends GraphicalObject {
 		motionHandler = new MouseAdapter() {
 			public void mouseDragged(MouseEvent e) {
 				if (canDrawAt(new Vector2D(e.getX(), e.getY()))) {
-					end = new Vector2D(e.getX(), e.getY());
+					
+					// Protoze reference!
+					Vector2D or = new Vector2D(origin);
+					Vector2D en = new Vector2D(e.getX(), e.getY());
+					
 					myCanvas.mix();
-					render();
+					render(or,en);
 					myCanvas.repaint();
 				}
 			}
 		};
-
 	}
 
 	@Override
 	protected void clear() {
 		origin = null;
-		end = null;
 	}
 
-	public void render() {
-		System.out.println("o " + origin + " "+ "e"+ end );
-		float dx = end.x - origin.x;
-		float dy = end.y - origin.y;
-		System.out.println("dx" + dx + " " + "dy" + dy);
+	public void render(Vector2D o, Vector2D e ) {
+		
+		float dx = e.x - o.x;
+		float dy = e.y - o.y;
+		
 		if (Math.abs(dy) <= Math.abs(dx)) {
-			if (origin.x == end.x && origin.y == end.y) {
-				myCanvas.putPixel(origin.x, origin.y, color);
+			if (o.x == e.x && o.y == e.y) {
+				myCanvas.putPixel(o.x, o.y, color);
 			} else {
-				if (end.x < origin.x) {
-					int tmp = end.x;
-					end.x = origin.x;
-					origin.x = tmp;
-					tmp = end.y;
-					end.y = origin.y;
-					origin.y = tmp;
+				if (e.x < o.x) {
+					int a = e.x; 
+					e.x = o.x;
+					o.x = a;
+					a = e.y;
+					e.y = o.y;
+					o.y = a;
 				}
 
 				float k = (float) dy / dx;
-				float fy = (float) origin.y;
+				float fy = (float) o.y;
 
-				for (int x = origin.x; x <= end.x; x++) {
+				for (int x = o.x; x <= e.x; x++) {
 					int y = (int) Math.round(fy);
 					myCanvas.putPixel(x, y, color);
 					fy += k;
 				}
-				System.out.println("F" + k);
 			}
 		} else {
-			if (end.y < origin.y) {
-				int tmp = end.x;
-				end.x = origin.x;
-				origin.x = tmp;
-				tmp = end.y;
-				end.y = origin.y;
-				origin.y = tmp;
+			if (e.y < o.y) {
+				int a = e.x; 
+				e.x = o.x;
+				o.x = a;
+				a = e.y;
+				e.y = o.y;
+				o.y = a;
 			}
 
 			float k = (float) dx / dy;
-			float fx = (float) origin.x;
+			float fx = (float) o.x;
 
-			for (int y = origin.y; y <= end.y; y++) {
+			for (int y = o.y; y <= e.y; y++) {
 				int x = (int) Math.round(fx);
 				myCanvas.putPixel(x, y, color);
 				fx += k;
 			}
-			System.out.println("S" + k);
-
 		}
 
 	}

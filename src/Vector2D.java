@@ -9,6 +9,11 @@ public class Vector2D {
 		this.y = (int) y;
 	}
 
+	public Vector2D(Vector2D end) {
+		x = end.x;
+		y = end.y;
+	}
+
 	@Override
 	public String toString() {
 		return "[" + "X: " + x + " Y: " + y + "]";
