@@ -12,6 +12,7 @@ public class Polygon extends GraphicalObject {
 
 	public Polygon(Canvas canvas, Color color) {
 		super(canvas, color);
+		
 		points = new ArrayList<Vector2D>();
 		
 		clickHandler = new MouseAdapter() {
@@ -50,6 +51,10 @@ public class Polygon extends GraphicalObject {
 				myCanvas.repaint();
 			}
 		};
+	}
+	
+	public void removeArm() {
+		
 	}
 
 	public void renderArm(Vector2D o, Vector2D e) {

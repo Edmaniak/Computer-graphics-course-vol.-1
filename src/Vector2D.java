@@ -18,6 +18,12 @@ public class Vector2D {
 	public String toString() {
 		return "[" + "X: " + x + " Y: " + y + "]";
 	}
+	
+	public Vector2D sum(Vector2D second) {
+		x += second.x;
+		y += second.y;
+		return this;
+	}
 
 	public static void reverse(Vector2D first, Vector2D second) {
 		// x values switch

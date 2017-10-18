@@ -23,7 +23,7 @@ public class Dot extends GraphicalObject {
 
 	public void render(Vector2D position) {
 		System.out.println(position);
-		myCanvas.drawPixel(position, color);
+		myCanvas.putPixel(position, color);
 		myCanvas.repaint();
 	}
 

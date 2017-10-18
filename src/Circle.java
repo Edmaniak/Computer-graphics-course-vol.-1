@@ -2,12 +2,13 @@
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import static java.lang.Math.*;
 
 public class Circle extends GraphicalObject {
 
 	private Vector2D center;
 	private Vector2D radPoint;
-	private int radiusss;
+	private int radius;
 
 	public Circle(Canvas canvas, Color color) {
 		super(canvas, color);
@@ -28,25 +29,22 @@ public class Circle extends GraphicalObject {
 		};
 
 		motionHandler = new MouseAdapter() {
-
 			public void mouseDragged(MouseEvent e) {
 				radPoint = new Vector2D(e.getX(), e.getY());
-				int radius = (int) Math
-						.sqrt(Math.pow((radPoint.x - center.x), 2) + Math.pow((radPoint.y - center.y), 2));
+				radius = (int) sqrt(pow((radPoint.x - center.x), 2) + pow((radPoint.y - center.y), 2));
 				myCanvas.mix();
 				render(center, radius);
 				myCanvas.repaint();
-				radiusss = radius;
+
 			}
-
 		};
-
 	}
 
 	@Override
 	protected void clear() {
 		center = null;
 		radPoint = null;
+		radius = 0;
 	}
 
 	public void render(Vector2D center, int radius) {

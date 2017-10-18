@@ -23,10 +23,8 @@ public class Line extends GraphicalObject {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				if (canDrawAt(new Vector2D(e.getX(), e.getY()))) {
 					myCanvas.drawInto();
 					clear();
-				}
 			}
 		};
 
