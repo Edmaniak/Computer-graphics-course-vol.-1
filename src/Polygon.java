@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -12,6 +13,7 @@ public class Polygon extends GraphicalObject {
 	public Polygon(Canvas canvas, Color color) {
 		super(canvas, color);
 		points = new ArrayList<Vector2D>();
+		
 		clickHandler = new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -20,13 +22,13 @@ public class Polygon extends GraphicalObject {
 					points.add(point);
 				}
 			}
-
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				myCanvas.drawInto();
 				points.add(new Vector2D(e.getX(), e.getY()));
 			}
 		};
+		
 		motionHandler = new MouseAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
@@ -36,21 +38,18 @@ public class Polygon extends GraphicalObject {
 					Vector2D p2 = new Vector2D(points.get(points.size() - 1));
 					renderArm(newP, p2);
 				} else {
+					// Duplikace kvuli referencim...jinak nefunguje :(
 					Vector2D newP1 = new Vector2D(e.getX(), e.getY());
 					Vector2D newP2 = new Vector2D(e.getX(), e.getY());
 					Vector2D p1 = new Vector2D(points.get(points.size() - 1));
 					Vector2D p2 = new Vector2D(points.get(points.size() - 2));
 					renderArm(newP1, p1);
 					renderArm(newP2, p2);
+					
 				}
 				myCanvas.repaint();
 			}
 		};
-	}
-
-	private Vector2D getPrevious(int i) {
-		System.out.println(points.size() - i - 1);
-		return points.get(points.size() - i - 1);
 	}
 
 	public void renderArm(Vector2D o, Vector2D e) {
@@ -62,14 +61,8 @@ public class Polygon extends GraphicalObject {
 			if (o.x == e.x && o.y == e.y) {
 				myCanvas.putPixel(o.x, o.y, color);
 			} else {
-				if (e.x < o.x) {
-					int a = e.x;
-					e.x = o.x;
-					o.x = a;
-					a = e.y;
-					e.y = o.y;
-					o.y = a;
-				}
+				if (e.x < o.x) 
+					Vector2D.reverse(o, e);
 
 				float k = (float) dy / dx;
 				float fy = (float) o.y;
@@ -81,14 +74,9 @@ public class Polygon extends GraphicalObject {
 				}
 			}
 		} else {
-			if (e.y < o.y) {
-				int a = e.x;
-				e.x = o.x;
-				o.x = a;
-				a = e.y;
-				e.y = o.y;
-				o.y = a;
-			}
+			
+			if (e.y < o.y)
+				Vector2D.reverse(o, e);
 
 			float k = (float) dx / dy;
 			float fx = (float) o.x;

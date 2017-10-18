@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -32,16 +33,18 @@ public class Line extends GraphicalObject {
 		motionHandler = new MouseAdapter() {
 			public void mouseDragged(MouseEvent e) {
 				if (canDrawAt(new Vector2D(e.getX(), e.getY()))) {
-					
+
 					// Protoze reference!
 					Vector2D or = new Vector2D(origin);
 					Vector2D en = new Vector2D(e.getX(), e.getY());
-					
+
 					myCanvas.mix();
-					render(or,en);
+					render(or, en);
 					myCanvas.repaint();
 				}
 			}
+			
+
 		};
 	}
 
@@ -50,42 +53,27 @@ public class Line extends GraphicalObject {
 		origin = null;
 	}
 
-	public void render(Vector2D o, Vector2D e ) {
-		
+	public void render(Vector2D o, Vector2D e) {
+
 		float dx = e.x - o.x;
 		float dy = e.y - o.y;
-		
+
 		if (Math.abs(dy) <= Math.abs(dx)) {
-			if (o.x == e.x && o.y == e.y) {
-				myCanvas.putPixel(o.x, o.y, color);
-			} else {
-				if (e.x < o.x) {
-					int a = e.x; 
-					e.x = o.x;
-					o.x = a;
-					a = e.y;
-					e.y = o.y;
-					o.y = a;
-				}
+			if (e.x < o.x)
+				Vector2D.reverse(o, e);
 
-				float k = (float) dy / dx;
-				float fy = (float) o.y;
+			float k = (float) dy / dx;
+			float fy = (float) o.y;
 
-				for (int x = o.x; x <= e.x; x++) {
-					int y = (int) Math.round(fy);
-					myCanvas.putPixel(x, y, color);
-					fy += k;
-				}
+			for (int x = o.x; x <= e.x; x++) {
+				int y = (int) Math.round(fy);
+				myCanvas.putPixel(x, y, color);
+				fy += k;
 			}
+
 		} else {
-			if (e.y < o.y) {
-				int a = e.x; 
-				e.x = o.x;
-				o.x = a;
-				a = e.y;
-				e.y = o.y;
-				o.y = a;
-			}
+			if (e.y < o.y)
+				Vector2D.reverse(o, e);
 
 			float k = (float) dx / dy;
 			float fx = (float) o.x;

@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
@@ -36,7 +37,7 @@ public class Brush extends GraphicalObject {
 			if (Math.abs(dy) <= Math.abs(dx)) {
 				if (x2y2.x < x1y1.x)
 					Vector2D.reverse(x1y1, x2y2);
-
+				
 				float k = (float) dy / dx;
 				float fy = (float) x1y1.y;
 
