@@ -2,63 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2939a789-1d51-47c5-8a78-ac317569893d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/app/AppColor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/app/SimpleDraw$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/app/SimpleDraw$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/app/SimpleDraw$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/app/SimpleDraw$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/app/SimpleDraw$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/app/SimpleDraw$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/app/SimpleDraw$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/app/SimpleDraw$8.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/app/SimpleDraw.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/app/Vector2D.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/gui/Canvas.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/gui/ColorPicker$OkListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/gui/ColorPicker.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/gui/ToolButton$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/gui/ToolButton.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/renderers/ArcRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/renderers/CircleRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/renderers/DotRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/renderers/LineRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/renderers/Renderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/Arc$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/Arc$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/Arc.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/Brush$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/Brush$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/Brush.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/Circle$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/Circle$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/Circle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/Dot$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/Dot.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/GraphicalObject.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/Line$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/Line$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/Line.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/Polygon$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/Polygon$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/cz/uhk/pgrf/tools/Polygon.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/app/AppColor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/app/SimpleDraw.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/app/Vector2D.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/gui/Canvas.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/gui/ColorPicker.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/gui/ToolButton.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/renderers/ArcRenderer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/renderers/CircleRenderer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/renderers/DotRenderer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/renderers/LineRenderer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/renderers/Renderer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/tools/Arc.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/tools/Brush.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/tools/Circle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/tools/Dot.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/tools/GraphicalObject.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/tools/Line.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/cz/uhk/pgrf/tools/Polygon.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/renderers/DotRenderer.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/SimpleDraw.java" afterPath="$PROJECT_DIR$/src/app/SimpleDraw.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/Canvas.java" afterPath="$PROJECT_DIR$/src/gui/Canvas.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/Arc.java" afterPath="$PROJECT_DIR$/src/tools/Arc.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/Line.java" afterPath="$PROJECT_DIR$/src/tools/Line.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,12 +18,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SimpleDraw.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SimpleDraw.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/SimpleDraw.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="117" column="0" lean-forward="true" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="423">
+              <caret line="155" column="5" lean-forward="true" selection-start-line="155" selection-start-column="5" selection-end-line="155" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,22 +36,6 @@
             <state relative-caret-position="91">
               <caret line="20" column="35" lean-forward="false" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DotRenderer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/renderers/DotRenderer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#174#175#0" expanded="true" />
-                <element signature="e#197#198#0" expanded="true" />
-                <element signature="e#239#240#0" expanded="true" />
-                <element signature="e#280#281#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -119,8 +53,8 @@
       <file leaf-file-name="GraphicalObject.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tools/GraphicalObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state relative-caret-position="192">
+              <caret line="45" column="22" lean-forward="false" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -139,8 +73,8 @@
       <file leaf-file-name="Arc.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tools/Arc.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+            <state relative-caret-position="464">
+              <caret line="39" column="23" lean-forward="false" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -149,18 +83,30 @@
       <file leaf-file-name="Canvas.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gui/Canvas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="135" column="25" lean-forward="false" selection-start-line="135" selection-start-column="25" selection-end-line="135" selection-end-column="25" />
+            <state relative-caret-position="192">
+              <caret line="108" column="52" lean-forward="true" selection-start-line="108" selection-start-column="52" selection-end-line="108" selection-end-column="52" />
               <folding>
-                <element signature="e#2015#2016#0" expanded="true" />
-                <element signature="e#2036#2037#0" expanded="true" />
-                <element signature="e#3338#3339#0" expanded="true" />
-                <element signature="e#3362#3363#0" expanded="true" />
-                <element signature="e#3768#3769#0" expanded="true" />
-                <element signature="e#3794#3795#0" expanded="true" />
-                <element signature="e#3835#3836#0" expanded="true" />
-                <element signature="e#3859#3860#0" expanded="true" />
+                <element signature="e#2198#2199#0" expanded="true" />
+                <element signature="e#2228#2229#0" expanded="true" />
+                <element signature="e#3531#3532#0" expanded="true" />
+                <element signature="e#3590#3591#0" expanded="true" />
+                <element signature="e#3686#3687#0" expanded="true" />
+                <element signature="e#3719#3720#0" expanded="true" />
+                <element signature="e#4173#4174#0" expanded="true" />
+                <element signature="e#4208#4209#0" expanded="true" />
+                <element signature="e#4252#4253#0" expanded="true" />
+                <element signature="e#4285#4286#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Line.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/tools/Line.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="47" column="39" lean-forward="true" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -169,10 +115,8 @@
         <entry file="file://$PROJECT_DIR$/src/gui/ToolButton.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="256">
-              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-              <folding>
-                <marker date="1509291957770" expanded="true" signature="858:863" ph="{...}" />
-              </folding>
+              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -181,7 +125,7 @@
         <entry file="file://$PROJECT_DIR$/src/app/Vertex2D.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="283">
-              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -201,13 +145,14 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/tools/Brush.java" />
-        <option value="$PROJECT_DIR$/src/tools/Arc.java" />
-        <option value="$PROJECT_DIR$/src/gui/Canvas.java" />
         <option value="$PROJECT_DIR$/src/renderers/DotRenderer.java" />
         <option value="$PROJECT_DIR$/src/gui/ToolButton.java" />
         <option value="$PROJECT_DIR$/src/app/Vertex2D.java" />
         <option value="$PROJECT_DIR$/src/tools/GraphicalObject.java" />
         <option value="$PROJECT_DIR$/src/app/SimpleDraw.java" />
+        <option value="$PROJECT_DIR$/src/tools/Arc.java" />
+        <option value="$PROJECT_DIR$/src/gui/Canvas.java" />
+        <option value="$PROJECT_DIR$/src/tools/Line.java" />
       </list>
     </option>
   </component>
@@ -419,12 +364,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32955715" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32955715" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32955715" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32955715" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32955715" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -463,10 +408,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderers/Renderer.java">
+    <entry file="file://$PROJECT_DIR$/src/renderers/DotRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+        <state relative-caret-position="144">
+          <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/Vertex2D.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -479,67 +432,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tools/Arc.java">
+    <entry file="file://$PROJECT_DIR$/src/gui/ToolButton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+        <state relative-caret-position="256">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/renderers/DotRenderer.java">
+    <entry file="file://$PROJECT_DIR$/src/renderers/Renderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#174#175#0" expanded="true" />
-            <element signature="e#197#198#0" expanded="true" />
-            <element signature="e#239#240#0" expanded="true" />
-            <element signature="e#280#281#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="64">
+          <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/Canvas.java">
+    <entry file="file://$PROJECT_DIR$/src/tools/Arc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="135" column="25" lean-forward="false" selection-start-line="135" selection-start-column="25" selection-end-line="135" selection-end-column="25" />
-          <folding>
-            <element signature="e#2015#2016#0" expanded="true" />
-            <element signature="e#2036#2037#0" expanded="true" />
-            <element signature="e#3338#3339#0" expanded="true" />
-            <element signature="e#3362#3363#0" expanded="true" />
-            <element signature="e#3768#3769#0" expanded="true" />
-            <element signature="e#3794#3795#0" expanded="true" />
-            <element signature="e#3835#3836#0" expanded="true" />
-            <element signature="e#3859#3860#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/ToolButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding>
-            <marker date="1509291957770" expanded="true" signature="858:863" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/Vertex2D.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        <state relative-caret-position="464">
+          <caret line="39" column="23" lean-forward="false" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/tools/GraphicalObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+        <state relative-caret-position="192">
+          <caret line="45" column="22" lean-forward="false" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -554,8 +474,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/SimpleDraw.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="117" column="0" lean-forward="true" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
+        <state relative-caret-position="423">
+          <caret line="155" column="5" lean-forward="true" selection-start-line="155" selection-start-column="5" selection-end-line="155" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/Canvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="108" column="52" lean-forward="true" selection-start-line="108" selection-start-column="52" selection-end-line="108" selection-end-column="52" />
+          <folding>
+            <element signature="e#2198#2199#0" expanded="true" />
+            <element signature="e#2228#2229#0" expanded="true" />
+            <element signature="e#3531#3532#0" expanded="true" />
+            <element signature="e#3590#3591#0" expanded="true" />
+            <element signature="e#3686#3687#0" expanded="true" />
+            <element signature="e#3719#3720#0" expanded="true" />
+            <element signature="e#4173#4174#0" expanded="true" />
+            <element signature="e#4208#4209#0" expanded="true" />
+            <element signature="e#4252#4253#0" expanded="true" />
+            <element signature="e#4285#4286#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tools/Line.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="47" column="39" lean-forward="true" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
           <folding />
         </state>
       </provider>

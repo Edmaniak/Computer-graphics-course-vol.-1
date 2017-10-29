@@ -31,6 +31,8 @@ public class SimpleDraw extends JFrame {
     private JLabel tooltip;
     private JLabel instruction;
 
+
+
     private GraphicalObject selectedTool;
     private Color colorToUse = AppColor.DEFAULT_DRAW;
 
