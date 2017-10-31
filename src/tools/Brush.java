@@ -21,12 +21,11 @@ public class Brush extends GraphicalObject {
 		setMotionHandler(new MouseAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
-				if (canDrawAt(new Vertex2D(e.getX(), e.getY()))) {
-					if (lastPosition != null)
-						lr.render(lastPosition, new Vertex2D(e.getX(), e.getY()));
-					lastPosition = new Vertex2D(e.getX(), e.getY());
-					myCanvas.repaint();
-				}
+				if (lastPosition != null)
+					lr.render(lastPosition, new Vertex2D(e.getX(), e.getY()));
+				lastPosition = new Vertex2D(e.getX(), e.getY());
+				myCanvas.repaint();
+
 			}
 		});
 

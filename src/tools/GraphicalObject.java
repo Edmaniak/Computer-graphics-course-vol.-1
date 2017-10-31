@@ -43,13 +43,6 @@ public abstract class GraphicalObject {
 	public abstract void clear();
 
 
-	protected boolean canDrawAt(Vertex2D point) {
-		if (point.x >= 0 && point.x < myCanvas.getWidth() && point.y >= 0 && point.y < myCanvas.getHeight()) {
-			return true;}
-		clear();
-		return false;
-	}
-
 	public MouseAdapter getMotionHandler() {
 		return motionHandler;
 	}

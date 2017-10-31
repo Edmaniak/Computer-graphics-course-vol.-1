@@ -2,6 +2,7 @@ package renderers;
 
 import java.awt.Color;
 
+import app.Vertex2D;
 import gui.Canvas;
 
 public abstract class Renderer {
@@ -17,5 +18,6 @@ public abstract class Renderer {
 	public void setColor(Color color) {
 		this.color = color;
 	}
+
 
 }
