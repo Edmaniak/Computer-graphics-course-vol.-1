@@ -3,6 +3,7 @@ package renderers;
 import gui.Canvas;
 
 import java.awt.*;
+import objects.Polygon;
 
 public class ScanLineRenderer extends Renderer {
 

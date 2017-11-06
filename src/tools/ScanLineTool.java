@@ -1,6 +1,7 @@
 package tools;
 
 import gui.Canvas;
+import objects.Polygon;
 import renderers.ScanLineRenderer;
 
 import java.awt.*;
@@ -18,7 +19,8 @@ public class ScanLineTool extends Tool {
         defineClickHandler(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                myCanvas.getPolygonLibrary();
+                Polygon polygon = myCanvas.getPolygonLibrary().get(0);
+                scanLineRenderer.fill(polygon);
             }
         });
     }

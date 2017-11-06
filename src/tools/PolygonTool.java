@@ -1,13 +1,13 @@
 package tools;
 
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import app.Vertex2D;
 import gui.Canvas;
 import objects.Polygon;
 import renderers.LineRenderer;
+
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PolygonTool extends Tool {
 
@@ -40,21 +40,28 @@ public class PolygonTool extends Tool {
 		setMotionHandler(new MouseAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
+
 				myCanvas.mix();
+				// Line
 				if (polygon.size() == 1) {
 					Vertex2D newP = new Vertex2D(e.getX(), e.getY());
 					Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 1));
 					lr.render(newP, p2);
-				} else {
-					Vertex2D newP1 = new Vertex2D(e.getX(), e.getY());
-					Vertex2D newP2 = new Vertex2D(e.getX(), e.getY());
+				}
+
+				// Triangle or polygon
+				if (polygon.size() > 1) {
+					Vertex2D newP = new Vertex2D(e.getX(), e.getY());
 					Vertex2D p1 = new Vertex2D(polygon.getPoint(polygon.size() - 1));
 					Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 2));
 
-					lr.render(newP1, p1);
-					lr.render(newP2, p2);
+					lr.render(new Vertex2D(newP), new Vertex2D(p1));
+					lr.render(new Vertex2D(newP), new Vertex2D(p2));
+
+					// Erasing connecting line
 
 				}
+
 				myCanvas.repaint();
 			}
 		});

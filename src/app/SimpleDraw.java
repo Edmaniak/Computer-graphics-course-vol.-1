@@ -27,7 +27,7 @@ public class SimpleDraw extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle(title);
 
-        // Singleton reference for quicker access;
+        // Singleton reference for quicker access
         if (gui == null)
             gui = this;
 

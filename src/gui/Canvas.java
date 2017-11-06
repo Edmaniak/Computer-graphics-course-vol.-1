@@ -121,6 +121,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
 	}
 
 	public int getCanvasColorAt(int x, int y) {
+		System.out.println(mainBuffer.getRGB(x,y));
 		return mainBuffer.getRGB(x, y);
 	}
 
