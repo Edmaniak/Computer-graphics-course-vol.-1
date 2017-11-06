@@ -33,6 +33,10 @@ public class PolygonTool extends Tool {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				myCanvas.drawInto();
+				myCanvas.mix();
+
+				myCanvas.repaint();
+				myCanvas.drawInto();
 				polygon.addPoint(new Vertex2D(e.getX(), e.getY()));
 			}
 		});
@@ -59,6 +63,8 @@ public class PolygonTool extends Tool {
 					lr.render(new Vertex2D(newP), new Vertex2D(p2));
 
 					// Erasing connecting line
+					if (polygon.size() > 2)
+						lr.renderInvisible(new Vertex2D(p1), new Vertex2D(p2));
 
 				}
 
