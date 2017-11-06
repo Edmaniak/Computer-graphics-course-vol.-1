@@ -29,4 +29,11 @@ public class Polygon {
         return points.get(i);
     }
 
+    @Override
+    public String toString() {
+        String polygon = "";
+        for (Vertex2D point : points)
+            polygon += point + " ";
+        return polygon;
+    }
 }

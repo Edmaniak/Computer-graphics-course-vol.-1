@@ -157,5 +157,6 @@ public class Canvas extends JPanel implements MouseMotionListener {
 
 	public void addToPolygonLibrary(Polygon p) {
 		polygonLibrary.add(p);
+		System.out.println(polygonLibrary);
 	}
 }

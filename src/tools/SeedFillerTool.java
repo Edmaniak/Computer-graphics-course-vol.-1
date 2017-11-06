@@ -1,6 +1,5 @@
 package tools;
 
-import app.Vertex2D;
 import gui.Canvas;
 import renderers.SeedFillRenderer;
 
@@ -14,14 +13,14 @@ public class SeedFillerTool extends Tool {
 
     public SeedFillerTool(Canvas canvas, Color color) {
         super(canvas, color);
-        fillRenderer = new SeedFillRenderer(canvas,color);
-        setMainRenderer(fillRenderer,color);
+        fillRenderer = new SeedFillRenderer(canvas, color);
+        setMainRenderer(fillRenderer, color);
 
         setClickHandler(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                fillRenderer.toFillColor(myCanvas.getCanvasColorAt(e.getX(),e.getY()));
-                fillRenderer.fill(e.getX(),e.getY());
+                fillRenderer.toFillColor(myCanvas.getCanvasColorAt(e.getX(), e.getY()));
+                fillRenderer.fill(e.getX(), e.getY());
                 myCanvas.repaint();
                 myCanvas.drawInto();
             }
