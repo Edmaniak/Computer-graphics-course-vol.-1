@@ -59,12 +59,14 @@ public class PolygonTool extends Tool {
 					Vertex2D p1 = new Vertex2D(polygon.getPoint(polygon.size() - 1));
 					Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 2));
 
-					lr.render(new Vertex2D(newP), new Vertex2D(p1));
-					lr.render(new Vertex2D(newP), new Vertex2D(p2));
-
 					// Erasing connecting line
 					if (polygon.size() > 2)
 						lr.renderInvisible(new Vertex2D(p1), new Vertex2D(p2));
+
+					lr.render(new Vertex2D(newP), new Vertex2D(p1));
+					lr.render(new Vertex2D(newP), new Vertex2D(p2));
+
+
 
 				}
 
