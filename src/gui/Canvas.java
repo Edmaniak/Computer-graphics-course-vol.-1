@@ -1,8 +1,8 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 
 import app.SimpleDraw;
 import app.Vertex2D;
+import objects.Polygon;
 
 public class Canvas extends JPanel implements MouseMotionListener {
 
@@ -24,12 +25,12 @@ public class Canvas extends JPanel implements MouseMotionListener {
 	private Dimension dimensions;
 	private MouseListener mouseEventHandler;
 	private MouseMotionListener mouseMotionHandler;
-	private final SimpleDraw parent;
+	private List<Polygon> polygonLibrary;
 
 	// constr with default color
-	public Canvas(Dimension d, SimpleDraw parent) {
+	public Canvas(Dimension d) {
 		setDimensions(d);
-		this.parent = parent;
+		polygonLibrary = new ArrayList<>();
 		activeBuffer = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_RGB);
 		mainBuffer = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_RGB);
 		setPreferredSize(d);
@@ -37,8 +38,8 @@ public class Canvas extends JPanel implements MouseMotionListener {
 	}
 
 	// constr with custom color - not used really
-	public Canvas(Dimension d, Color bgColor, SimpleDraw parent) {
-		this(d, parent);
+	public Canvas(Dimension d, Color bgColor) {
+		this(d);
 		setBgColor(bgColor);
 	}
 
@@ -51,6 +52,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
 	public void clear(Color c) {
 		activeBuffer = new BufferedImage(dimensions.width, dimensions.height, BufferedImage.TYPE_INT_RGB);
 		mainBuffer = new BufferedImage(dimensions.width, dimensions.height, BufferedImage.TYPE_INT_RGB);
+		polygonLibrary.clear();
 		setBgColor(c);
 		repaint();
 	}
@@ -137,12 +139,12 @@ public class Canvas extends JPanel implements MouseMotionListener {
 	// Shows mouse coordinates in the bottom panel
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		parent.setTooltip("X:" + e.getX() + " Y: " + e.getY());
+		SimpleDraw.gui.setTooltip("X:" + e.getX() + " Y: " + e.getY());
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		parent.setTooltip("X:" + e.getX() + " Y: " + e.getY());
+		SimpleDraw.gui.setTooltip("X:" + e.getX() + " Y: " + e.getY());
 	}
 
 	public BufferedImage getActiveBuffer() {
@@ -151,5 +153,9 @@ public class Canvas extends JPanel implements MouseMotionListener {
 
 	public BufferedImage getMainBuffer() {
 		return mainBuffer;
+	}
+
+	public void addToPolygonLibrary(Polygon p) {
+		polygonLibrary.add(p);
 	}
 }

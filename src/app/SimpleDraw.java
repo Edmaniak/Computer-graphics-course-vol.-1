@@ -1,29 +1,26 @@
 package app;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
 import gui.Canvas;
 import gui.ColorPicker;
 import gui.ToolButton;
 import tools.*;
+import tools.PolygonTool;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
 public class SimpleDraw extends JFrame {
 
     public static String title = "simpleDraw";
-    private Canvas canvas;
-    private JToolBar toolBar;
-    private JLabel tooltip;
-    private JLabel instruction;
-
-
-
+    public static SimpleDraw gui;
+    private final Canvas canvas;
+    private final JToolBar toolBar;
+    private final JLabel tooltip;
+    private final JLabel instruction;
     private Tool selectedTool;
     private Color colorToUse = AppColor.DEFAULT_DRAW;
+
 
     private SimpleDraw(Dimension d) {
 
@@ -32,8 +29,12 @@ public class SimpleDraw extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle(title);
 
+        // Singleton reference for quicker access;
+        if (gui == null)
+            gui = this;
+
         // Canvas
-        canvas = new Canvas(new Dimension(d.width, d.height), Color.black, this);
+        canvas = new Canvas(new Dimension(d.width, d.height), Color.black);
 
         // Toolbar
         toolBar = new JToolBar();
@@ -69,38 +70,38 @@ public class SimpleDraw extends JFrame {
             else
                 canvas.clear(AppColor.DEFAULT_BG);
             if (selectedTool != null)
-                selectedTool.clear();
+                selectedTool.doAfterSwitch();
         });
         toolBar.add(newCanvas);
 
         // Button for making brush line
         ToolButton brush = new ToolButton("Draw a point", "res/brush.png", this);
-        brush.addActionListener(e -> changeTool(new Brush(canvas, colorToUse)));
+        brush.addActionListener(e -> changeTool(new BrushTool(canvas, colorToUse)));
         toolBar.add(brush);
 
         // Button for making dots
         ToolButton dots = new ToolButton("Draw a point", "res/point.png", this);
-        dots.addActionListener(e -> changeTool(new Dot(canvas, colorToUse)));
+        dots.addActionListener(e -> changeTool(new DotTool(canvas, colorToUse)));
         toolBar.add(dots);
 
         // Button for making lines
         ToolButton line = new ToolButton("Draw a line", "res/line.png", this);
-        line.addActionListener(e -> changeTool(new Line(canvas, colorToUse)));
+        line.addActionListener(e -> changeTool(new LineTool(canvas, colorToUse)));
         toolBar.add(line);
 
         // Button for making n-gons
         ToolButton polygon = new ToolButton("Draw a polygon", "res/polygon.png", this);
-        polygon.addActionListener(e -> changeTool(new Polygon(canvas, colorToUse)));
+        polygon.addActionListener(e -> changeTool(new PolygonTool(canvas, colorToUse)));
         toolBar.add(polygon);
 
         // Button for making circles
         ToolButton circle = new ToolButton("Draw a circle", "res/circle.png", this);
-        circle.addActionListener(e -> changeTool(new Circle(canvas, colorToUse)));
+        circle.addActionListener(e -> changeTool(new CircleTool(canvas, colorToUse)));
         toolBar.add(circle);
 
         // Button for making arcs
         ToolButton arc = new ToolButton("Draw an arc", "res/arc.png", this);
-        arc.addActionListener(e -> changeTool(new Arc(canvas, colorToUse)));
+        arc.addActionListener(e -> changeTool(new ArcTool(canvas, colorToUse)));
         toolBar.add(arc);
 
         // Color picker
@@ -120,16 +121,22 @@ public class SimpleDraw extends JFrame {
         toolBar.addSeparator();
 
         // Button for seedfiller
-        ToolButton seedFill = new ToolButton("Fill desired area", "",this);
-        seedFill.addActionListener(e -> changeTool(new SeedFiller(canvas, colorToUse)));
+        ToolButton seedFill = new ToolButton("Fill desired area", this);
+        seedFill.setText("SEEDFILL");
+        seedFill.addActionListener(e -> changeTool(new SeedFillerTool(canvas, colorToUse)));
         toolBar.add(seedFill);
+
+        // Second part of the task
+        toolBar.addSeparator();
+
+
 
     }
 
     private void changeTool(Tool go) {
         selectedTool = go;
         selectedTool.setColor(colorToUse);
-        selectedTool.clear();
+        selectedTool.doAfterSwitch();
         canvas.setMouseMotionHandler(go.getMotionHandler());
         canvas.setMouseClickHandler(go.getClickHandler());
         canvas.setCursor(go.cursor);

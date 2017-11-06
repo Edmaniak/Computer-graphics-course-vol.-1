@@ -8,13 +8,13 @@ import app.Vertex2D;
 import gui.Canvas;
 import renderers.LineRenderer;
 
-public class Line extends Tool {
+public class LineTool extends Tool {
 
 	private Vertex2D origin;
 	private Vertex2D end;
 	private final LineRenderer lr;
 
-	public Line(Canvas canvas, Color color) {
+	public LineTool(Canvas canvas, Color color) {
 		super(canvas, color);
 		instruction = "Drag the mouse.";
 		lr = new LineRenderer(myCanvas, color);
@@ -29,7 +29,6 @@ public class Line extends Tool {
 					myCanvas.mix();
 					lr.render(new Vertex2D(origin), new Vertex2D(end));
 					myCanvas.repaint();
-
 				}
 			}
 
@@ -50,9 +49,13 @@ public class Line extends Tool {
 	}
 
 	@Override
+	public void doAfterSwitch() {
+
+	}
+
+	@Override
 	public void clear() {
 		origin = null;
 		end = null;
 	}
-
 }

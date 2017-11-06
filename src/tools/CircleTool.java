@@ -10,14 +10,14 @@ import app.Vertex2D;
 import gui.Canvas;
 import renderers.CircleRenderer;
 
-public class Circle extends Tool {
+public class CircleTool extends Tool {
 
 	private Vertex2D center;
 	private Vertex2D radPoint;
 	private int radius;
 	private final CircleRenderer cr;
 
-	public Circle(Canvas canvas, Color color) {
+	public CircleTool(Canvas canvas, Color color) {
 		super(canvas, color);
 		instruction = "Drag the mouse";
 		cr = new CircleRenderer(canvas, color);
@@ -51,11 +51,14 @@ public class Circle extends Tool {
 	}
 
 	@Override
+	public void doAfterSwitch() {
+
+	}
+
+	@Override
 	public void clear() {
 		center = null;
 		radPoint = null;
 		radius = 0;
 	}
-
-
 }

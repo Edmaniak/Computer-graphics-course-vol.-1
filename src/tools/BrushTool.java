@@ -8,12 +8,12 @@ import app.Vertex2D;
 import gui.Canvas;
 import renderers.LineRenderer;
 
-public class Brush extends Tool {
+public class BrushTool extends Tool {
 
 	private Vertex2D lastPosition;
 	private final LineRenderer lr;
 
-	public Brush(Canvas canvas, Color color) {
+	public BrushTool(Canvas canvas, Color color) {
 		super(canvas, color);
 		instruction = "Drag the mouse.";
 		lr = new LineRenderer(canvas, color);
@@ -38,8 +38,12 @@ public class Brush extends Tool {
 	}
 
 	@Override
+	public void doAfterSwitch() {
+
+	}
+
+	@Override
 	public void clear() {
 		lastPosition = null;
 	}
-
 }

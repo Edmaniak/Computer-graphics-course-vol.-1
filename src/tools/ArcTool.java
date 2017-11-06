@@ -12,7 +12,7 @@ import gui.Canvas;
 import renderers.ArcRenderer;
 import renderers.LineRenderer;
 
-public class Arc extends Tool {
+public class ArcTool extends Tool {
 
 	private Vertex2D center;
 	private Vertex2D radPoint;
@@ -21,7 +21,7 @@ public class Arc extends Tool {
 	private final LineRenderer lr;
 	private int radius;
 
-	public Arc(Canvas canvas, Color color) {
+	public ArcTool(Canvas canvas, Color color) {
 		super(canvas, color);
 		instruction = "Drag an diameter and then move the mouse.";
 		ar = new ArcRenderer(canvas, color);
@@ -94,10 +94,14 @@ public class Arc extends Tool {
 	}
 
 	@Override
+	public void doAfterSwitch() {
+
+	}
+
+	@Override
 	public void clear() {
 		center = null;
 		radPoint = null;
 		initRadPoint = null;
 	}
-
 }

@@ -8,11 +8,11 @@ import app.Vertex2D;
 import gui.Canvas;
 import renderers.LineRenderer;
 
-public class Dot extends Tool {
+public class DotTool extends Tool {
 	
 	private final LineRenderer lr;
 
-	public Dot(Canvas canvas, Color color) {
+	public DotTool(Canvas canvas, Color color) {
 		super(canvas,color);
 		instruction = "Click the mouse.";
 		lr = new LineRenderer(canvas,color);
@@ -27,14 +27,17 @@ public class Dot extends Tool {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				myCanvas.drawInto();
-				System.out.println(myCanvas.getColorAt(e.getX(),e.getY()));
 			}
 		});
 	}
 
 	@Override
-	public void clear() {
+	public void doAfterSwitch() {
 		
 	}
 
+	@Override
+	public void clear() {
+
+	}
 }
