@@ -10,7 +10,7 @@ import app.Vertex2D;
 import gui.Canvas;
 import renderers.Renderer;
 
-public abstract class GraphicalObject {
+public abstract class Tool {
 
 	private Color color = Color.white;
 	private MouseAdapter clickHandler;
@@ -24,7 +24,7 @@ public abstract class GraphicalObject {
 	// Main renderer slouzi tedy pouze ke zmene barvy v rendereru
 	private Renderer mainRenderer;
 
-	public GraphicalObject(Canvas canvas, Color color) {
+	public Tool(Canvas canvas, Color color) {
 		myCanvas = canvas;
 		points = new ArrayList<>();
 		this.color = color;
@@ -41,14 +41,6 @@ public abstract class GraphicalObject {
 	}
 
 	public abstract void clear();
-
-
-	protected boolean canDrawAt(Vertex2D point) {
-		if (point.x >= 0 && point.x < myCanvas.getWidth() && point.y >= 0 && point.y < myCanvas.getHeight()) {
-			return true;}
-		clear();
-		return false;
-	}
 
 	public MouseAdapter getMotionHandler() {
 		return motionHandler;

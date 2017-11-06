@@ -8,7 +8,7 @@ import app.Vertex2D;
 import gui.Canvas;
 import renderers.LineRenderer;
 
-public class Dot extends GraphicalObject {
+public class Dot extends Tool {
 	
 	private final LineRenderer lr;
 
@@ -27,6 +27,7 @@ public class Dot extends GraphicalObject {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				myCanvas.drawInto();
+				System.out.println(myCanvas.getColorAt(e.getX(),e.getY()));
 			}
 		});
 	}

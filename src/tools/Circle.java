@@ -10,7 +10,7 @@ import app.Vertex2D;
 import gui.Canvas;
 import renderers.CircleRenderer;
 
-public class Circle extends GraphicalObject {
+public class Circle extends Tool {
 
 	private Vertex2D center;
 	private Vertex2D radPoint;

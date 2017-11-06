@@ -9,7 +9,7 @@ import app.Vertex2D;
 import gui.Canvas;
 import renderers.LineRenderer;
 
-public class Polygon extends GraphicalObject {
+public class Polygon extends Tool {
 
 	private Vertex2D point;
 	private final LineRenderer lr;

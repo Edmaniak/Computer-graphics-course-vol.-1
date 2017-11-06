@@ -8,7 +8,7 @@ import app.Vertex2D;
 import gui.Canvas;
 import renderers.LineRenderer;
 
-public class Brush extends GraphicalObject {
+public class Brush extends Tool {
 
 	private Vertex2D lastPosition;
 	private final LineRenderer lr;
@@ -21,12 +21,11 @@ public class Brush extends GraphicalObject {
 		setMotionHandler(new MouseAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
-				if (canDrawAt(new Vertex2D(e.getX(), e.getY()))) {
-					if (lastPosition != null)
-						lr.render(lastPosition, new Vertex2D(e.getX(), e.getY()));
-					lastPosition = new Vertex2D(e.getX(), e.getY());
-					myCanvas.repaint();
-				}
+				if (lastPosition != null)
+					lr.render(lastPosition, new Vertex2D(e.getX(), e.getY()));
+				lastPosition = new Vertex2D(e.getX(), e.getY());
+				myCanvas.repaint();
+
 			}
 		});
 

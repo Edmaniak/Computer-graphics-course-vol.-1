@@ -4,24 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JToolBar;
-import javax.swing.SwingUtilities;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import gui.Canvas;
 import gui.ColorPicker;
 import gui.ToolButton;
-import tools.Arc;
-import tools.Brush;
-import tools.Circle;
-import tools.Dot;
-import tools.GraphicalObject;
-import tools.Line;
-import tools.Polygon;
+import tools.*;
 
 public class SimpleDraw extends JFrame {
 
@@ -33,7 +22,7 @@ public class SimpleDraw extends JFrame {
 
 
 
-    private GraphicalObject selectedTool;
+    private Tool selectedTool;
     private Color colorToUse = AppColor.DEFAULT_DRAW;
 
     private SimpleDraw(Dimension d) {
@@ -42,7 +31,6 @@ public class SimpleDraw extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle(title);
-
 
         // Canvas
         canvas = new Canvas(new Dimension(d.width, d.height), Color.black, this);
@@ -128,9 +116,17 @@ public class SimpleDraw extends JFrame {
         });
         toolBar.add(colorPicker);
 
+        // Second part of the task
+        toolBar.addSeparator();
+
+        // Button for seedfiller
+        ToolButton seedFill = new ToolButton("Fill desired area", "",this);
+        seedFill.addActionListener(e -> changeTool(new SeedFiller(canvas, colorToUse)));
+        toolBar.add(seedFill);
+
     }
 
-    private void changeTool(GraphicalObject go) {
+    private void changeTool(Tool go) {
         selectedTool = go;
         selectedTool.setColor(colorToUse);
         selectedTool.clear();
@@ -151,7 +147,7 @@ public class SimpleDraw extends JFrame {
         this.instruction.setText(instruction);
     }
 
-    public GraphicalObject getSelectedTool() {
+    public Tool getSelectedTool() {
         return selectedTool;
     }
 
