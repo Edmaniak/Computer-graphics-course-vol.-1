@@ -29,7 +29,7 @@ public class BrushTool extends Tool {
 			}
 		});
 
-		setClickHandler(new MouseAdapter() {
+		defineClickHandler(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
 				myCanvas.drawInto();
 				clear();

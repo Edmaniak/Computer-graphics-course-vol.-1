@@ -19,7 +19,7 @@ public class LineTool extends Tool {
 		instruction = "Drag the mouse.";
 		lr = new LineRenderer(myCanvas, color);
 		setMainRenderer(lr, color);
-		setClickHandler(new MouseAdapter() {
+		defineClickHandler(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (origin == null) {

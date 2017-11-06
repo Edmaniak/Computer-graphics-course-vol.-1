@@ -54,7 +54,7 @@ public abstract class Tool {
 		return clickHandler;
 	}
 
-	public void setClickHandler(MouseAdapter clickHandler) {
+	public void defineClickHandler(MouseAdapter clickHandler) {
 		this.clickHandler = clickHandler;
 	}
 	

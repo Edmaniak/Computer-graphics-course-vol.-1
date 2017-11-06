@@ -28,7 +28,7 @@ public class ArcTool extends Tool {
 		lr = new LineRenderer(canvas, Color.RED);
 		setMainRenderer(ar, color);
 
-		setClickHandler(new MouseAdapter() {
+		defineClickHandler(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (center == null)

@@ -22,7 +22,7 @@ public class CircleTool extends Tool {
 		instruction = "Drag the mouse";
 		cr = new CircleRenderer(canvas, color);
 		setMainRenderer(cr, color);
-		setClickHandler(new MouseAdapter() {
+		defineClickHandler(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (center == null)

@@ -21,7 +21,7 @@ public class PolygonTool extends Tool {
 		polygon = new Polygon();
 
 		setMainRenderer(lr, color);
-		setClickHandler(new MouseAdapter() {
+		defineClickHandler(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if (polygon.size()== 0) {

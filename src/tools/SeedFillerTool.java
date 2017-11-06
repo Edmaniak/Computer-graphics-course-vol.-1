@@ -16,7 +16,7 @@ public class SeedFillerTool extends Tool {
         fillRenderer = new SeedFillRenderer(canvas, color);
         setMainRenderer(fillRenderer, color);
 
-        setClickHandler(new MouseAdapter() {
+        defineClickHandler(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 fillRenderer.toFillColor(myCanvas.getCanvasColorAt(e.getX(), e.getY()));

@@ -17,7 +17,7 @@ public class DotTool extends Tool {
 		instruction = "Click the mouse.";
 		lr = new LineRenderer(canvas,color);
 		setMainRenderer(lr, color);
-		setClickHandler(new MouseAdapter() {
+		defineClickHandler(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				Vertex2D point = new Vertex2D(e.getX(), e.getY());
