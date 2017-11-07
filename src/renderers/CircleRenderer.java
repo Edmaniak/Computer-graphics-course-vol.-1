@@ -6,16 +6,16 @@ import gui.Canvas;
 
 public class CircleRenderer extends Renderer {
 
-	public CircleRenderer(Canvas canvas, Color c) {
-		super(canvas, c);
+	public CircleRenderer(Canvas canvas) {
+		super(canvas);
 	}
 	
-	public void render(Vertex2D center, int radius) {
+	public void render(Vertex2D center, int radius, Color color) {
 		int x = 0;
 		int y = radius;
 		int d = 1 - radius;
 		// first point (0 r)
-		drawSymetrically(center.x, center.y, x, y);
+		drawSymetrically(center.x, center.y, x, y, color);
 		while (x < y) {
 			x++;
 			if (d < 0) {
@@ -24,11 +24,11 @@ public class CircleRenderer extends Renderer {
 				y--;
 				d += 2 * (x - y) + 1;
 			}
-			drawSymetrically(center.x, center.y, x, y);
+			drawSymetrically(center.x, center.y, x, y, color);
 		}
 	}
 
-	private void drawSymetrically(int xcenter, int ycenter, int x, int y) {
+	private void drawSymetrically(int xcenter, int ycenter, int x, int y, Color color) {
 		// 1 (0 - 45)
 		myCanvas.putPixel(xcenter + y, ycenter - x, color);
 		// 2

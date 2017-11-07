@@ -15,7 +15,6 @@ public class ScanLineTool extends Tool {
     public ScanLineTool(Canvas canvas, Color color) {
         super(canvas, color);
         scanLineRenderer = new ScanLineRenderer(canvas, color);
-        setMainRenderer(scanLineRenderer, color);
         defineClickHandler(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {

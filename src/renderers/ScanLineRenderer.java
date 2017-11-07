@@ -8,7 +8,7 @@ import objects.Polygon;
 public class ScanLineRenderer extends Renderer {
 
     public ScanLineRenderer(Canvas canvas, Color c) {
-        super(canvas, c);
+        super(canvas);
     }
 
     public void fill(Polygon polygon) {

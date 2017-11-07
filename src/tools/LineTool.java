@@ -17,8 +17,7 @@ public class LineTool extends Tool {
 	public LineTool(Canvas canvas, Color color) {
 		super(canvas, color);
 		instruction = "Drag the mouse.";
-		lr = new LineRenderer(myCanvas, color);
-		setMainRenderer(lr, color);
+		lr = new LineRenderer(myCanvas);
 		defineClickHandler(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -27,7 +26,7 @@ public class LineTool extends Tool {
 					origin = new Vertex2D(e.getX(), e.getY());
 					end = new Vertex2D(e.getX(), e.getY());
 					myCanvas.mix();
-					lr.render(new Vertex2D(origin), new Vertex2D(end));
+					lr.render(new Vertex2D(origin), new Vertex2D(end), color);
 					myCanvas.repaint();
 				}
 			}
@@ -42,7 +41,7 @@ public class LineTool extends Tool {
 			public void mouseDragged(MouseEvent e) {
 				end = new Vertex2D(e.getX(), e.getY());
 				myCanvas.mix();
-				lr.render(new Vertex2D(origin), new Vertex2D(end));
+				lr.render(new Vertex2D(origin), new Vertex2D(end), color);
 				myCanvas.repaint();
 			}
 		});

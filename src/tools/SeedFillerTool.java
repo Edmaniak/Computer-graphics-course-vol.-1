@@ -14,7 +14,6 @@ public class SeedFillerTool extends Tool {
     public SeedFillerTool(Canvas canvas, Color color) {
         super(canvas, color);
         fillRenderer = new SeedFillRenderer(canvas, color);
-        setMainRenderer(fillRenderer, color);
 
         defineClickHandler(new MouseAdapter() {
             @Override

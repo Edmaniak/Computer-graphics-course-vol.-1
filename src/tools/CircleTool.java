@@ -20,8 +20,7 @@ public class CircleTool extends Tool {
 	public CircleTool(Canvas canvas, Color color) {
 		super(canvas, color);
 		instruction = "Drag the mouse";
-		cr = new CircleRenderer(canvas, color);
-		setMainRenderer(cr, color);
+		cr = new CircleRenderer(canvas);
 		defineClickHandler(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -43,7 +42,7 @@ public class CircleTool extends Tool {
 				radPoint = new Vertex2D(e.getX(), e.getY());
 				radius = (int) sqrt(pow((radPoint.x - center.x), 2) + pow((radPoint.y - center.y), 2));
 				myCanvas.mix();
-				cr.render(center, radius);
+				cr.render(center, radius, color);
 				myCanvas.repaint();
 
 			}

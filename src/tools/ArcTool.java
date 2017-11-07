@@ -1,16 +1,16 @@
 package tools;
 
-import static java.lang.Math.pow;
-import static java.lang.Math.sqrt;
-
-import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import app.Vertex2D;
 import gui.Canvas;
 import renderers.ArcRenderer;
 import renderers.LineRenderer;
+
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
 
 public class ArcTool extends Tool {
 
@@ -24,9 +24,8 @@ public class ArcTool extends Tool {
 	public ArcTool(Canvas canvas, Color color) {
 		super(canvas, color);
 		instruction = "Drag an diameter and then move the mouse.";
-		ar = new ArcRenderer(canvas, color);
-		lr = new LineRenderer(canvas, Color.RED);
-		setMainRenderer(ar, color);
+		ar = new ArcRenderer(canvas);
+		lr = new LineRenderer(canvas);
 
 		defineClickHandler(new MouseAdapter() {
 			@Override
@@ -39,9 +38,7 @@ public class ArcTool extends Tool {
 			public void mouseClicked(MouseEvent e) {
 				if (radPoint != null) {
 					// mazani cerveneho voditka
-					lr.setColor(Color.BLACK);
-					lr.render(center, radPoint);
-					lr.setColor(Color.RED);
+					lr.render(center, radPoint, color.BLACK);
 					myCanvas.repaint();
 					myCanvas.drawInto();
 					clear();
@@ -55,7 +52,7 @@ public class ArcTool extends Tool {
 					radius = (int) sqrt(pow((initRadPoint.x - center.x), 2) + pow((initRadPoint.y - center.y), 2));
 					// initial render with initRadPoint and dynamical radPoint the same
 					myCanvas.mix();
-					ar.render(radius, center, initRadPoint, initRadPoint);
+					ar.render(radius, center, initRadPoint, initRadPoint, color);
 					myCanvas.repaint();
 				}
 			}
@@ -66,7 +63,7 @@ public class ArcTool extends Tool {
 			public void mouseDragged(MouseEvent e) {
 				initRadPoint = new Vertex2D(e.getX(), e.getY());
 				myCanvas.mix();
-				lr.render(new Vertex2D(center), new Vertex2D(initRadPoint));
+				lr.render(new Vertex2D(center), new Vertex2D(initRadPoint), Color.RED);
 				myCanvas.repaint();
 			}
 
@@ -79,19 +76,14 @@ public class ArcTool extends Tool {
 					Vertex2D newV = new Vertex2D(e.getX() - center.x, center.y - e.getY());
 					// Graphical hint dot for an arc + diameter line
 					myCanvas.mix();
-					lr.render(new Vertex2D(center), new Vertex2D(radPoint));
-					ar.render(radius, center, init, newV);
+					lr.render(new Vertex2D(center), new Vertex2D(radPoint), color);
+					ar.render(radius, center, init, newV, color);
 					myCanvas.repaint();
 				}
 			}
 		});
 	}
 
-	@Override
-	public void setColor(Color color) {
-		super.setColor(color);
-		ar.getLr().setColor(color);
-	}
 
 	@Override
 	public void doAfterSwitch() {

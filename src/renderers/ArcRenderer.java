@@ -12,13 +12,13 @@ public class ArcRenderer extends Renderer {
 	private final List<Vertex2D> points;
 	private final LineRenderer lr;
 
-	public ArcRenderer(Canvas canvas, Color c) {
-		super(canvas, c);
+	public ArcRenderer(Canvas canvas) {
+		super(canvas);
 		points = new ArrayList<>();
-		lr = new LineRenderer(canvas, c);
+		lr = new LineRenderer(canvas);
 	}
 
-	public void render(int radius, Vertex2D center, Vertex2D initRPoint, Vertex2D rPoint) {
+	public void render(int radius, Vertex2D center, Vertex2D initRPoint, Vertex2D rPoint, Color color) {
 		double angle = Vertex2D.angle(initRPoint, rPoint);
 		double alfa = (double) 10 / radius;
 		double y = -initRPoint.y;
@@ -40,13 +40,13 @@ public class ArcRenderer extends Renderer {
 			y = yn;
 			myCanvas.putPixel((int) (center.x + xn), (int) (center.y + yn), color);
 		}
-		connectPoints();
+		connectPoints(color);
 		points.clear();
 	}
 
-	private void connectPoints() {
+	private void connectPoints(Color color) {
 		for (int i = 0; i < points.size() - 1; i++) {
-			lr.render(new Vertex2D(points.get(i)), new Vertex2D(points.get(i + 1)));
+			lr.render(new Vertex2D(points.get(i)), new Vertex2D(points.get(i + 1)), color);
 		}
 
 	}

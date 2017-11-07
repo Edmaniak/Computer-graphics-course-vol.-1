@@ -15,13 +15,12 @@ public class DotTool extends Tool {
 	public DotTool(Canvas canvas, Color color) {
 		super(canvas,color);
 		instruction = "Click the mouse.";
-		lr = new LineRenderer(canvas,color);
-		setMainRenderer(lr, color);
+		lr = new LineRenderer(canvas);
 		defineClickHandler(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				Vertex2D point = new Vertex2D(e.getX(), e.getY());
-				lr.render(new Vertex2D(point),new Vertex2D(point));
+				lr.render(new Vertex2D(point),new Vertex2D(point), color);
 				myCanvas.repaint();
 			}
 			@Override

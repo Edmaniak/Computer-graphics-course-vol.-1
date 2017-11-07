@@ -21,21 +21,14 @@ public abstract class Tool {
 	// Dulezity atribut pro zmenu informace o barve pro Renderer
 	// Jinak ma kazdy potomek vlastni specificky Renderer
 	// Main renderer slouzi tedy pouze ke zmene barvy v rendereru
-	private Renderer mainRenderer;
 
 	public Tool(Canvas canvas, Color color) {
 		myCanvas = canvas;
 		this.color = color;
 	}
-	
-	public void setMainRenderer(Renderer renderer,Color color) {
-		mainRenderer = renderer;
-		setColor(color);
-	}
 
 	public void setColor(Color color) {
 		this.color = color;
-		mainRenderer.setColor(color);
 	}
 
 	public abstract void doAfterSwitch();

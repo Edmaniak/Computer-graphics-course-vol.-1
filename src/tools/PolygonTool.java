@@ -17,10 +17,8 @@ public class PolygonTool extends Tool {
 	public PolygonTool(Canvas canvas, Color color) {
 		super(canvas, color);
 		instruction = "Drag the lines of desired polygon.";
-		lr = new LineRenderer(canvas, color);
+		lr = new LineRenderer(canvas);
 		polygon = new Polygon();
-
-		setMainRenderer(lr, color);
 		defineClickHandler(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -50,11 +48,12 @@ public class PolygonTool extends Tool {
 				if (polygon.size() == 1) {
 					Vertex2D newP = new Vertex2D(e.getX(), e.getY());
 					Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 1));
-					lr.render(newP, p2);
+					lr.render(newP, p2, color);
 				}
 
 				// Triangle or polygon
 				if (polygon.size() > 1) {
+
 					Vertex2D newP = new Vertex2D(e.getX(), e.getY());
 					Vertex2D p1 = new Vertex2D(polygon.getPoint(polygon.size() - 1));
 					Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 2));
@@ -63,10 +62,8 @@ public class PolygonTool extends Tool {
 					if (polygon.size() > 2)
 						lr.renderInvisible(new Vertex2D(p1), new Vertex2D(p2));
 
-					lr.render(new Vertex2D(newP), new Vertex2D(p1));
-					lr.render(new Vertex2D(newP), new Vertex2D(p2));
-
-
+					lr.render(new Vertex2D(newP), new Vertex2D(p1),color);
+					lr.render(new Vertex2D(newP), new Vertex2D(p2),color);
 
 				}
 

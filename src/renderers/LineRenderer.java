@@ -7,11 +7,11 @@ import java.awt.*;
 
 public class LineRenderer extends Renderer {
 
-	public LineRenderer(Canvas canvas, Color c) {
-		super(canvas, c);
+	public LineRenderer(Canvas canvas) {
+		super(canvas);
 	}
 
-	public void render(Vertex2D o, Vertex2D e) {
+	public void render(Vertex2D o, Vertex2D e, Color color) {
 
 		float dx = e.x - o.x;
 		float dy = e.y - o.y;

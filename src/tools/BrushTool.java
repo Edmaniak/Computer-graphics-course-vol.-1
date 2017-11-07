@@ -1,12 +1,12 @@
 package tools;
 
-import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 import app.Vertex2D;
 import gui.Canvas;
 import renderers.LineRenderer;
+
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class BrushTool extends Tool {
 
@@ -16,13 +16,12 @@ public class BrushTool extends Tool {
 	public BrushTool(Canvas canvas, Color color) {
 		super(canvas, color);
 		instruction = "Drag the mouse.";
-		lr = new LineRenderer(canvas, color);
-		setMainRenderer(lr, color);
+		lr = new LineRenderer(canvas);
 		setMotionHandler(new MouseAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				if (lastPosition != null)
-					lr.render(lastPosition, new Vertex2D(e.getX(), e.getY()));
+					lr.render(lastPosition, new Vertex2D(e.getX(), e.getY()), color);
 				lastPosition = new Vertex2D(e.getX(), e.getY());
 				myCanvas.repaint();
 
