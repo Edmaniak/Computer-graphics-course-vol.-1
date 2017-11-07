@@ -14,12 +14,14 @@ public class ScanLineTool extends Tool {
 
     public ScanLineTool(Canvas canvas, Color color) {
         super(canvas, color);
-        scanLineRenderer = new ScanLineRenderer(canvas, color);
+        scanLineRenderer = new ScanLineRenderer(canvas);
         defineClickHandler(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 Polygon polygon = myCanvas.getPolygonLibrary().get(0);
-                //scanLineRenderer.fill(polygon);
+                scanLineRenderer.fill(polygon,color);
+                myCanvas.repaint();
+                myCanvas.drawInto();
             }
         });
     }

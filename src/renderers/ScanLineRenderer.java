@@ -1,27 +1,57 @@
 package renderers;
 
 import gui.Canvas;
+import objects.Edge;
+import objects.Polygon;
+import objects.Vertex2D;
 
 import java.awt.*;
-import objects.Polygon;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ScanLineRenderer extends Renderer {
 
-    public ScanLineRenderer(Canvas canvas, Color c) {
+    private List<Edge> relevantEdges;
+    private LineRenderer lr;
+
+    public ScanLineRenderer(Canvas canvas) {
         super(canvas);
+        relevantEdges = new ArrayList<>();
+        lr = new LineRenderer(canvas);
     }
 
-    public void fill(Polygon polygon, Color c) {
+    public void fill(Polygon polygon, Color color) {
+
+        // List pruseciku staci mit lokalne v metode fill
+        List<Integer> xIntersections = new ArrayList<>();
 
         // Inicializace potencionalne nejvestich bodu v polygonu
         int yMax = polygon.getTopPoint().y;
         int yMin = polygon.getBottomPoint().y;
 
-        System.out.println(yMax);
-        System.out.println(yMin);
+        // Adding all not-horizontal edges to the working edges list
+        for (Edge edge : polygon.getEdges())
+            if (!edge.isHorizontal())
+                relevantEdges.add(edge);
 
+        for (int y = yMin; y <= yMax; y++) {
+            for (Edge e : relevantEdges)
+                if (e.isIntersectional(y)) {
+                    xIntersections.add(e.getXIntersection(y));
+                }
 
+            // Serazeni podle x
+            Collections.sort(xIntersections);
+            System.out.println(xIntersections.toString());
+            for (int i = 0; i < xIntersections.size(); i += 2) {
+                Vertex2D origin = new Vertex2D(xIntersections.get(i), y);
+                Vertex2D end = new Vertex2D(xIntersections.get(i + 1), y);
+                lr.render(origin, end, color);
+            }
+            xIntersections.clear();
 
+        }
 
     }
 

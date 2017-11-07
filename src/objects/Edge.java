@@ -24,11 +24,20 @@ public class Edge {
 
     // Existuje prusecik s vodorovnou linii zadanou parametrem y
     public boolean isIntersectional(int y) {
-        return y > origin.y && y < end.y;
+        return y >= origin.y && y < end.y;
+    }
+
+    // Vraci prusecikovou souracnici x s vodorovnou lini Y
+    public int getXIntersection(int y) {
+        float dx = (float) (end.x - origin.x);
+        float dy = (float) (end.y - origin.y);
+        float k = dx / dy;
+        float q = (float) (origin.x - (k * origin.y));
+        return (int) ((k * y) + q);
     }
 
     public Edge orientedEdge() {
-        if (origin.y >= end.y)
+        if (origin.y > end.y)
             return new Edge(end, origin);
         return this;
     }
