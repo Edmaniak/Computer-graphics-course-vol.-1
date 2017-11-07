@@ -32,8 +32,14 @@ public class Edge {
         float dx = (float) (end.x - origin.x);
         float dy = (float) (end.y - origin.y);
         float k = dx / dy;
-        float q = (float) (origin.x - (k * origin.y));
-        return (int) ((k * y) + q);
+        float q = origin.x - k * origin.y;
+        // Shortening it here IS PROBABLY BAD
+        float x = ((k * y) + q);
+        return (int) x;
+    }
+
+    public void shortIt() {
+        this.end.y -= 1;
     }
 
     public Edge orientedEdge() {

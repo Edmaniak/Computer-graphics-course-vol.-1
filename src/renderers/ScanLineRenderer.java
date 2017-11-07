@@ -31,24 +31,28 @@ public class ScanLineRenderer extends Renderer {
         int yMin = polygon.getBottomPoint().y;
 
         // Adding all not-horizontal edges to the working edges list
-        for (Edge edge : polygon.getEdges())
+        for (Edge edge : polygon.getEdges()) {
             if (!edge.isHorizontal())
                 relevantEdges.add(edge);
 
-        for (int y = yMin; y <= yMax; y++) {
+        }
+
+        for (int y = yMin; y < yMax; y++) {
             for (Edge e : relevantEdges)
-                if (e.isIntersectional(y)) {
+                if (e.isIntersectional(y))
                     xIntersections.add(e.getXIntersection(y));
-                }
 
             // Serazeni podle x
             Collections.sort(xIntersections);
-            System.out.println(xIntersections.toString());
+
             for (int i = 0; i < xIntersections.size(); i += 2) {
-                Vertex2D origin = new Vertex2D(xIntersections.get(i), y);
-                Vertex2D end = new Vertex2D(xIntersections.get(i + 1), y);
-                lr.render(origin, end, color);
+                if (xIntersections.size() < 3) {
+                    Vertex2D origin = new Vertex2D(xIntersections.get(i), y);
+                    Vertex2D end = new Vertex2D(xIntersections.get(i + 1), y);
+                    lr.render(origin, end, color);
+                }
             }
+
             xIntersections.clear();
 
         }

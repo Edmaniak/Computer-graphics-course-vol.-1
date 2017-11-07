@@ -17,20 +17,19 @@ public class Polygon {
         edges = new ArrayList<>();
     }
 
+    // Method automatically creates edges when creating polygon
     public void addPoint(Vertex2D point) {
-        if (points.size() == 1) {
-            Edge edge = new Edge(getFirstPoint(), point).orientedEdge();
-            System.out.println(edge);
-            edges.add(edge);
-        }
+        if (points.size() == 1)
+            edges.add(new Edge(getFirstPoint(), point).orientedEdge());
+        // Removing the inner line from edges when it is not triangle
+        if (points.size() > 2)
+            edges.remove(edges.size() - 1);
+
         if (points.size() > 1) {
-            Edge e1 = new Edge(point, getLastPoint()).orientedEdge();
-            System.out.println(e1);
-            Edge e2 = new Edge(points.get(points.size()-2), point);
-            System.out.println(e2);
-            edges.add(e1);
-            edges.add(e2);
+            edges.add(new Edge(points.get(points.size() - 2), point).orientedEdge());
+            edges.add(new Edge(point, getLastPoint()).orientedEdge());
         }
+
         points.add(point);
     }
 
