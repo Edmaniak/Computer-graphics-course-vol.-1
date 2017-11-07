@@ -1,4 +1,4 @@
-package app;
+package objects;
 
 import static java.lang.Math.atan2;
 import static java.lang.Math.toDegrees;

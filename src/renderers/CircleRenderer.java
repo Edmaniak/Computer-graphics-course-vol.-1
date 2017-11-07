@@ -1,7 +1,7 @@
 package renderers;
 import java.awt.Color;
 
-import app.Vertex2D;
+import objects.Vertex2D;
 import gui.Canvas;
 
 public class CircleRenderer extends Renderer {

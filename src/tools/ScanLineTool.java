@@ -19,7 +19,7 @@ public class ScanLineTool extends Tool {
             @Override
             public void mousePressed(MouseEvent e) {
                 Polygon polygon = myCanvas.getPolygonLibrary().get(0);
-                scanLineRenderer.fill(polygon);
+                //scanLineRenderer.fill(polygon);
             }
         });
     }

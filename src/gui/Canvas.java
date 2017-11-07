@@ -14,7 +14,7 @@ import java.awt.image.WritableRaster;
 import javax.swing.JPanel;
 
 import app.SimpleDraw;
-import app.Vertex2D;
+import objects.Vertex2D;
 import objects.Polygon;
 
 public class Canvas extends JPanel implements MouseMotionListener {

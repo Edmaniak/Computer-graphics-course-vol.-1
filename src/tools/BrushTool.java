@@ -1,6 +1,6 @@
 package tools;
 
-import app.Vertex2D;
+import objects.Vertex2D;
 import gui.Canvas;
 import renderers.LineRenderer;
 

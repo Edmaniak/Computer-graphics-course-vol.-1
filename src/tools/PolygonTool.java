@@ -1,6 +1,6 @@
 package tools;
 
-import app.Vertex2D;
+import objects.Vertex2D;
 import gui.Canvas;
 import objects.Polygon;
 import renderers.LineRenderer;
@@ -47,7 +47,7 @@ public class PolygonTool extends Tool {
 				// Line
 				if (polygon.size() == 1) {
 					Vertex2D newP = new Vertex2D(e.getX(), e.getY());
-					Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 1));
+					Vertex2D p2 = new Vertex2D(polygon.getBottomPoint(polygon.size() - 1));
 					lr.render(newP, p2, color);
 				}
 
@@ -55,8 +55,8 @@ public class PolygonTool extends Tool {
 				if (polygon.size() > 1) {
 
 					Vertex2D newP = new Vertex2D(e.getX(), e.getY());
-					Vertex2D p1 = new Vertex2D(polygon.getPoint(polygon.size() - 1));
-					Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 2));
+					Vertex2D p1 = new Vertex2D(polygon.getBottomPoint(polygon.size() - 1));
+					Vertex2D p2 = new Vertex2D(polygon.getBottomPoint(polygon.size() - 2));
 
 					// Erasing connecting line
 					if (polygon.size() > 2)

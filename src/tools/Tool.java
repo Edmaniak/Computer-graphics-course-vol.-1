@@ -3,12 +3,8 @@ package tools;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
-import java.util.ArrayList;
-import java.util.List;
 
-import app.Vertex2D;
 import gui.Canvas;
-import renderers.Renderer;
 
 public abstract class Tool {
 

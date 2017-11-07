@@ -1,6 +1,6 @@
 package renderers;
 
-import app.Vertex2D;
+import objects.Vertex2D;
 import gui.Canvas;
 
 import java.awt.*;

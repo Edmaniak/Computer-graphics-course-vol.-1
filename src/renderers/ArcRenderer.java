@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.Vertex2D;
+import objects.Vertex2D;
 import gui.Canvas;
 
 public class ArcRenderer extends Renderer {

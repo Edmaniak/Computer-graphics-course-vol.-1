@@ -1,8 +1,5 @@
 package renderers;
 
-import java.awt.Color;
-
-import app.Vertex2D;
 import gui.Canvas;
 
 public abstract class Renderer {
