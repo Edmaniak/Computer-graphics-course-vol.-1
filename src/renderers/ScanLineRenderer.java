@@ -31,11 +31,11 @@ public class ScanLineRenderer extends Renderer {
         int yMin = polygon.getBottomPoint().y;
 
         // Adding all not-horizontal edges to the working edges list
-        for (Edge edge : polygon.getEdges()) {
+        for (Edge edge : polygon.getEdges())
             if (!edge.isHorizontal())
                 relevantEdges.add(edge);
 
-        }
+
 
         for (int y = yMin; y < yMax; y++) {
             for (Edge e : relevantEdges)

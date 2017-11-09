@@ -4,6 +4,7 @@ import objects.Vertex2D;
 import gui.Canvas;
 import objects.Polygon;
 import renderers.LineRenderer;
+import renderers.PolygonRenderer;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -13,11 +14,13 @@ public class PolygonTool extends Tool {
 
 	private final LineRenderer lr;
 	private final Polygon polygon;
+	private final PolygonRenderer pr;
 
 	public PolygonTool(Canvas canvas, Color color) {
 		super(canvas, color);
 		instruction = "Drag the lines of desired polygon.";
 		lr = new LineRenderer(canvas);
+		pr = new PolygonRenderer(canvas);
 		polygon = new Polygon();
 		defineClickHandler(new MouseAdapter() {
 			@Override
@@ -47,7 +50,7 @@ public class PolygonTool extends Tool {
 				// Line
 				if (polygon.size() == 1) {
 					Vertex2D newP = new Vertex2D(e.getX(), e.getY());
-					Vertex2D p2 = new Vertex2D(polygon.getBottomPoint(polygon.size() - 1));
+					Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 1));
 					lr.render(newP, p2, color);
 				}
 
@@ -55,8 +58,8 @@ public class PolygonTool extends Tool {
 				if (polygon.size() > 1) {
 
 					Vertex2D newP = new Vertex2D(e.getX(), e.getY());
-					Vertex2D p1 = new Vertex2D(polygon.getBottomPoint(polygon.size() - 1));
-					Vertex2D p2 = new Vertex2D(polygon.getBottomPoint(polygon.size() - 2));
+					Vertex2D p1 = new Vertex2D(polygon.getPoint(polygon.size() - 1));
+					Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 2));
 
 					// Erasing connecting line
 					if (polygon.size() > 2)
@@ -75,7 +78,7 @@ public class PolygonTool extends Tool {
 
 	@Override
 	public void doAfterSwitch() {
-		myCanvas.addToPolygonLibrary(polygon);
+		myCanvas.addToPolygons(polygon);
 	}
 
 	@Override

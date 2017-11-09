@@ -14,6 +14,7 @@ import java.awt.image.WritableRaster;
 import javax.swing.JPanel;
 
 import app.SimpleDraw;
+import objects.Edge;
 import objects.Vertex2D;
 import objects.Polygon;
 
@@ -25,12 +26,12 @@ public class Canvas extends JPanel implements MouseMotionListener {
 	private Dimension dimensions;
 	private MouseListener mouseEventHandler;
 	private MouseMotionListener mouseMotionHandler;
-	private List<Polygon> polygonLibrary;
+	private List<Polygon> polygons;
 
 	// constr with default color
 	public Canvas(Dimension d) {
 		setDimensions(d);
-		polygonLibrary = new ArrayList<>();
+		polygons = new ArrayList<>();
 		activeBuffer = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_RGB);
 		mainBuffer = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_RGB);
 		setPreferredSize(d);
@@ -52,7 +53,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
 	public void clear(Color c) {
 		activeBuffer = new BufferedImage(dimensions.width, dimensions.height, BufferedImage.TYPE_INT_RGB);
 		mainBuffer = new BufferedImage(dimensions.width, dimensions.height, BufferedImage.TYPE_INT_RGB);
-		polygonLibrary.clear();
+		polygons.clear();
 		setBgColor(c);
 		repaint();
 	}
@@ -156,12 +157,12 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		return mainBuffer;
 	}
 
-	public void addToPolygonLibrary(Polygon p) {
-		polygonLibrary.add(p);
-		System.out.println(polygonLibrary);
+	public void addToPolygons(Polygon p) {
+		polygons.add(p);
 	}
 
-	public List<Polygon> getPolygonLibrary() {
-		return polygonLibrary;
+	public List<Polygon> getPolygons() {
+		return polygons;
 	}
+
 }

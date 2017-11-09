@@ -27,6 +27,7 @@ public class Edge {
         return y >= origin.y && y < end.y;
     }
 
+
     // Vraci prusecikovou souracnici x s vodorovnou lini Y
     public int getXIntersection(int y) {
         float dx = (float) (end.x - origin.x);

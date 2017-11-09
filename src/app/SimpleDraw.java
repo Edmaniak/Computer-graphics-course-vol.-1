@@ -109,7 +109,15 @@ public class SimpleDraw extends JFrame {
         });
 
         // Second part of the task
+        // SEPARATION
+        JSeparator separ = new JSeparator(JSeparator.VERTICAL);
         toolBar.addSeparator();
+        separ.setMaximumSize(new Dimension(10,toolBar.getPreferredSize().height));
+        toolBar.add(separ);
+
+        // Button for editable Polygon
+        ToolButton editablePolyogon = new ToolButton("Draw an editable polygon");
+        editablePolyogon.setText("EDITABLE-POLYGON");
 
         // Button for seedfiller
         ToolButton seedFill = new ToolButton("Fill desired area defined by raster color");

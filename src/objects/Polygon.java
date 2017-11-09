@@ -8,10 +8,6 @@ public class Polygon {
     private List<Vertex2D> points;
     private List<Edge> edges;
 
-    public Polygon(List<Vertex2D> points) {
-        this.points = points;
-    }
-
     public Polygon() {
         points = new ArrayList<>();
         edges = new ArrayList<>();
@@ -19,8 +15,10 @@ public class Polygon {
 
     // Method automatically creates edges when creating polygon
     public void addPoint(Vertex2D point) {
+
         if (points.size() == 1)
             edges.add(new Edge(getFirstPoint(), point).orientedEdge());
+
         // Removing the inner line from edges when it is not triangle
         if (points.size() > 2)
             edges.remove(edges.size() - 1);
@@ -37,7 +35,7 @@ public class Polygon {
         return points.size();
     }
 
-    public Vertex2D getBottomPoint(int i) {
+    public Vertex2D getPoint(int i) {
         return points.get(i);
     }
 
@@ -47,6 +45,10 @@ public class Polygon {
 
     public Vertex2D getFirstPoint() {
         return points.get(0);
+    }
+
+    public List<Vertex2D> getPoints() {
+        return points;
     }
 
     public List<Edge> getEdges() {

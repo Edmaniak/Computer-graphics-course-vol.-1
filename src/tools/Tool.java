@@ -14,9 +14,6 @@ public abstract class Tool {
 	protected final Canvas myCanvas;
 	public final Cursor cursor = new Cursor(Cursor.CROSSHAIR_CURSOR);
 	protected String instruction;
-	// Dulezity atribut pro zmenu informace o barve pro Renderer
-	// Jinak ma kazdy potomek vlastni specificky Renderer
-	// Main renderer slouzi tedy pouze ke zmene barvy v rendereru
 
 	public Tool(Canvas canvas, Color color) {
 		myCanvas = canvas;
