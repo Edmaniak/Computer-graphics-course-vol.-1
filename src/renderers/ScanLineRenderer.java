@@ -4,10 +4,10 @@ import gui.Canvas;
 import objects.Edge;
 import objects.Polygon;
 import objects.Vertex2D;
+import utilities.InsertionSort;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ScanLineRenderer extends Renderer {
@@ -43,7 +43,7 @@ public class ScanLineRenderer extends Renderer {
                     xIntersections.add(e.getXIntersection(y));
 
             // Serazeni podle x
-            Collections.sort(xIntersections);
+            InsertionSort.sort(xIntersections);
 
             for (int i = 0; i < xIntersections.size(); i += 2) {
                 if (xIntersections.size() < 3) {

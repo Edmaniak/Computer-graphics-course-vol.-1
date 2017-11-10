@@ -20,7 +20,7 @@ public class PolygonRenderer extends Renderer {
     public void render(Polygon polygon, Color color) {
         List<Vertex2D> points = polygon.getPoints();
         for (int i = 0; i < polygon.getPoints().size(); i++) {
-            Vertex2D origin = new Vertex2D(points.get(i)); System.out.println(i);
+            Vertex2D origin = new Vertex2D(points.get(i));
             Vertex2D end = new Vertex2D(points.get((i + 1) % points.size())); System.out.println((i + 1) % points.size());
             lr.render(origin, end, color);
         }

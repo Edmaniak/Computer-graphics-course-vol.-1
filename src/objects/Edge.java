@@ -27,8 +27,7 @@ public class Edge {
         return y >= origin.y && y < end.y;
     }
 
-
-    // Vraci prusecikovou souracnici x s vodorovnou lini Y
+    // Vraci prusecikovou souradnici x s vodorovnou lini Y
     public int getXIntersection(int y) {
         float dx = (float) (end.x - origin.x);
         float dy = (float) (end.y - origin.y);
@@ -36,10 +35,6 @@ public class Edge {
         float q = origin.x - k * origin.y;
         float x = ((k * y) + q);
         return (int) x;
-    }
-
-    public void shortIt() {
-        this.end.y -= 1;
     }
 
     public Edge orientedEdge() {
@@ -55,11 +50,11 @@ public class Edge {
     public Vertex2D getIntersection(Edge e) {
 
         double x = ((((origin.x * end.y) - (end.x * origin.y)) * (e.origin.x - e.end.x)) - (((e.origin.x * e.end.y) - (e.end.x * e.origin.y)) * (origin.x - end.x))) /
-                // --------------------------------------------------------------------------------------------------------------------------------//
+                // -------------------------------------------------------------------------------------------------------------------------------------------------//
                 ((origin.x - end.x) * (e.origin.y - e.end.y) - (origin.y - end.y) * (e.origin.x - e.end.x));
 
         double y = ((((origin.x * end.y) - (end.x * origin.y)) * (e.origin.y - e.end.y)) - (((e.origin.x * e.end.y) - (e.end.x * e.origin.y)) * (origin.y - end.y))) /
-                // --------------------------------------------------------------------------------------------------------------------------------//
+                // ---------------------------------------------------------------------------------------------------------------------------------------------- ---//
                 ((origin.x - end.x) * (e.origin.y - e.end.y) - (origin.y - end.y) * (e.origin.x - e.end.x));
 
         return new Vertex2D((int) x, (int) y);

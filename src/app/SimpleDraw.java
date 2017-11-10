@@ -4,10 +4,13 @@ import gui.Canvas;
 import gui.ColorPicker;
 import gui.ToolButton;
 import tools.*;
+import utilities.InsertionSort;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SimpleDraw extends JFrame {
 
@@ -146,6 +149,14 @@ public class SimpleDraw extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new SimpleDraw(new Dimension(800, 600)));
+        List<Integer> list = new ArrayList<>();
+        list.add(5);
+        list.add(2);
+        list.add(10);
+        list.add(7);
+        list.add(1);
+        list.add(12);
+        InsertionSort.sort(list);
     }
 
     public JToolBar getToolBar() {

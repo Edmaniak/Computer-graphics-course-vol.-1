@@ -11,4 +11,8 @@ public class Clipper extends Renderer {
         super(canvas);
     }
 
+    public Polygon clip(Polygon in) {
+        return null;
+    }
+
 }

@@ -27,7 +27,6 @@ public abstract class Tool {
 
 	public abstract void clear();
 
-
 	public MouseAdapter getMotionHandler() {
 		return motionHandler;
 	}
