@@ -1,23 +1,28 @@
 package tools;
 
-import java.awt.Color;
+import gui.Canvas;
+import objects.Edge;
+import objects.Vertex2D;
+import renderers.LineRenderer;
+
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import objects.Vertex2D;
-import gui.Canvas;
-import renderers.LineRenderer;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LineTool extends Tool {
 
 	private Vertex2D origin;
 	private Vertex2D end;
 	private final LineRenderer lr;
+	private List<Edge> edges;
 
 	public LineTool(Canvas canvas, Color color) {
 		super(canvas, color);
 		instruction = "Drag the mouse.";
 		lr = new LineRenderer(myCanvas);
+		edges = new ArrayList<>();
 		defineClickHandler(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -33,8 +38,13 @@ public class LineTool extends Tool {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				edges.add(new Edge(origin, end));
 				myCanvas.drawInto();
 				clear();
+				if(edges.size() == 2) {
+					Vertex2D inter = edges.get(0).getIntersection(edges.get(1));
+					System.out.println(inter);
+				}
 			}
 		});
 		setMotionHandler(new MouseAdapter() {

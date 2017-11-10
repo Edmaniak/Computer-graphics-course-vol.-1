@@ -1,8 +1,11 @@
 package gui;
 
+import app.SimpleDraw;
+import objects.Polygon;
+import objects.Vertex2D;
+
+import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -10,13 +13,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
-
-import javax.swing.JPanel;
-
-import app.SimpleDraw;
-import objects.Edge;
-import objects.Vertex2D;
-import objects.Polygon;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Canvas extends JPanel implements MouseMotionListener {
 
@@ -111,6 +109,15 @@ public class Canvas extends JPanel implements MouseMotionListener {
 	public void putPixel(int x, int y, Color color) {
 		if (canDrawAt(x,y))
 			activeBuffer.setRGB(x, y, color.hashCode());
+	}
+
+	public void putText(String text, int x, int y) {
+		activeBuffer.getGraphics().drawString(text, x, y);
+		repaint();
+	}
+
+	public void putText(Object text, int x, int y) {
+		putText(text.toString(), x, y);
 	}
 
 	////// --------------------------------------------

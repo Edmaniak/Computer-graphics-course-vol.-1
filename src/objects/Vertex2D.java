@@ -32,6 +32,8 @@ public class Vertex2D {
 		return angle;
 	}
 
+
+
 	public static void reverse(Vertex2D first, Vertex2D second) {
 		// x values switch
 		int val = first.x;

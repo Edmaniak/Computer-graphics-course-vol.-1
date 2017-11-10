@@ -19,7 +19,7 @@ public class Polygon {
         if (points.size() == 1)
             edges.add(new Edge(getFirstPoint(), point).orientedEdge());
 
-        // Removing the inner line from edges when it is not triangle
+        // Removing the inner line from edges when it is not a triangle
         if (points.size() > 2)
             edges.remove(edges.size() - 1);
 

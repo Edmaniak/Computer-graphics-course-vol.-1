@@ -34,7 +34,6 @@ public class Edge {
         float dy = (float) (end.y - origin.y);
         float k = dx / dy;
         float q = origin.x - k * origin.y;
-        // Shortening it here IS PROBABLY BAD
         float x = ((k * y) + q);
         return (int) x;
     }
@@ -47,6 +46,23 @@ public class Edge {
         if (origin.y > end.y)
             return new Edge(end, origin);
         return this;
+    }
+
+    public boolean isInside(Vertex2D point) {
+        return (end.y - origin.y) * point.x + (end.x - origin.x) * point.y + end.x * origin.y - end.y * origin.x > 0;
+    }
+
+    public Vertex2D getIntersection(Edge e) {
+
+        double x = ((((origin.x * end.y) - (end.x * origin.y)) * (e.origin.x - e.end.x)) - (((e.origin.x * e.end.y) - (e.end.x * e.origin.y)) * (origin.x - end.x))) /
+                // --------------------------------------------------------------------------------------------------------------------------------//
+                ((origin.x - end.x) * (e.origin.y - e.end.y) - (origin.y - end.y) * (e.origin.x - e.end.x));
+
+        double y = ((((origin.x * end.y) - (end.x * origin.y)) * (e.origin.y - e.end.y)) - (((e.origin.x * e.end.y) - (e.end.x * e.origin.y)) * (origin.y - end.y))) /
+                // --------------------------------------------------------------------------------------------------------------------------------//
+                ((origin.x - end.x) * (e.origin.y - e.end.y) - (origin.y - end.y) * (e.origin.x - e.end.x));
+
+        return new Vertex2D((int) x, (int) y);
     }
 
     @Override

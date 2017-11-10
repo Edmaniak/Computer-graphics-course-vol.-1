@@ -129,6 +129,9 @@ public class SimpleDraw extends JFrame {
         scanLine.setText("SCAN-LINE");
         scanLine.addActionListener(e -> changeTool(new ScanLineTool(canvas, colorToUse)));
 
+        JCheckBox debug = new JCheckBox("Debug");
+        toolBar.add(debug);
+
     }
 
     private void changeTool(Tool tool) {

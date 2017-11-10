@@ -1,8 +1,9 @@
 package tools;
 
-import objects.Vertex2D;
 import gui.Canvas;
+import objects.Edge;
 import objects.Polygon;
+import objects.Vertex2D;
 import renderers.LineRenderer;
 import renderers.PolygonRenderer;
 
@@ -25,20 +26,23 @@ public class PolygonTool extends Tool {
 		defineClickHandler(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				if (polygon.size()== 0) {
+				if (polygon.size() == 0) {
 					Vertex2D point = new Vertex2D(e.getX(), e.getY());
 					polygon.addPoint(point);
+				}
+				if (polygon.size() > 2) {
+					Edge ed = polygon.getEdges().get(0);
+					//
 				}
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				myCanvas.drawInto();
-				myCanvas.mix();
-
+				Vertex2D point = new Vertex2D(e.getX(), e.getY());
+				polygon.addPoint(point);
 				myCanvas.repaint();
 				myCanvas.drawInto();
-				polygon.addPoint(new Vertex2D(e.getX(), e.getY()));
+
 			}
 		});
 
@@ -53,7 +57,7 @@ public class PolygonTool extends Tool {
 					Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 1));
 					lr.render(newP, p2, color);
 				}
-
+				/*
 				// Triangle or polygon
 				if (polygon.size() > 1) {
 
@@ -69,7 +73,7 @@ public class PolygonTool extends Tool {
 					lr.render(new Vertex2D(newP), new Vertex2D(p2),color);
 
 				}
-
+*/
 				myCanvas.repaint();
 			}
 		});

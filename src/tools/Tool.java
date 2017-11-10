@@ -1,10 +1,9 @@
 package tools;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.event.MouseAdapter;
-
 import gui.Canvas;
+
+import java.awt.*;
+import java.awt.event.MouseAdapter;
 
 public abstract class Tool {
 
@@ -28,6 +27,7 @@ public abstract class Tool {
 
 	public abstract void clear();
 
+
 	public MouseAdapter getMotionHandler() {
 		return motionHandler;
 	}
@@ -47,5 +47,6 @@ public abstract class Tool {
 	public String getInstruction() {
 		return instruction;
 	}
-
 }
+
+
