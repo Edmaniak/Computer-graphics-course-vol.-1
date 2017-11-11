@@ -18,6 +18,8 @@ public class Vertex2D {
 		y = end.y;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "[" + "X: " + x + " Y: " + y + "]";

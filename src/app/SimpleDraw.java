@@ -71,7 +71,7 @@ public class SimpleDraw extends JFrame {
             else
                 canvas.clear(AppColor.DEFAULT_BG);
             if (selectedTool != null)
-                selectedTool.doAfterOut();
+                selectedTool.doAfterSwitchOut();
         });
 
         // Button for making brush line
@@ -150,7 +150,7 @@ public class SimpleDraw extends JFrame {
 
     private void changeTool(Tool tool) {
         if (selectedTool != null)
-            selectedTool.doAfterOut();
+            selectedTool.doAfterSwitchOut();
         selectedTool = tool;
         selectedTool.setColor(colorToUse);
         selectedTool.doOnSwitchIn();

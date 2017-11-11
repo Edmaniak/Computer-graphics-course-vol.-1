@@ -43,8 +43,10 @@ public class Edge {
         return this;
     }
 
-    public boolean isInside(Vertex2D point) {
-        return (((end.y - origin.y) * point.x) + ((end.x - origin.x) * point.y) + ((end.x * origin.y) - (end.y * origin.x))) > 0;
+    public boolean isInside(int x, int y) {
+        int i = (end.x - origin.x) * (y -origin.y) - (end.y - origin.y) * (x - origin.x);
+        System.out.println(i);
+        return i > 0;
     }
 
     public Vertex2D getIntersection(Edge e) {

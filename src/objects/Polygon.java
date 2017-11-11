@@ -90,9 +90,10 @@ public class Polygon {
         return polygon;
     }
 
-    public boolean isInside(Vertex2D point) {
+    public boolean isInside(int x, int y) {
         for (Edge e : edges) {
-            if(!e.isInside(point))
+            System.out.println(e + " " + e.isInside(x, y));
+            if (!e.isInside(x, y))
                 return false;
         }
         return true;

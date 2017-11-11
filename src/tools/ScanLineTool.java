@@ -18,7 +18,7 @@ public class ScanLineTool extends Tool {
         defineClickHandler(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                Polygon polygonToFill = myCanvas.getPolygons().get(0);
+                Polygon polygonToFill = myCanvas.getPolygonAt(e.getX(),e.getY());
                 if (polygonToFill != null) {
                     scanLineRenderer.fill(polygonToFill, color);
                     myCanvas.repaint();
@@ -30,7 +30,7 @@ public class ScanLineTool extends Tool {
 
 
     @Override
-    public void doAfterOut() {
+    public void doAfterSwitchOut() {
 
     }
 

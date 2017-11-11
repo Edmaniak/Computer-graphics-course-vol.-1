@@ -23,7 +23,7 @@ public abstract class Tool {
 		this.color = color;
 	}
 
-	public abstract void doAfterOut();
+	public abstract void doAfterSwitchOut();
 
 	public abstract void doOnSwitchIn();
 

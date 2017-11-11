@@ -177,7 +177,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
 	public Polygon getPolygonAt(int x, int y) {
 		for (Polygon p : polygons) {
 			// Polygon must be a triangle and for each edge the point must be inside (left side)
-			if (p.size() > 2 && p.isInside(new Vertex2D(x, y)))
+			if (p.size() > 2 && p.isInside(x, y))
 				return p;
 		}
 		return null;

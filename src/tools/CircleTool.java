@@ -50,7 +50,7 @@ public class CircleTool extends Tool {
 	}
 
 	@Override
-	public void doAfterOut() {
+	public void doAfterSwitchOut() {
 
 	}
 

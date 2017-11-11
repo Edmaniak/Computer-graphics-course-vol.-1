@@ -37,7 +37,7 @@ public class BrushTool extends Tool {
 	}
 
 	@Override
-	public void doAfterOut() {
+	public void doAfterSwitchOut() {
 
 	}
 
