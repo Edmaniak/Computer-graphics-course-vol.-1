@@ -2,14 +2,14 @@ package app;
 
 import gui.Canvas;
 import gui.ColorPicker;
+import gui.FillPicker;
 import gui.ToolButton;
+import patterns.Pattern;
 import tools.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class SimpleDraw extends JFrame {
 
@@ -128,10 +128,21 @@ public class SimpleDraw extends JFrame {
         editablePolyogon.setText("EDITABLE-POLYGON");
         */
 
+
         // Button for seedfiller
         ToolButton seedFill = new ToolButton("SEED-FILL desired polygon defined by raster color", "res/fill.png");
         seedFill.setText("SF");
-        seedFill.addActionListener(e -> changeTool(new SeedFillerTool(canvas, colorToUse)));
+        seedFill.addActionListener(e -> {
+            FillPicker fillOptions = new FillPicker();
+            switch (fillOptions.getChoice()) {
+                case 0:
+                    changeTool(new SeedFillerTool(canvas, colorToUse));
+                    break;
+                case 1:
+                    changeTool(new SeedFillerTool(canvas, colorToUse, Color.ORANGE, Color.BLUE, new Pattern(6, 6)));
+                    break;
+            }
+        });
 
         // Button for scanline filling
         ToolButton scanLine = new ToolButton("SCAN-LINE-FILL desired polygon defined by its geometrical structure","res/fill.png");
@@ -140,12 +151,7 @@ public class SimpleDraw extends JFrame {
 
         // Button for clipper
         ToolButton clipper = new ToolButton("Drag an clipping area around the polygon you want to clipp", "res/cut.png");
-        clipper.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                changeTool(new ClipperTool(canvas,colorToUse));
-            }
-        });
+        clipper.addActionListener(e -> changeTool(new ClipperTool(canvas, colorToUse)));
     }
 
     private void changeTool(Tool tool) {

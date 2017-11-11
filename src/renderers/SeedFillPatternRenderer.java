@@ -18,9 +18,12 @@ public class SeedFillPatternRenderer extends SeedFillRenderer {
 
     @Override
     public void fill(int x, int y) {
-        if (myCanvas.getActiveColorAt(x, y) == bgColor && myCanvas.getActiveColorAt(x, y) != fillColor.hashCode()) {
+        if (myCanvas.getActiveColorAt(x, y) == bgColor &&
+                (myCanvas.getActiveColorAt(x, y) != pattern.color1.hashCode() || myCanvas.getActiveColorAt(x, y) != pattern.color2.hashCode())) {
             if (pd[x / 2 % pattern.getHeight()][y / 2 % pattern.getWidth()] == 1)
-                myCanvas.putPixel(x, y, fillColor);
+                myCanvas.putPixel(x, y, pattern.color1);
+            else
+                myCanvas.putPixel(x, y, pattern.color2);
             fill(x, y + 1);
             fill(x, y - 1);
             fill(x + 1, y);

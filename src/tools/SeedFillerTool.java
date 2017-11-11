@@ -1,6 +1,8 @@
 package tools;
 
 import gui.Canvas;
+import patterns.Pattern;
+import renderers.SeedFillPatternRenderer;
 import renderers.SeedFillRenderer;
 
 import java.awt.*;
@@ -13,6 +15,7 @@ public class SeedFillerTool extends Tool {
 
     public SeedFillerTool(Canvas canvas, Color color) {
         super(canvas, color);
+        Pattern p = new Pattern(8, 8);
         fillRenderer = new SeedFillRenderer(canvas, color);
 
         defineClickHandler(new MouseAdapter() {
@@ -25,6 +28,11 @@ public class SeedFillerTool extends Tool {
                 myCanvas.drawInto();
             }
         });
+    }
+
+    public SeedFillerTool(Canvas canvas, Color color, Color color1, Color color2, Pattern pattern) {
+        this(canvas, color);
+        fillRenderer = new SeedFillPatternRenderer(canvas, color, pattern);
     }
 
     @Override

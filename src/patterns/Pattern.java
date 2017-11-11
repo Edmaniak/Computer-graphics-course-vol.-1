@@ -1,10 +1,13 @@
 package patterns;
 
+import java.awt.*;
 import java.util.Random;
 
 public class Pattern {
     private int[][] structure;
     private Random rand;
+    public final Color color1 = Color.ORANGE;;
+    public final Color color2 = Color.BLUE;;
 
     public Pattern(int width, int height) {
         rand = new Random();
