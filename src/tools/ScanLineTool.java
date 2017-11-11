@@ -30,7 +30,12 @@ public class ScanLineTool extends Tool {
 
 
     @Override
-    public void doAfterSwitch() {
+    public void doAfterOut() {
+
+    }
+
+    @Override
+    public void doOnSwitchIn() {
 
     }
 

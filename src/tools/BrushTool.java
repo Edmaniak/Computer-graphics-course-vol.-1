@@ -17,7 +17,7 @@ public class BrushTool extends Tool {
 		super(canvas, color);
 		instruction = "Drag the mouse.";
 		lr = new LineRenderer(canvas);
-		setMotionHandler(new MouseAdapter() {
+		defineMotionHandler(new MouseAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				if (lastPosition != null)
@@ -37,7 +37,12 @@ public class BrushTool extends Tool {
 	}
 
 	@Override
-	public void doAfterSwitch() {
+	public void doAfterOut() {
+
+	}
+
+	@Override
+	public void doOnSwitchIn() {
 
 	}
 

@@ -28,7 +28,12 @@ public class SeedFillerTool extends Tool {
     }
 
     @Override
-    public void doAfterSwitch() {
+    public void doAfterOut() {
+
+    }
+
+    @Override
+    public void doOnSwitchIn() {
 
     }
 

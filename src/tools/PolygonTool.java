@@ -12,9 +12,9 @@ import java.awt.event.MouseEvent;
 
 public class PolygonTool extends Tool {
 
-	private final LineRenderer lr;
-	private final Polygon polygon;
-	private final PolygonRenderer pr;
+	protected LineRenderer lr;
+	protected final Polygon polygon;
+	protected final PolygonRenderer pr;
 
 	public PolygonTool(Canvas canvas, Color color) {
 		super(canvas, color);
@@ -45,7 +45,7 @@ public class PolygonTool extends Tool {
 			}
 		});
 
-		setMotionHandler(new MouseAdapter() {
+		defineMotionHandler(new MouseAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
 
@@ -66,7 +66,7 @@ public class PolygonTool extends Tool {
 
 					// Erasing connecting line
 					if (polygon.size() > 2)
-						lr.renderInvisible(new Vertex2D(p1), new Vertex2D(p2));
+						lr.render(new Vertex2D(p1), new Vertex2D(p2),Color.BLACK);
 
 					lr.render(new Vertex2D(newP), new Vertex2D(p1),color);
 					lr.render(new Vertex2D(newP), new Vertex2D(p2),color);
@@ -80,8 +80,13 @@ public class PolygonTool extends Tool {
 	}
 
 	@Override
-	public void doAfterSwitch() {
+	public void doAfterOut() {
 		myCanvas.addToPolygons(polygon);
+	}
+
+	@Override
+	public void doOnSwitchIn() {
+
 	}
 
 	@Override

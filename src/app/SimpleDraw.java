@@ -4,13 +4,12 @@ import gui.Canvas;
 import gui.ColorPicker;
 import gui.ToolButton;
 import tools.*;
-import utilities.InsertionSort;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SimpleDraw extends JFrame {
 
@@ -72,7 +71,7 @@ public class SimpleDraw extends JFrame {
             else
                 canvas.clear(AppColor.DEFAULT_BG);
             if (selectedTool != null)
-                selectedTool.doAfterSwitch();
+                selectedTool.doAfterOut();
         });
 
         // Button for making brush line
@@ -86,6 +85,10 @@ public class SimpleDraw extends JFrame {
         // Button for making lines
         ToolButton line = new ToolButton("Draw a line", "res/line.png");
         line.addActionListener(e -> changeTool(new LineTool(canvas, colorToUse)));
+
+        // Button for making dashed lines
+        ToolButton dashLine = new ToolButton("Draw a dashed line", "res/dash.png");
+        dashLine.addActionListener(e -> changeTool(new DashLineTool(canvas, colorToUse)));
 
         // Button for making n-gons
         ToolButton polygon = new ToolButton("Draw a polygon", "res/polygon.png");
@@ -118,30 +121,39 @@ public class SimpleDraw extends JFrame {
         separ.setMaximumSize(new Dimension(10,toolBar.getPreferredSize().height));
         toolBar.add(separ);
 
-        // Button for editable Polygon
+
+
+        /*
         ToolButton editablePolyogon = new ToolButton("Draw an editable polygon");
         editablePolyogon.setText("EDITABLE-POLYGON");
+        */
 
         // Button for seedfiller
-        ToolButton seedFill = new ToolButton("Fill desired area defined by raster color");
-        seedFill.setText("SEED-FILL");
+        ToolButton seedFill = new ToolButton("SEED-FILL desired polygon defined by raster color", "res/fill.png");
+        seedFill.setText("SF");
         seedFill.addActionListener(e -> changeTool(new SeedFillerTool(canvas, colorToUse)));
 
         // Button for scanline filling
-        ToolButton scanLine = new ToolButton("Fill desired POLYGON defined by its geometrical structure");
-        scanLine.setText("SCAN-LINE");
+        ToolButton scanLine = new ToolButton("SCAN-LINE-FILL desired polygon defined by its geometrical structure","res/fill.png");
+        scanLine.setText("SL");
         scanLine.addActionListener(e -> changeTool(new ScanLineTool(canvas, colorToUse)));
 
-        JCheckBox debug = new JCheckBox("Debug");
-        toolBar.add(debug);
-
+        // Button for clipper
+        ToolButton clipper = new ToolButton("Drag an clipping area around the polygon you want to clipp", "res/cut.png");
+        clipper.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changeTool(new ClipperTool(canvas,colorToUse));
+            }
+        });
     }
 
     private void changeTool(Tool tool) {
         if (selectedTool != null)
-            selectedTool.doAfterSwitch();
+            selectedTool.doAfterOut();
         selectedTool = tool;
         selectedTool.setColor(colorToUse);
+        selectedTool.doOnSwitchIn();
         canvas.setMouseMotionHandler(tool.getMotionHandler());
         canvas.setMouseClickHandler(tool.getClickHandler());
         canvas.setCursor(tool.cursor);
@@ -149,14 +161,6 @@ public class SimpleDraw extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new SimpleDraw(new Dimension(800, 600)));
-        List<Integer> list = new ArrayList<>();
-        list.add(5);
-        list.add(2);
-        list.add(10);
-        list.add(7);
-        list.add(1);
-        list.add(12);
-        InsertionSort.sort(list);
     }
 
     public JToolBar getToolBar() {

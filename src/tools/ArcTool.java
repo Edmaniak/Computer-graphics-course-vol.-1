@@ -58,7 +58,7 @@ public class ArcTool extends Tool {
 			}
 
 		});
-		setMotionHandler(new MouseAdapter() {
+		defineMotionHandler(new MouseAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				initRadPoint = new Vertex2D(e.getX(), e.getY());
@@ -86,7 +86,12 @@ public class ArcTool extends Tool {
 
 
 	@Override
-	public void doAfterSwitch() {
+	public void doAfterOut() {
+
+	}
+
+	@Override
+	public void doOnSwitchIn() {
 
 	}
 

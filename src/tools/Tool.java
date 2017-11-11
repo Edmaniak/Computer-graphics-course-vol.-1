@@ -23,7 +23,9 @@ public abstract class Tool {
 		this.color = color;
 	}
 
-	public abstract void doAfterSwitch();
+	public abstract void doAfterOut();
+
+	public abstract void doOnSwitchIn();
 
 	public abstract void clear();
 
@@ -31,7 +33,7 @@ public abstract class Tool {
 		return motionHandler;
 	}
 
-	public void setMotionHandler(MouseAdapter motionHandler) {
+	public void defineMotionHandler(MouseAdapter motionHandler) {
 		this.motionHandler = motionHandler;
 	}
 

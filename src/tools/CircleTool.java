@@ -36,7 +36,7 @@ public class CircleTool extends Tool {
 			}
 		});
 
-		setMotionHandler(new MouseAdapter() {
+		defineMotionHandler(new MouseAdapter() {
 			@Override
 			public void mouseDragged(MouseEvent e) {
 				radPoint = new Vertex2D(e.getX(), e.getY());
@@ -50,7 +50,12 @@ public class CircleTool extends Tool {
 	}
 
 	@Override
-	public void doAfterSwitch() {
+	public void doAfterOut() {
+
+	}
+
+	@Override
+	public void doOnSwitchIn() {
 
 	}
 

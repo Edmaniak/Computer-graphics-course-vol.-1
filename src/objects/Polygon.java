@@ -59,6 +59,11 @@ public class Polygon {
         return edges;
     }
 
+    public void clear() {
+        points.clear();
+        edges.clear();
+    }
+
     public Vertex2D getTopPoint() {
         Vertex2D yMax = getFirstPoint();
         for (Vertex2D point : points){

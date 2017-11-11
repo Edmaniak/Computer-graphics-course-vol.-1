@@ -47,6 +47,13 @@ public class LineRenderer extends Renderer {
 		}
 	}
 
+
+
+	private void printPattern() {
+
+	}
+
+
 	public void renderInvisible(Vertex2D o, Vertex2D e) {
 		float dx = e.x - o.x;
 		float dy = e.y - o.y;
