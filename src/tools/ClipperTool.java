@@ -21,12 +21,12 @@ public class ClipperTool extends PolygonTool {
     @Override
     public void doAfterOut() {
         myCanvas.remove(clip);
-        myCanvas.repaint();
     }
 
     @Override
     public void doOnSwitchIn() {
-        clip = new JButton("-CLIP-");
+        clip = new JButton("- CLIP -");
+        clip.setCursor(new Cursor(Cursor.HAND_CURSOR));
         clip.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

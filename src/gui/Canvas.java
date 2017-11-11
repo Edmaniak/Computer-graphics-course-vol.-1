@@ -183,4 +183,15 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		return null;
 	}
 
+	@Override
+	public Component add(Component comp) {
+		repaint();
+		return super.add(comp);
+	}
+
+	@Override
+	public void remove(Component comp) {
+		repaint();
+		super.remove(comp);
+	}
 }

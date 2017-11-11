@@ -2,25 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2939a789-1d51-47c5-8a78-ac317569893d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/cut.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/fill.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/renderers/DashLineRenderer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/tools/DashLineTool.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/SimpleDraw.java" afterPath="$PROJECT_DIR$/src/app/SimpleDraw.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/objects/Polygon.java" afterPath="$PROJECT_DIR$/src/objects/Polygon.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/renderers/Clipper.java" afterPath="$PROJECT_DIR$/src/renderers/Clipper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/renderers/LineRenderer.java" afterPath="$PROJECT_DIR$/src/renderers/LineRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/ArcTool.java" afterPath="$PROJECT_DIR$/src/tools/ArcTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/BrushTool.java" afterPath="$PROJECT_DIR$/src/tools/BrushTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/CircleTool.java" afterPath="$PROJECT_DIR$/src/tools/CircleTool.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/Canvas.java" afterPath="$PROJECT_DIR$/src/gui/Canvas.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/ClipperTool.java" afterPath="$PROJECT_DIR$/src/tools/ClipperTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/DotTool.java" afterPath="$PROJECT_DIR$/src/tools/DotTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/LineTool.java" afterPath="$PROJECT_DIR$/src/tools/LineTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/PolygonTool.java" afterPath="$PROJECT_DIR$/src/tools/PolygonTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/ScanLineTool.java" afterPath="$PROJECT_DIR$/src/tools/ScanLineTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/SeedFillerTool.java" afterPath="$PROJECT_DIR$/src/tools/SeedFillerTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/Tool.java" afterPath="$PROJECT_DIR$/src/tools/Tool.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,23 +16,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PolygonTool.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/tools/PolygonTool.java">
+      <file leaf-file-name="ClipperTool.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/tools/ClipperTool.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="770">
-              <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+            <state relative-caret-position="268">
+              <caret line="28" column="55" lean-forward="false" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#441#442#0" expanded="true" />
+                <element signature="e#478#479#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClipperTool.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/tools/ClipperTool.java">
+      <file leaf-file-name="Canvas.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gui/Canvas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+            <state relative-caret-position="224">
+              <caret line="75" column="31" lean-forward="true" selection-start-line="75" selection-start-column="31" selection-end-line="75" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -57,8 +42,8 @@
       <file leaf-file-name="SimpleDraw.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/SimpleDraw.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="152" column="38" lean-forward="true" selection-start-line="152" selection-start-column="38" selection-end-line="152" selection-end-column="38" />
+            <state relative-caret-position="489">
+              <caret line="181" column="0" lean-forward="false" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#5441#5442#0" expanded="true" />
@@ -188,7 +173,6 @@
         <option value="$PROJECT_DIR$/src/objects/Vertex2D.java" />
         <option value="$PROJECT_DIR$/src/renderers/PolygonRenderer.java" />
         <option value="$PROJECT_DIR$/src/utilities/InsertionSort.java" />
-        <option value="$PROJECT_DIR$/src/gui/Canvas.java" />
         <option value="$PROJECT_DIR$/src/objects/Edge.java" />
         <option value="$PROJECT_DIR$/src/renderers/ScanLineRenderer.java" />
         <option value="$PROJECT_DIR$/src/objects/Polygon.java" />
@@ -207,6 +191,7 @@
         <option value="$PROJECT_DIR$/src/tools/ScanLineTool.java" />
         <option value="$PROJECT_DIR$/src/tools/SeedFillerTool.java" />
         <option value="$PROJECT_DIR$/src/app/SimpleDraw.java" />
+        <option value="$PROJECT_DIR$/src/gui/Canvas.java" />
         <option value="$PROJECT_DIR$/src/tools/ClipperTool.java" />
       </list>
     </option>
@@ -766,14 +751,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/Canvas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="177" column="36" lean-forward="true" selection-start-line="177" selection-start-column="36" selection-end-line="177" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
@@ -887,18 +864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/SimpleDraw.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="152" column="38" lean-forward="true" selection-start-line="152" selection-start-column="38" selection-end-line="152" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5441#5442#0" expanded="true" />
-            <element signature="e#5519#5520#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/tools/SeedFillerTool.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -959,11 +924,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/Canvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="75" column="31" lean-forward="true" selection-start-line="75" selection-start-column="31" selection-end-line="75" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/SimpleDraw.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="181" column="0" lean-forward="false" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5441#5442#0" expanded="true" />
+            <element signature="e#5519#5520#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/tools/ClipperTool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="23" column="27" lean-forward="true" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
-          <folding />
+        <state relative-caret-position="268">
+          <caret line="28" column="55" lean-forward="false" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+          <folding>
+            <element signature="e#441#442#0" expanded="true" />
+            <element signature="e#478#479#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
