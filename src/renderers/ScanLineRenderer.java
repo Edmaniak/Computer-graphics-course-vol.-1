@@ -36,8 +36,8 @@ public class ScanLineRenderer extends Renderer {
                 relevantEdges.add(edge);
 
 
-
         for (int y = yMin; y < yMax; y++) {
+            xIntersections.clear();
             for (Edge e : relevantEdges)
                 if (e.isIntersectional(y))
                     xIntersections.add(e.getXIntersection(y));
@@ -46,18 +46,11 @@ public class ScanLineRenderer extends Renderer {
             InsertionSort.sort(xIntersections);
 
             for (int i = 0; i < xIntersections.size(); i += 2) {
-                if (xIntersections.size() < 3) {
-                    Vertex2D origin = new Vertex2D(xIntersections.get(i), y);
-                    Vertex2D end = new Vertex2D(xIntersections.get(i + 1), y);
-                    lr.render(origin, end, color);
-                }
+                Vertex2D origin = new Vertex2D(xIntersections.get(i), y);
+                Vertex2D end = new Vertex2D(xIntersections.get(i + 1), y);
+                lr.render(origin, end, color);
             }
-
-            xIntersections.clear();
-
         }
-
     }
-
-
 }
+

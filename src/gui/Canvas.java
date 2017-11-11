@@ -137,6 +137,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		return activeBuffer.getRGB(x,y);
 	}
 
+
 	public Dimension getDimensions() {
 		return dimensions;
 	}
@@ -170,6 +171,16 @@ public class Canvas extends JPanel implements MouseMotionListener {
 
 	public List<Polygon> getPolygons() {
 		return polygons;
+	}
+
+	//Method for getting the right polygon from canvas
+	public Polygon getPolygonAt(int x, int y) {
+		for (Polygon p : polygons) {
+			// Polygon must be a triangle and for each edge the point must be inside (left side)
+			if (p.size() > 2 && p.isInside(new Vertex2D(x, y)))
+				return p;
+		}
+		return null;
 	}
 
 }

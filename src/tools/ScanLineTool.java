@@ -2,11 +2,9 @@ package tools;
 
 import gui.Canvas;
 import objects.Polygon;
-import objects.Vertex2D;
 import renderers.ScanLineRenderer;
 
 import java.awt.*;
-import java.util.List;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -20,14 +18,15 @@ public class ScanLineTool extends Tool {
         defineClickHandler(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                Polygon polygon = myCanvas.getPolygons().get(0);
-                scanLineRenderer.fill(polygon,color);
-                myCanvas.repaint();
-                myCanvas.drawInto();
+                Polygon polygonToFill = myCanvas.getPolygons().get(0);
+                if (polygonToFill != null) {
+                    scanLineRenderer.fill(polygonToFill, color);
+                    myCanvas.repaint();
+                    myCanvas.drawInto();
+                }
             }
         });
     }
-
 
 
     @Override

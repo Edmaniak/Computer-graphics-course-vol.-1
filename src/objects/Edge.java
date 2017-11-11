@@ -32,8 +32,8 @@ public class Edge {
         float dx = (float) (end.x - origin.x);
         float dy = (float) (end.y - origin.y);
         float k = dx / dy;
-        float q = origin.x - k * origin.y;
-        float x = ((k * y) + q);
+        float q = (float) origin.x - k * (float) origin.y;
+        float x =   ((float)(k * (float) y) + q);
         return (int) x;
     }
 
@@ -44,7 +44,7 @@ public class Edge {
     }
 
     public boolean isInside(Vertex2D point) {
-        return (end.y - origin.y) * point.x + (end.x - origin.x) * point.y + end.x * origin.y - end.y * origin.x > 0;
+        return (((end.y - origin.y) * point.x) + ((end.x - origin.x) * point.y) + ((end.x * origin.y) - (end.y * origin.x))) > 0;
     }
 
     public Vertex2D getIntersection(Edge e) {

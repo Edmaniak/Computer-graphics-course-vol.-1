@@ -26,13 +26,18 @@ public class LineTool extends Tool {
 		defineClickHandler(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				if (origin == null) {
-					// Ugly block needed for one point line
-					origin = new Vertex2D(e.getX(), e.getY());
-					end = new Vertex2D(e.getX(), e.getY());
-					myCanvas.mix();
-					lr.render(new Vertex2D(origin), new Vertex2D(end), color);
-					myCanvas.repaint();
+				if (edges.size() < 1) {
+					if (origin == null) {
+						// Ugly block needed for one point line
+						origin = new Vertex2D(e.getX(), e.getY());
+						end = new Vertex2D(e.getX(), e.getY());
+						myCanvas.mix();
+						lr.render(new Vertex2D(origin), new Vertex2D(end), color);
+						myCanvas.repaint();
+					}
+				} else {
+					System.out.println(edges.get(0).isInside(new Vertex2D(e.getX(), e.getY())));
+					edges.clear();
 				}
 			}
 
@@ -41,10 +46,6 @@ public class LineTool extends Tool {
 				edges.add(new Edge(origin, end));
 				myCanvas.drawInto();
 				clear();
-				if(edges.size() == 2) {
-					Vertex2D inter = edges.get(0).getIntersection(edges.get(1));
-					System.out.println(inter);
-				}
 			}
 		});
 		setMotionHandler(new MouseAdapter() {

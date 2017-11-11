@@ -28,6 +28,9 @@ public class PolygonTool extends Tool {
 				if (polygon.size() == 0) {
 					Vertex2D point = new Vertex2D(e.getX(), e.getY());
 					polygon.addPoint(point);
+					myCanvas.putText(point,e.getX(),e.getY());
+					myCanvas.repaint();
+					myCanvas.drawInto();
 				}
 			}
 
@@ -35,6 +38,7 @@ public class PolygonTool extends Tool {
 			public void mouseReleased(MouseEvent e) {
 				Vertex2D point = new Vertex2D(e.getX(), e.getY());
 				polygon.addPoint(point);
+				myCanvas.putText(point,e.getX(),e.getY());
 				myCanvas.repaint();
 				myCanvas.drawInto();
 
@@ -49,7 +53,7 @@ public class PolygonTool extends Tool {
 				// Line
 				if (polygon.size() == 1) {
 					Vertex2D newP = new Vertex2D(e.getX(), e.getY());
-					Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 1));
+					Vertex2D p2 = new Vertex2D(polygon.getLastPoint());
 					lr.render(newP, p2, color);
 				}
 
@@ -57,7 +61,7 @@ public class PolygonTool extends Tool {
 				if (polygon.size() > 1) {
 
 					Vertex2D newP = new Vertex2D(e.getX(), e.getY());
-					Vertex2D p1 = new Vertex2D(polygon.getPoint(polygon.size() - 1));
+					Vertex2D p1 = new Vertex2D(polygon.getLastPoint());
 					Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 2));
 
 					// Erasing connecting line

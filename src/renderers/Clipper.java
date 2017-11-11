@@ -1,7 +1,10 @@
 package renderers;
 
 import gui.Canvas;
+import objects.Edge;
 import objects.Polygon;
+
+import java.util.List;
 
 public class Clipper extends Renderer {
 
@@ -12,7 +15,11 @@ public class Clipper extends Renderer {
     }
 
     public Polygon clip(Polygon in) {
-        return null;
+        List<Edge> edges = clippingArea.getEdges();
+        Polygon newPolygon = new Polygon();
+        for(Edge edge : edges) {
+            newPolygon.
+        }
     }
 
 }

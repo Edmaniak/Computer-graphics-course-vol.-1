@@ -17,18 +17,22 @@ public class Polygon {
     public void addPoint(Vertex2D point) {
 
         if (points.size() == 1)
-            edges.add(new Edge(getFirstPoint(), point).orientedEdge());
+            edges.add(new Edge(getFirstPoint(), new Vertex2D(point)).orientedEdge());
 
         // Removing the inner line from edges when it is not a triangle
-        if (points.size() > 2)
+        if (points.size() >= 3)
             edges.remove(edges.size() - 1);
 
-        if (points.size() > 1) {
-            edges.add(new Edge(points.get(points.size() - 2), point).orientedEdge());
-            edges.add(new Edge(point, getLastPoint()).orientedEdge());
+        if (points.size() >= 2) {
+            edges.add(new Edge(new Vertex2D(points.get(points.size() - 2)), new Vertex2D(point)).orientedEdge());
+            edges.add(new Edge(new Vertex2D(point), new Vertex2D(getLastPoint())).orientedEdge());
         }
 
-        points.add(point);
+        points.add(new Vertex2D(point));
+
+
+
+
     }
 
     public int size() {
@@ -79,5 +83,13 @@ public class Polygon {
         for (Vertex2D point : points)
             polygon += point + " ";
         return polygon;
+    }
+
+    public boolean isInside(Vertex2D point) {
+        for (Edge e : edges) {
+            if(!e.isInside(point))
+                return false;
+        }
+        return true;
     }
 }
