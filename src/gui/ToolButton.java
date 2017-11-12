@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -10,7 +11,11 @@ import app.SimpleDraw;
 
 public class ToolButton extends JButton {
 
-    private ToolButton() {
+    private ToolButton(ToolGroup toolGroup) {
+
+        //Style
+        setFocusPainted(false);
+        setContentAreaFilled(false);
 
         addMouseListener(new MouseAdapter() {
             @Override
@@ -24,21 +29,21 @@ public class ToolButton extends JButton {
         });
 
         addActionListener(e -> {
-            if (SimpleDraw.gui.getSelectedTool() != null)
-                SimpleDraw.gui.setInstruction(SimpleDraw.gui.getSelectedTool().getInstruction());
+            if (SimpleDraw.app.getSelectedTool() != null)
+                SimpleDraw.gui.setInstruction(SimpleDraw.app.getSelectedTool().getInstruction());
         });
 
-        // Tool button is exclusively for SimpleDraw toolbar, so we can add it to the toolbar here
-        SimpleDraw.gui.getToolBar().add(this);
+        toolGroup.add(this);
+
     }
 
-    public ToolButton(String toolTip) {
-        this();
+    public ToolButton(String toolTip, ToolGroup toolGroup) {
+        this(toolGroup);
         setToolTipText(toolTip);
     }
 
-    public ToolButton(String toolTip, String icon) {
-        this();
+    public ToolButton(String toolTip, String icon, ToolGroup toolGroup) {
+        this(toolGroup);
         setToolTipText(toolTip);
         setIcon(new ImageIcon(icon));
 

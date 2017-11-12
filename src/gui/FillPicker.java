@@ -10,7 +10,8 @@ public class FillPicker extends JDialog {
     private int choice;
 
     public FillPicker() {
-        super(SimpleDraw.gui, "Choose fill type", true);
+        super(SimpleDraw.gui, "Choose seed-fill type", true);
+        setLocationRelativeTo(SimpleDraw.gui.getToolBar());
 
         JPanel buttons = new JPanel(new FlowLayout());
 
@@ -32,8 +33,9 @@ public class FillPicker extends JDialog {
         });
         buttons.add(randFill);
 
-        setVisible(true);
         pack();
+        setVisible(true);
+
 
     }
 

@@ -44,6 +44,12 @@ public abstract class Tool {
 	public void defineClickHandler(MouseAdapter clickHandler) {
 		this.clickHandler = clickHandler;
 	}
+
+	// For inheritance purposes
+	public void destroyHandlers() {
+		clickHandler = null;
+		motionHandler = null;
+	}
 	
 	public String getInstruction() {
 		return instruction;
