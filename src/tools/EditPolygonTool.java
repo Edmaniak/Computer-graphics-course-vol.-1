@@ -5,6 +5,7 @@ import objects.Edge;
 import objects.Vertex2D;
 import renderers.CircleRenderer;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -16,6 +17,7 @@ public class EditPolygonTool extends PolygonTool {
     private final int RADIUS = 5;
     private boolean drawing;
     private Vertex2D foundPoint;
+    private JButton button;
 
     public EditPolygonTool(Canvas canvas, Color color) {
         super(canvas, color);
@@ -133,14 +135,30 @@ public class EditPolygonTool extends PolygonTool {
         cr.render(new Vertex2D(point), RADIUS, color);
     }
 
+    // After leaving the tool re-render polygon nicely
+    private void renderClean() {
+        for (Vertex2D p : polygon.getPoints()) {
+            renderCircleAt(p, Color.BLACK);
+            pr.render(polygon, color);
+            myCanvas.repaint();
+            myCanvas.drawInto();
+        }
+    }
+
     @Override
     public void doAfterSwitchOut() {
-
+        myCanvas.remove(button);
+        renderClean();
     }
 
     @Override
     public void doOnSwitchIn() {
-
+        button = new JButton("- DONE EDITING -");
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        button.addActionListener(e -> {
+            renderClean();
+        });
+        myCanvas.add(button);
     }
 
     @Override
