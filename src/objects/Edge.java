@@ -62,6 +62,14 @@ public class Edge {
         return new Vertex2D((int) x, (int) y);
     }
 
+    public boolean containsPoint(Vertex2D point) {
+        return point == origin || point == end;
+    }
+
+    public boolean containsPointAt(int x, int y) {
+        return (origin.x == x && origin.y == y) || (end.x == x && end.y == y);
+    }
+
     @Override
     public String toString() {
         return "EDGE: " + "{" + origin + " " + end + "}";

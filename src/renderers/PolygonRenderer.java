@@ -2,6 +2,7 @@ package renderers;
 
 
 import gui.Canvas;
+import objects.Edge;
 import objects.Polygon;
 import objects.Vertex2D;
 
@@ -18,11 +19,10 @@ public class PolygonRenderer extends Renderer {
     }
 
     public void render(Polygon polygon, Color color) {
-        List<Vertex2D> points = polygon.getPoints();
-        for (int i = 0; i < polygon.getPoints().size(); i++) {
-            Vertex2D origin = new Vertex2D(points.get(i));
-            Vertex2D end = new Vertex2D(points.get((i + 1) % points.size())); System.out.println((i + 1) % points.size());
-            lr.render(origin, end, color);
+        List<Edge> edges = polygon.getEdges();
+        for (int i = 0; i < polygon.getEdges().size(); i++) {
+            Edge e = edges.get(i);
+            lr.render(new Vertex2D(e.getOrigin()), new Vertex2D(e.getEnd()), color);
         }
     }
 

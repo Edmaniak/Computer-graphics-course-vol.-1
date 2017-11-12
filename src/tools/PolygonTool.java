@@ -38,7 +38,8 @@ public class PolygonTool extends Tool {
 			public void mouseReleased(MouseEvent e) {
 				Vertex2D point = new Vertex2D(e.getX(), e.getY());
 				polygon.addPoint(point);
-				myCanvas.putText(point,e.getX(),e.getY());
+				pr.render(polygon, color);
+				//myCanvas.putText(point,e.getX(),e.getY());
 				myCanvas.repaint();
 				myCanvas.drawInto();
 
@@ -49,31 +50,31 @@ public class PolygonTool extends Tool {
 			@Override
 			public void mouseDragged(MouseEvent e) {
 
-				myCanvas.mix();
-				// Line
-				if (polygon.size() == 1) {
-					Vertex2D newP = new Vertex2D(e.getX(), e.getY());
-					Vertex2D p2 = new Vertex2D(polygon.getLastPoint());
-					lr.render(newP, p2, color);
-				}
+                myCanvas.mix();
+                // Line
+                if (polygon.size() == 1) {
+                    Vertex2D newP = new Vertex2D(e.getX(), e.getY());
+                    Vertex2D p2 = new Vertex2D(polygon.getLastPoint());
+                    lr.render(newP, p2, color);
+                }
 
-				// Triangle or polygon
-				if (polygon.size() > 1) {
+                // Triangle or polygon
+                if (polygon.size() > 1) {
 
-					Vertex2D newP = new Vertex2D(e.getX(), e.getY());
-					Vertex2D p1 = new Vertex2D(polygon.getLastPoint());
-					Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 2));
+                    Vertex2D newP = new Vertex2D(e.getX(), e.getY());
+                    Vertex2D p1 = new Vertex2D(polygon.getLastPoint());
+                    Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 2));
 
-					// Erasing connecting line
-					if (polygon.size() > 2)
-						lr.render(new Vertex2D(p1), new Vertex2D(p2),Color.BLACK);
+                    // Erasing connecting line
+                    if (polygon.size() > 2)
+                        lr.render(new Vertex2D(p1), new Vertex2D(p2), Color.BLACK);
 
-					lr.render(new Vertex2D(newP), new Vertex2D(p1),color);
-					lr.render(new Vertex2D(newP), new Vertex2D(p2),color);
+                    lr.render(new Vertex2D(newP), new Vertex2D(p1), color);
+                    lr.render(new Vertex2D(newP), new Vertex2D(p2), color);
 
-				}
+                }
 
-				myCanvas.repaint();
+                myCanvas.repaint();
 			}
 		});
 

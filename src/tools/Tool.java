@@ -7,7 +7,7 @@ import java.awt.event.MouseAdapter;
 
 public abstract class Tool {
 
-	private Color color = Color.white;
+	protected Color color = Color.white;
 	private MouseAdapter clickHandler;
 	private MouseAdapter motionHandler;
 	protected final Canvas myCanvas;

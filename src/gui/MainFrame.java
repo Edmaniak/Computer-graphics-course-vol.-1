@@ -137,10 +137,6 @@ public class MainFrame extends JFrame {
 
         seedGroup.add(fillType);
 
-
-
-
-
         // Button for scanline filling
         ToolButton scanLine = new ToolButton("SCAN-LINE-FILL desired polygon defined by its geometrical structure", "res/fill.png", task2);
         scanLine.setText("SL");
@@ -150,8 +146,10 @@ public class MainFrame extends JFrame {
         ToolButton clipper = new ToolButton("Drag an clipping area around the polygon you want to clipp", "res/cut.png", task2);
         clipper.addActionListener(e -> app.changeTool(new ClipperTool(canvas, app.colorToUse)));
 
-        ToolButton editablePolyogon = new ToolButton("Draw an editable polygon","res/polygon.png",task2);
-        editablePolyogon.setText("EDITABLE POLYGON");
+        // Button for editable Polygon
+        ToolButton editablePolygon = new ToolButton("Draw an editable polygon","res/polygon.png",task2);
+        editablePolygon.setText("EDITABLE POLYGON");
+        editablePolygon.addActionListener(e -> app.changeTool(new EditPolygonTool(canvas, app.colorToUse)));
     }
 
     public Canvas getCanvas() {

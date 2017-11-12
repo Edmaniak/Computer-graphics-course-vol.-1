@@ -1,5 +1,8 @@
 package objects;
 
+import tools.SeedFillerTool;
+
+import static java.lang.Math.abs;
 import static java.lang.Math.atan2;
 import static java.lang.Math.toDegrees;
 
@@ -47,4 +50,7 @@ public class Vertex2D {
 		second.y = val;
 	}
 
+    public boolean isNear(Vertex2D point, int radius) {
+		return abs(point.x - x) <= radius && abs(point.y - y) <= radius;
+    }
 }
