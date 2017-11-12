@@ -27,30 +27,34 @@ public class EditPolygonTool extends PolygonTool {
             @Override
             public void mousePressed(MouseEvent e) {
                 drawing = true;
+                // Left button
                 if (e.getButton() == MouseEvent.BUTTON1)
+                    // First point draw
                     if (polygon.size() == 0) {
                         Vertex2D point = new Vertex2D(e.getX(), e.getY());
                         polygon.addPoint(point);
-                        cr.render(new Vertex2D(point), RADIUS, Color.yellow);
+                        renderCircleAt(point, Color.yellow);
                         myCanvas.repaint();
                         myCanvas.drawInto();
                     }
-
-                if (foundPoint != null && e.getButton() == MouseEvent.BUTTON3) {
-                    removePoint(foundPoint);
-                    myCanvas.repaint();
-                    myCanvas.drawInto();
-                }
-
+                // Right button
+                if (e.getButton() == MouseEvent.BUTTON3)
+                    // Erasing founded point
+                    if (foundPoint != null) {
+                        removePoint(foundPoint);
+                        myCanvas.repaint();
+                        myCanvas.drawInto();
+                    }
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
                 drawing = false;
+                // Drawing other points when left mouse button released
                 if (e.getButton() == MouseEvent.BUTTON1) {
                     Vertex2D point = new Vertex2D(e.getX(), e.getY());
                     polygon.addPoint(point);
-                    cr.render(new Vertex2D(point), RADIUS, Color.yellow);
+                    renderCircleAt(point, Color.yellow);
                     myCanvas.repaint();
                     myCanvas.drawInto();
                 }
@@ -89,14 +93,17 @@ public class EditPolygonTool extends PolygonTool {
 
             @Override
             public void mouseMoved(MouseEvent e) {
+                // Finding a polygon point on the position of cursor
                 if (!drawing && foundPoint == null) {
                     for (Vertex2D point : polygon.getPoints()) {
                         Vertex2D cursorPos = new Vertex2D(e.getX(), e.getY());
+                        // Found => cursor change and setting the founded point
                         if (cursorPos.isNear(point, RADIUS)) {
                             myCanvas.setCursor(new Cursor(Cursor.HAND_CURSOR));
                             foundPoint = point;
                         }
                     }
+                    // Leaving the founded point event
                 } else if (!foundPoint.isNear(new Vertex2D(e.getX(), e.getY()), RADIUS)) {
                     myCanvas.setCursor(cursor);
                     foundPoint = null;
@@ -107,18 +114,23 @@ public class EditPolygonTool extends PolygonTool {
 
     // Method for removing one point logically and from the raster respectively
     private void removePoint(Vertex2D point) {
-        cr.render(new Vertex2D(point), RADIUS, Color.BLACK);
+        renderCircleAt(point, Color.BLACK);
         List<Edge> removedEdges = polygon.removePoint(point);
 
         for (Edge edge : removedEdges)
             lr.render(new Vertex2D(edge.getOrigin()), new Vertex2D(edge.getEnd()), Color.BLACK);
 
         for (Vertex2D p : polygon.getPoints())
-            cr.render(p, RADIUS, Color.yellow);
+            renderCircleAt(p, Color.yellow);
 
         pr.render(polygon, color);
         myCanvas.setCursor(cursor);
         foundPoint = null;
+    }
+
+    // point circle method for better readability
+    private void renderCircleAt(Vertex2D point, Color color) {
+        cr.render(new Vertex2D(point), RADIUS, color);
     }
 
     @Override

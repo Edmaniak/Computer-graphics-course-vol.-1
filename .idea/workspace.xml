@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2939a789-1d51-47c5-8a78-ac317569893d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/MainFrame.java" afterPath="$PROJECT_DIR$/src/gui/MainFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/objects/Edge.java" afterPath="$PROJECT_DIR$/src/objects/Edge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/objects/Polygon.java" afterPath="$PROJECT_DIR$/src/objects/Polygon.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/objects/Vertex2D.java" afterPath="$PROJECT_DIR$/src/objects/Vertex2D.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/renderers/PolygonRenderer.java" afterPath="$PROJECT_DIR$/src/renderers/PolygonRenderer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/EditPolygonTool.java" afterPath="$PROJECT_DIR$/src/tools/EditPolygonTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/PolygonTool.java" afterPath="$PROJECT_DIR$/src/tools/PolygonTool.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tools/Tool.java" afterPath="$PROJECT_DIR$/src/tools/Tool.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,13 +48,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditPolygonTool.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="EditPolygonTool.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/tools/EditPolygonTool.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+            <state relative-caret-position="379">
+              <caret line="124" column="0" lean-forward="true" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#5008#5009#0" expanded="true" />
+                <element signature="e#5069#5070#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -86,11 +82,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Polygon.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Polygon.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/objects/Polygon.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="106" column="60" lean-forward="false" selection-start-line="106" selection-start-column="60" selection-end-line="106" selection-end-column="60" />
+            <state relative-caret-position="192">
+              <caret line="104" column="0" lean-forward="true" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
               <folding>
                 <element signature="e#2105#2106#0" expanded="true" />
                 <element signature="e#2133#2134#0" expanded="true" />
@@ -207,8 +203,8 @@
         <option value="$PROJECT_DIR$/src/renderers/PolygonRenderer.java" />
         <option value="$PROJECT_DIR$/src/tools/Tool.java" />
         <option value="$PROJECT_DIR$/src/objects/Edge.java" />
-        <option value="$PROJECT_DIR$/src/tools/EditPolygonTool.java" />
         <option value="$PROJECT_DIR$/src/objects/Polygon.java" />
+        <option value="$PROJECT_DIR$/src/tools/EditPolygonTool.java" />
       </list>
     </option>
   </component>
@@ -939,14 +935,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tools/PolygonTool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="53" column="23" lean-forward="true" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/renderers/PolygonRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="438">
@@ -957,23 +945,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tools/EditPolygonTool.java">
+    <entry file="file://$PROJECT_DIR$/src/objects/Polygon.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+        <state relative-caret-position="192">
+          <caret line="104" column="0" lean-forward="true" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2105#2106#0" expanded="true" />
+            <element signature="e#2133#2134#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/objects/Polygon.java">
+    <entry file="file://$PROJECT_DIR$/src/tools/PolygonTool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="106" column="60" lean-forward="false" selection-start-line="106" selection-start-column="60" selection-end-line="106" selection-end-column="60" />
+        <state relative-caret-position="483">
+          <caret line="53" column="23" lean-forward="true" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tools/EditPolygonTool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="124" column="0" lean-forward="true" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
           <folding>
-            <element signature="e#2105#2106#0" expanded="true" />
-            <element signature="e#2133#2134#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#5008#5009#0" expanded="true" />
+            <element signature="e#5069#5070#0" expanded="true" />
           </folding>
         </state>
       </provider>
