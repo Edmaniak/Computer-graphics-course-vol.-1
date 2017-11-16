@@ -35,8 +35,8 @@ public class Clipper {
     public Polygon clip(Polygon in) {
         Polygon newPolygon = new Polygon();
         List<Edge> edges = new ArrayList<>(clippingArea.getEdges());
+
         for (Edge edge : edges) {
-            newPolygon.clear();
             Vertex2D v1 = in.getLastPoint();
             for (Vertex2D v2 : in.getPoints()) {
                 Edge newEdge = new Edge(v1, v2);
