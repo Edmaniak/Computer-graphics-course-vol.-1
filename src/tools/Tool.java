@@ -12,7 +12,6 @@ public abstract class Tool {
 	private MouseAdapter motionHandler;
 	protected final Canvas myCanvas;
 	public final Cursor cursor = new Cursor(Cursor.CROSSHAIR_CURSOR);
-	protected String instruction;
 
 	public Tool(Canvas canvas, Color color) {
 		myCanvas = canvas;
@@ -26,6 +25,8 @@ public abstract class Tool {
 	public abstract void doAfterSwitchOut();
 
 	public abstract void doOnSwitchIn();
+
+	public abstract String getInstruction();
 
 	public abstract void clear();
 
@@ -50,10 +51,7 @@ public abstract class Tool {
 		clickHandler = null;
 		motionHandler = null;
 	}
-	
-	public String getInstruction() {
-		return instruction;
-	}
+
 }
 
 

@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 
 import objects.Vertex2D;
 import gui.Canvas;
-import renderers.LineRenderer;
+import renderers.line.LineRenderer;
 
 public class DotTool extends Tool {
 	
@@ -14,7 +14,7 @@ public class DotTool extends Tool {
 
 	public DotTool(Canvas canvas, Color color) {
 		super(canvas,color);
-		instruction = "Click the mouse.";
+
 		lr = new LineRenderer(canvas);
 		defineClickHandler(new MouseAdapter() {
 			@Override
@@ -28,6 +28,11 @@ public class DotTool extends Tool {
 				myCanvas.drawInto();
 			}
 		});
+	}
+
+	@Override
+	public String getInstruction() {
+		return "Click the mouse to make point dots";
 	}
 
 	@Override

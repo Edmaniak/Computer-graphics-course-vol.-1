@@ -2,25 +2,30 @@ package tools;
 
 import gui.Canvas;
 import objects.Polygon;
+import objects.Vertex2D;
+import renderers.CircleRenderer;
 import renderers.Clipper;
-import renderers.DashLineRenderer;
+import renderers.PolygonRenderer;
+import renderers.line.DashLineRenderer;
+import tools.polygon.PolygonTool;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ClipperTool extends PolygonTool {
 
     private JButton clip;
     private Polygon clippingArea;
     private Clipper clipper;
+    private CircleRenderer cr;
 
     public ClipperTool(Canvas canvas, Color color) {
         super(canvas, color);
         clippingArea = polygon;
         clipper = new Clipper(clippingArea);
         lr = new DashLineRenderer(canvas, 5);
+        pr = new PolygonRenderer(canvas,5);
+        cr = new CircleRenderer(canvas);
     }
 
     @Override
@@ -35,8 +40,9 @@ public class ClipperTool extends PolygonTool {
         clip.addActionListener(e -> {
             if (myCanvas.getPolygons().get(0) != null) {
                 Polygon in = myCanvas.getPolygons().get(0);
-                Polygon newPol = clipper.clip(in);
-                System.out.println(newPol);
+                clipper.clip(in);
+
+
             }
         });
         myCanvas.add(clip);

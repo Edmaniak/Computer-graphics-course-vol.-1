@@ -1,7 +1,8 @@
-package renderers;
+package renderers.line;
 
 import gui.Canvas;
 import objects.Vertex2D;
+import renderers.line.LineRenderer;
 
 import java.awt.*;
 

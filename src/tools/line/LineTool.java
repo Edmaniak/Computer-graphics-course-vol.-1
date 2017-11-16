@@ -1,9 +1,10 @@
-package tools;
+package tools.line;
 
 import gui.Canvas;
 import objects.Edge;
 import objects.Vertex2D;
-import renderers.LineRenderer;
+import renderers.line.LineRenderer;
+import tools.Tool;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -20,7 +21,6 @@ public class LineTool extends Tool {
 
     public LineTool(Canvas canvas, Color color) {
         super(canvas, color);
-        instruction = "Drag the mouse.";
         lr = new LineRenderer(myCanvas);
         edges = new ArrayList<>();
         defineClickHandler(new MouseAdapter() {
@@ -58,6 +58,11 @@ public class LineTool extends Tool {
                 myCanvas.repaint();
             }
         });
+    }
+
+    @Override
+    public String getInstruction() {
+        return "Drag the mouse";
     }
 
     @Override

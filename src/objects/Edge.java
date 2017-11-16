@@ -10,6 +10,11 @@ public class Edge {
         this.end = end;
     }
 
+    public Edge(Edge edge) {
+        origin = edge.getOrigin();
+        end = edge.getEnd();
+    }
+
     public Vertex2D getEnd() {
         return end;
     }
@@ -43,9 +48,14 @@ public class Edge {
         return this;
     }
 
+    public Edge xSortedEdge() {
+        if(origin.x > end.x)
+            return new Edge(end,origin);
+        return this;
+    }
+
     public boolean isInside(int x, int y) {
         int i = (end.x - origin.x) * (y -origin.y) - (end.y - origin.y) * (x - origin.x);
-        System.out.println(i);
         return i > 0;
     }
 
@@ -72,7 +82,7 @@ public class Edge {
 
     @Override
     public String toString() {
-        return "EDGE: " + "{" + origin + " " + end + "}";
+        return "{" + origin + " " + end + "} \n";
     }
 
 }

@@ -24,7 +24,7 @@ public class ToolButton extends JButton {
             }
 
             public void mouseExited(MouseEvent e) {
-                SimpleDraw.gui.setTooltip("");
+                SimpleDraw.gui.setTooltip(" ");
             }
         });
 
@@ -46,7 +46,6 @@ public class ToolButton extends JButton {
         this(toolGroup);
         setToolTipText(toolTip);
         setIcon(new ImageIcon(icon));
-
     }
 
 }

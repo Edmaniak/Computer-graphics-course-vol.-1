@@ -1,7 +1,7 @@
-package tools;
+package tools.line;
 
 import gui.Canvas;
-import renderers.DashLineRenderer;
+import renderers.line.DashLineRenderer;
 
 import java.awt.*;
 

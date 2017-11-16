@@ -1,10 +1,11 @@
-package tools;
+package tools.polygon;
 
 import gui.Canvas;
 import objects.Polygon;
 import objects.Vertex2D;
-import renderers.LineRenderer;
+import renderers.line.LineRenderer;
 import renderers.PolygonRenderer;
+import tools.Tool;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -13,12 +14,13 @@ import java.awt.event.MouseEvent;
 public class PolygonTool extends Tool {
 
 	protected LineRenderer lr;
+	protected PolygonRenderer pr;
 	protected final Polygon polygon;
-	protected final PolygonRenderer pr;
+
 
 	public PolygonTool(Canvas canvas, Color color) {
 		super(canvas, color);
-		instruction = "Drag the lines of desired polygon.";
+
 		lr = new LineRenderer(canvas);
 		pr = new PolygonRenderer(canvas);
 		polygon = new Polygon();
@@ -39,7 +41,7 @@ public class PolygonTool extends Tool {
 				Vertex2D point = new Vertex2D(e.getX(), e.getY());
 				polygon.addPoint(point);
 				pr.render(polygon, color);
-				//myCanvas.putText(point,e.getX(),e.getY());
+				myCanvas.putText(point,e.getX(),e.getY());
 				myCanvas.repaint();
 				myCanvas.drawInto();
 
@@ -80,7 +82,12 @@ public class PolygonTool extends Tool {
 
 	}
 
-	@Override
+    @Override
+    public String getInstruction() {
+        return "Drag the lines of desired polygon";
+    }
+
+    @Override
 	public void doAfterSwitchOut() {
 		myCanvas.addToPolygons(polygon);
 	}

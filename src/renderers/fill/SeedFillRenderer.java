@@ -1,7 +1,7 @@
-package renderers;
+package renderers.fill;
 
 import gui.Canvas;
-import patterns.Pattern;
+import renderers.Renderer;
 
 import java.awt.*;
 
@@ -15,12 +15,14 @@ public class SeedFillRenderer extends Renderer {
     }
 
     public void fill(int x, int y) {
-        if (myCanvas.getActiveColorAt(x, y) == bgColor && myCanvas.getActiveColorAt(x, y) != fillColor.hashCode()) {
-            myCanvas.putPixel(x, y, fillColor);
-            fill(x, y + 1);
-            fill(x, y - 1);
-            fill(x + 1, y);
-            fill(x - 1, y);
+        if (myCanvas.canDrawAt(x, y)) {
+            if (myCanvas.getActiveColorAt(x, y) == bgColor && myCanvas.getActiveColorAt(x, y) != fillColor.hashCode()) {
+                myCanvas.putPixel(x, y, fillColor);
+                fill(x, y + 1);
+                fill(x, y - 1);
+                fill(x + 1, y);
+                fill(x - 1, y);
+            }
         }
     }
 

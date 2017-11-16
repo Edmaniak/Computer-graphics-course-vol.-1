@@ -1,9 +1,11 @@
-package renderers;
+package renderers.fill;
 
 import gui.Canvas;
 import objects.Edge;
 import objects.Polygon;
 import objects.Vertex2D;
+import renderers.line.LineRenderer;
+import renderers.Renderer;
 import utilities.InsertionSort;
 
 import java.awt.*;

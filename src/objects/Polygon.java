@@ -13,6 +13,11 @@ public class Polygon {
         edges = new ArrayList<>();
     }
 
+    public Polygon(Polygon polygon) {
+        points = new ArrayList<>(polygon.getPoints());
+        edges = new ArrayList<>(polygon.getEdges());
+    }
+
     // Method automatically creates edges when creating polygon
     public void addPoint(Vertex2D point) {
 
@@ -71,6 +76,9 @@ public class Polygon {
         return edgesWithPoint;
     }
 
+    public void setPoints(List<Vertex2D> points) {
+        this.points = new ArrayList<>(points);
+    }
 
     public List<Vertex2D> getPoints() {
         return points;
@@ -124,10 +132,22 @@ public class Polygon {
 
     @Override
     public String toString() {
-        String polygon = "POINTS: ";
+        String output = "POINTS: ";
         for (Vertex2D point : points)
-            polygon += point + " ";
-        return polygon;
+            output += point + " ";
+        output += "EDGES ";
+        for (Edge e : edges)
+            output += e;
+        return output;
+    }
+
+    public Polygon sortX() {
+        Polygon newPolyg = new Polygon();
+        for (Edge edge : getEdges()) {
+            Edge e = new Edge(edge.getOrigin(), edge.getEnd());
+            newPolyg.addEdge(e.xSortedEdge());
+        }
+        return newPolyg;
     }
 
     public boolean isInside(int x, int y) {
@@ -137,5 +157,11 @@ public class Polygon {
                 return false;
         }
         return true;
+    }
+
+    public void addEdge(Edge edge) {
+        edges.add(edge);
+        points.add(edge.getOrigin());
+        points.add(edge.getEnd());
     }
 }

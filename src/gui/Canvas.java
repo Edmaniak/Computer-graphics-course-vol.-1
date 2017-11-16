@@ -122,7 +122,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
 
 	////// --------------------------------------------
 	// Super method for every case of escaping this canvas
-	private boolean canDrawAt(int x, int y) {
+	public boolean canDrawAt(int x, int y) {
 		if (x >= 0 && x < getWidth() && y >= 0 && y < getHeight())
 			return true;
 		return false;
@@ -167,6 +167,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
 
 	public void addToPolygons(Polygon p) {
 		polygons.add(p);
+		System.out.println(p);
 	}
 
 	public List<Polygon> getPolygons() {

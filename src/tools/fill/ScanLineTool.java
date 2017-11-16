@@ -1,8 +1,9 @@
-package tools;
+package tools.fill;
 
 import gui.Canvas;
 import objects.Polygon;
-import renderers.ScanLineRenderer;
+import renderers.fill.ScanLineRenderer;
+import tools.Tool;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -18,7 +19,7 @@ public class ScanLineTool extends Tool {
         defineClickHandler(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                Polygon polygonToFill = myCanvas.getPolygonAt(e.getX(),e.getY());
+                Polygon polygonToFill = myCanvas.getPolygons().get(0);
                 if (polygonToFill != null) {
                     scanLineRenderer.fill(polygonToFill, color);
                     myCanvas.repaint();
@@ -28,6 +29,10 @@ public class ScanLineTool extends Tool {
         });
     }
 
+    @Override
+    public String getInstruction() {
+        return null;
+    }
 
     @Override
     public void doAfterSwitchOut() {

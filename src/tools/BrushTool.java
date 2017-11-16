@@ -2,7 +2,7 @@ package tools;
 
 import objects.Vertex2D;
 import gui.Canvas;
-import renderers.LineRenderer;
+import renderers.line.LineRenderer;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -15,7 +15,6 @@ public class BrushTool extends Tool {
 
 	public BrushTool(Canvas canvas, Color color) {
 		super(canvas, color);
-		instruction = "Drag the mouse.";
 		lr = new LineRenderer(canvas);
 		defineMotionHandler(new MouseAdapter() {
 			@Override
@@ -34,6 +33,11 @@ public class BrushTool extends Tool {
 				clear();
 			}
 		});
+	}
+
+	@Override
+	public String getInstruction() {
+		return "Drag the mouse";
 	}
 
 	@Override

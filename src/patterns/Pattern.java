@@ -22,7 +22,7 @@ public class Pattern {
         return structure[0].length;
     }
 
-    private void genRandom(int height, int width) {
+    public void genRandom(int height, int width) {
         structure = new int[height][width];
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {

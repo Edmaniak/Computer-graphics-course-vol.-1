@@ -1,4 +1,4 @@
-package tools;
+package tools.polygon;
 
 import gui.Canvas;
 import objects.Edge;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class EditPolygonTool extends PolygonTool {
 
-    private CircleRenderer cr;
+    private final CircleRenderer cr;
     private final int RADIUS = 5;
     private boolean drawing;
     private Vertex2D foundPoint;
@@ -24,7 +24,6 @@ public class EditPolygonTool extends PolygonTool {
         cr = new CircleRenderer(canvas);
         // because we inherit the handlers we don't need
         destroyHandlers();
-        instruction = "*LMB* ADD and EDIT point || *RMB* REMOVE point";
         defineClickHandler(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -65,7 +64,9 @@ public class EditPolygonTool extends PolygonTool {
         defineMotionHandler(new MouseAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
+
                 drawing = true;
+
                 myCanvas.mix();
                 // Line
                 if (polygon.size() == 1) {
@@ -140,9 +141,14 @@ public class EditPolygonTool extends PolygonTool {
         for (Vertex2D p : polygon.getPoints()) {
             renderCircleAt(p, Color.BLACK);
             pr.render(polygon, color);
-            myCanvas.repaint();
-            myCanvas.drawInto();
         }
+        myCanvas.repaint();
+        myCanvas.drawInto();
+    }
+
+    @Override
+    public String getInstruction() {
+        return "*LMB* for ADDING and EDITING the point || *RMB* for REMOVING the point";
     }
 
     @Override
@@ -157,6 +163,7 @@ public class EditPolygonTool extends PolygonTool {
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         button.addActionListener(e -> {
             renderClean();
+            polygon.clear();
         });
         myCanvas.add(button);
     }

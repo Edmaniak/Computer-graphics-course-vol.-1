@@ -19,7 +19,6 @@ public class CircleTool extends Tool {
 
 	public CircleTool(Canvas canvas, Color color) {
 		super(canvas, color);
-		instruction = "Drag the mouse";
 		cr = new CircleRenderer(canvas);
 		defineClickHandler(new MouseAdapter() {
 			@Override
@@ -47,6 +46,11 @@ public class CircleTool extends Tool {
 
 			}
 		});
+	}
+
+	@Override
+	public String getInstruction() {
+		return "Drag the radius with mouse";
 	}
 
 	@Override

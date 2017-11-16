@@ -4,9 +4,17 @@ import app.AppColor;
 import app.SimpleDraw;
 import patterns.Pattern;
 import tools.*;
+import tools.fill.ScanLineTool;
+import tools.fill.SeedFillerTool;
+import tools.line.DashLineTool;
+import tools.line.LineTool;
+import tools.polygon.EditPolygonTool;
+import tools.polygon.PolygonTool;
 
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
@@ -15,6 +23,7 @@ public class MainFrame extends JFrame {
     private final JToolBar toolBar;
     private final JLabel tooltip;
     private final JLabel instruction;
+    private final JPanel tooltipPanel;
     private final Dimension dimension;
     private final SimpleDraw app;
 
@@ -41,10 +50,10 @@ public class MainFrame extends JFrame {
         // Tooltip downwards
         tooltip = new JLabel();
         instruction = new JLabel();
-        JPanel tooltipPanel = new JPanel();
-        tooltipPanel.setBorder(new EmptyBorder(0, 5, 0, 5));
+        tooltipPanel = new JPanel();
+        tooltipPanel.setBorder(new CompoundBorder(new EmptyBorder(5, 5, 5, 5),BorderFactory.createEtchedBorder(EtchedBorder.LOWERED)));
         tooltipPanel.setLayout(new BorderLayout());
-        tooltipPanel.setMinimumSize(new Dimension(width,50));
+        tooltipPanel.setPreferredSize(new Dimension(width, 35));
         tooltipPanel.add(tooltip, BorderLayout.WEST);
         tooltipPanel.add(instruction, BorderLayout.EAST);
 
@@ -116,16 +125,27 @@ public class MainFrame extends JFrame {
         });
 
         // Second part of the task
+
+        // COmbo box for seed fill choice
         String[] options = {"Solid","Random pattern"};
         JComboBox fillType = new JComboBox(options);
+        fillType.addActionListener(e -> {
+            switch (fillType.getSelectedIndex()) {
+                case 0:
+                    app.changeTool(new SeedFillerTool(canvas, app.colorToUse));
+                    break;
+                case 1:
+                    app.changeTool(new SeedFillerTool(canvas, app.colorToUse, Color.ORANGE, Color.BLUE, new Pattern(6, 6)));
+                    break;
+            }
+        });
 
 
         // Button for seedfiller
         ToolButton seedFill = new ToolButton("SEED-FILL desired polygon defined by raster color", "res/fill.png", seedGroup);
         seedFill.setText("SF");
         seedFill.addActionListener(e -> {
-            FillPicker fillOptions = new FillPicker();
-            switch (fillOptions.getChoice()) {
+            switch (fillType.getSelectedIndex()) {
                 case 0:
                     app.changeTool(new SeedFillerTool(canvas, app.colorToUse));
                     break;
@@ -161,10 +181,10 @@ public class MainFrame extends JFrame {
     }
 
     public void setTooltip(String tooltip) {
-        this.tooltip.setText(tooltip);
+        this.tooltip.setText(" " + tooltip);
     }
 
     public void setInstruction(String instruction) {
-        this.instruction.setText(instruction);
+        this.instruction.setText(instruction + " ");
     }
 }

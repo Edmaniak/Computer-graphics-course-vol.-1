@@ -3,7 +3,7 @@ package tools;
 import objects.Vertex2D;
 import gui.Canvas;
 import renderers.ArcRenderer;
-import renderers.LineRenderer;
+import renderers.line.LineRenderer;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -23,7 +23,6 @@ public class ArcTool extends Tool {
 
 	public ArcTool(Canvas canvas, Color color) {
 		super(canvas, color);
-		instruction = "Drag an diameter and then move the mouse.";
 		ar = new ArcRenderer(canvas);
 		lr = new LineRenderer(canvas);
 
@@ -84,6 +83,10 @@ public class ArcTool extends Tool {
 		});
 	}
 
+	@Override
+	public String getInstruction() {
+		return "Drag an diameter and then move the mouse.";
+	}
 
 	@Override
 	public void doAfterSwitchOut() {

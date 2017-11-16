@@ -6,6 +6,7 @@ import java.util.List;
 
 import objects.Vertex2D;
 import gui.Canvas;
+import renderers.line.LineRenderer;
 
 public class ArcRenderer extends Renderer {
 
