@@ -40,9 +40,11 @@ public class ClipperTool extends PolygonTool {
         clip.addActionListener(e -> {
             if (myCanvas.getPolygons().get(0) != null) {
                 Polygon in = myCanvas.getPolygons().get(0);
-                clipper.clip(in);
-
-
+                Polygon newPol = clipper.clip(in);
+                for (Vertex2D p : newPol.getPoints())
+                    cr.render(p, 5, Color.yellow);
+                myCanvas.repaint();
+                myCanvas.drawInto();
             }
         });
         myCanvas.add(clip);

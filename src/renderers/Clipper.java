@@ -11,52 +11,44 @@ public class Clipper {
 
     private Polygon clippingArea;
 
-
     public Clipper(Polygon clippingArea) {
         this.clippingArea = clippingArea;
     }
 
-    public void clip(Polygon subject) {
-        List<Edge> edges = clippingArea.getEdges();
-        List<Vertex2D> outputPolygon = new ArrayList<>(subject.getPoints());
-
-        for(Edge edge : edges) {
-            outputPolygon = new ArrayList<>();
-            Vertex2D v1 = subject.getLastPoint();
-            for (Vertex2D v2 : subject.getPoints()) {
+    /**
+     * for (Edge edge : clipPolygon){
+     * ? out.clear(); ?
+     * Point v1 = in.last;
+     * for (Point v2 : in){
+     * if (v2 inside edge) {
+     * if (v1 not inside edge)
+     * out.add(intersection(v1,v2,edge)); //var.4
+     * out.add(v2); //var.1,4
+     * } else{
+     * if (v1 inside edge)
+     * out.add(intersection(v1,v2,edge)); //var.2
+     * }
+     * v1 = v2;
+     * }
+     * }
+     */
+    public Polygon clip(Polygon in) {
+        Polygon newPolygon = new Polygon();
+        List<Edge> edges = new ArrayList<>(clippingArea.getEdges());
+        for (Edge edge : edges) {
+            newPolygon.clear();
+            Vertex2D v1 = in.getLastPoint();
+            for (Vertex2D v2 : in.getPoints()) {
                 Edge newEdge = new Edge(v1, v2);
                 if (edge.isInside(v2.x, v2.y)) {
                     if (!edge.isInside(v1.x, v1.y)) {
                         Vertex2D inter = edge.getIntersection(newEdge);
-                        outputPolygon.add(inter);
+                        newPolygon.addPoint(inter);
                     }
-                    outputPolygon.add(v2);
-
+                    newPolygon.addPoint(v2);
                 } else {
                     if (edge.isInside(v1.x, v1.y)) {
                         Vertex2D inter = edge.getIntersection(newEdge);
-                        outputPolygon.add(inter);
-                    }
-                }
-                v1 = v2;
-            }
-        }
-
-        /*
-        for(Edge edge : edges) {
-
-            for (Edge edg : inEdges) {
-                if (edge.isInside(edg.getOrigin().x, edg.getOrigin().y)) {
-                    if (!edge.isInside(edg.getEnd().x, edg.getEnd().y)) {
-                        Edge newEdge = new Edge(edg.getOrigin(),edg.getEnd());
-                        Vertex2D inter =  new Vertex2D(edge.getIntersection(newEdge));
-                        newPolygon.addPoint(inter);
-                    }
-                    newPolygon.addPoint(new Vertex2D(edg.getEnd()));
-                } else {
-                    if (edge.isInside(v1.x, v1.y)) {
-                        Edge newEdge = new Edge(v1, v2);
-                        Vertex2D inter =  edge.getIntersection(newEdge);
                         newPolygon.addPoint(inter);
                     }
                 }
@@ -64,8 +56,7 @@ public class Clipper {
             }
         }
 
-        return newPolygon
-        */
+        return newPolygon;
     }
 
     public void setClippingArea(Polygon clippingArea) {
