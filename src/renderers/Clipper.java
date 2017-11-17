@@ -35,27 +35,25 @@ public class Clipper {
     public Polygon clip(Polygon in) {
         Polygon newPolygon = new Polygon();
         List<Edge> edges = new ArrayList<>(clippingArea.getEdges());
-
         for (Edge edge : edges) {
-            Vertex2D v1 = in.getLastPoint();
-            for (Vertex2D v2 : in.getPoints()) {
-                Edge newEdge = new Edge(v1, v2);
+            for (Edge edgePol : in.getEdges()) {
+                Vertex2D v1 = new Vertex2D(edgePol.getOrigin());
+                Vertex2D v2 = new Vertex2D(edgePol.getEnd());
                 if (edge.isInside(v2.x, v2.y)) {
                     if (!edge.isInside(v1.x, v1.y)) {
-                        Vertex2D inter = edge.getIntersection(newEdge);
+                        Vertex2D inter = edge.getIntersection(edgePol);
                         newPolygon.addPoint(inter);
                     }
                     newPolygon.addPoint(v2);
                 } else {
                     if (edge.isInside(v1.x, v1.y)) {
-                        Vertex2D inter = edge.getIntersection(newEdge);
+                        Vertex2D inter = edge.getIntersection(edgePol);
                         newPolygon.addPoint(inter);
                     }
+
                 }
-                v1 = v2;
             }
         }
-
         return newPolygon;
     }
 

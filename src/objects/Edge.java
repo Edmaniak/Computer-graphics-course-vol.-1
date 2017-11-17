@@ -55,8 +55,7 @@ public class Edge {
     }
 
     public boolean isInside(int x, int y) {
-        int i = (end.x - origin.x) * (y -origin.y) - (end.y - origin.y) * (x - origin.x);
-        return i > 0;
+        return (end.x - origin.x) * (y - origin.y) - (end.y - origin.y) * (x - origin.x) > 0;
     }
 
     public Vertex2D getIntersection(Edge e) {

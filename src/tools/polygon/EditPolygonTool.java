@@ -2,6 +2,7 @@ package tools.polygon;
 
 import gui.Canvas;
 import objects.Edge;
+import objects.Polygon;
 import objects.Vertex2D;
 import renderers.CircleRenderer;
 
@@ -29,7 +30,7 @@ public class EditPolygonTool extends PolygonTool {
             public void mousePressed(MouseEvent e) {
                 drawing = true;
                 // Left button
-                if (e.getButton() == MouseEvent.BUTTON1)
+                if (e.getButton() == MouseEvent.BUTTON1 && foundPoint == null) {
                     // First point draw
                     if (polygon.size() == 0) {
                         Vertex2D point = new Vertex2D(e.getX(), e.getY());
@@ -38,6 +39,16 @@ public class EditPolygonTool extends PolygonTool {
                         myCanvas.repaint();
                         myCanvas.drawInto();
                     }
+                }
+                if (e.getButton() == MouseEvent.BUTTON1 && foundPoint != null) {
+                    removeFromRaster(polygon);
+                    myCanvas.repaint();
+                    myCanvas.drawInto();
+                }
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
                 // Right button
                 if (e.getButton() == MouseEvent.BUTTON3)
                     // Erasing founded point
@@ -52,44 +63,48 @@ public class EditPolygonTool extends PolygonTool {
             public void mouseReleased(MouseEvent e) {
                 drawing = false;
                 // Drawing other points when left mouse button released
-                if (e.getButton() == MouseEvent.BUTTON1) {
+                if (e.getButton() == MouseEvent.BUTTON1 && foundPoint == null) {
                     Vertex2D point = new Vertex2D(e.getX(), e.getY());
                     polygon.addPoint(point);
-                    renderCircleAt(point, Color.yellow);
-                    myCanvas.repaint();
-                    myCanvas.drawInto();
                 }
+                renderPoints(polygon, Color.yellow);
+                myCanvas.repaint();
+                myCanvas.drawInto();
             }
         });
         defineMotionHandler(new MouseAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-
-                drawing = true;
-
                 myCanvas.mix();
-                // Line
-                if (polygon.size() == 1) {
-                    Vertex2D newP = new Vertex2D(e.getX(), e.getY());
-                    Vertex2D p2 = new Vertex2D(polygon.getLastPoint());
-                    lr.render(newP, p2, color);
+                // Adding new point
+                if (foundPoint == null) {
+                    drawing = true;
+
+                    // Line
+                    if (polygon.size() == 1) {
+                        Vertex2D newP = new Vertex2D(e.getX(), e.getY());
+                        Vertex2D p2 = new Vertex2D(polygon.getLastPoint());
+                        lr.render(newP, p2, color);
+                    }
+
+                    // Triangle or polygon
+                    if (polygon.size() > 1) {
+                        Vertex2D newP = new Vertex2D(e.getX(), e.getY());
+                        Vertex2D p1 = new Vertex2D(polygon.getLastPoint());
+                        Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 2));
+
+                        // Erasing connecting line
+                        if (polygon.size() > 2)
+                            lr.render(new Vertex2D(p1), new Vertex2D(p2), Color.BLACK);
+
+                        lr.render(new Vertex2D(newP), new Vertex2D(p1), color);
+                        lr.render(new Vertex2D(newP), new Vertex2D(p2), color);
+                    }
                 }
 
-                // Triangle or polygon
-                if (polygon.size() > 1) {
-
-                    Vertex2D newP = new Vertex2D(e.getX(), e.getY());
-                    Vertex2D p1 = new Vertex2D(polygon.getLastPoint());
-                    Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 2));
-
-                    // Erasing connecting line
-                    if (polygon.size() > 2)
-                        lr.render(new Vertex2D(p1), new Vertex2D(p2), Color.BLACK);
-
-                    lr.render(new Vertex2D(newP), new Vertex2D(p1), color);
-                    lr.render(new Vertex2D(newP), new Vertex2D(p2), color);
-
-                }
+                // Modifying point
+                if (foundPoint != null)
+                    movePointTo(new Vertex2D(e.getX(), e.getY()));
 
                 myCanvas.repaint();
             }
@@ -115,20 +130,49 @@ public class EditPolygonTool extends PolygonTool {
         });
     }
 
-    // Method for removing one point logically and from the raster respectively
+    /**
+     * Removes the point logically and from the raster respectively
+     *
+     * @param point point to remove
+     */
     private void removePoint(Vertex2D point) {
         renderCircleAt(point, Color.BLACK);
         List<Edge> removedEdges = polygon.removePoint(point);
 
-        for (Edge edge : removedEdges)
-            lr.render(new Vertex2D(edge.getOrigin()), new Vertex2D(edge.getEnd()), Color.BLACK);
+        for (Edge e : removedEdges)
+            lr.render(new Vertex2D(e.getOrigin()), new Vertex2D(e.getEnd()), Color.BLACK);
 
-        for (Vertex2D p : polygon.getPoints())
-            renderCircleAt(p, Color.yellow);
+        renderPoints(polygon, Color.yellow);
 
         pr.render(polygon, color);
         myCanvas.setCursor(cursor);
         foundPoint = null;
+    }
+
+    /**
+     * Moves desired point in polygon and re-renders everything
+     *
+     * @param point point to move
+     */
+    private void movePointTo(Vertex2D point) {
+        foundPoint.x = point.x;
+        foundPoint.y = point.y;
+        pr.render(polygon, color);
+    }
+
+    private void removeFromRaster(Polygon polygon) {
+        renderEdges(polygon, Color.BLACK);
+        renderPoints(polygon, Color.BLACK);
+    }
+
+    private void renderPoints(Polygon polygon, Color color) {
+        for (Vertex2D p : polygon.getPoints())
+            renderCircleAt(p, color);
+    }
+
+    private void renderEdges(Polygon polygon, Color color) {
+        for (Edge edge : polygon.getEdges())
+            lr.render(new Vertex2D(edge.getOrigin()), new Vertex2D(edge.getEnd()), color);
     }
 
     // point circle method for better readability
@@ -136,14 +180,15 @@ public class EditPolygonTool extends PolygonTool {
         cr.render(new Vertex2D(point), RADIUS, color);
     }
 
+
     // After leaving the tool re-render polygon nicely
     private void renderClean() {
-        for (Vertex2D p : polygon.getPoints()) {
+        for (Vertex2D p : polygon.getPoints())
             renderCircleAt(p, Color.BLACK);
-            pr.render(polygon, color);
-        }
+        pr.render(polygon, color);
         myCanvas.repaint();
         myCanvas.drawInto();
+        myCanvas.addToPolygons(new Polygon(polygon));
     }
 
     @Override
@@ -162,7 +207,7 @@ public class EditPolygonTool extends PolygonTool {
         button = new JButton("- DONE EDITING -");
         button.setCursor(new Cursor(Cursor.HAND_CURSOR));
         button.addActionListener(e -> {
-            renderClean();
+            doAfterSwitchOut();
             polygon.clear();
         });
         myCanvas.add(button);

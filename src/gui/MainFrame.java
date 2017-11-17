@@ -126,7 +126,7 @@ public class MainFrame extends JFrame {
 
         // Second part of the task
 
-        // COmbo box for seed fill choice
+        // Combo box for seed fill choice
         String[] options = {"Solid","Random pattern"};
         JComboBox fillType = new JComboBox(options);
         fillType.addActionListener(e -> {
@@ -163,7 +163,7 @@ public class MainFrame extends JFrame {
         scanLine.addActionListener(e -> app.changeTool(new ScanLineTool(canvas, app.colorToUse)));
 
         // Button for clipper
-        ToolButton clipper = new ToolButton("Drag an clipping area around the polygon you want to clipp", "res/cut.png", task2);
+        ToolButton clipper = new ToolButton("Drag an clipping area around the polygon you want to clip", "res/cut.png", task2);
         clipper.addActionListener(e -> app.changeTool(new ClipperTool(canvas, app.colorToUse)));
 
         // Button for editable Polygon
