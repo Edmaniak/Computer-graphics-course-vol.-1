@@ -20,11 +20,10 @@ public class ClipperTool extends PolygonTool {
     private CircleRenderer cr;
 
     public ClipperTool(Canvas canvas, Color color) {
-        super(canvas, color);
+        super(canvas, Color.BLUE);
         clippingArea = polygon;
         clipper = new Clipper(clippingArea);
-        lr = new DashLineRenderer(canvas, 5);
-        pr = new PolygonRenderer(canvas,5);
+        pr = new PolygonRenderer(canvas);
         cr = new CircleRenderer(canvas);
     }
 

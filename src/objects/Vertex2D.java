@@ -19,8 +19,6 @@ public class Vertex2D {
 		y = end.y;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "[" + "X: " + x + " Y: " + y + "]";
@@ -34,8 +32,6 @@ public class Vertex2D {
 
 		return angle;
 	}
-
-
 
 	public static void reverse(Vertex2D first, Vertex2D second) {
 		// x values switch

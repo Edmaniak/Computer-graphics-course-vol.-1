@@ -18,13 +18,15 @@ public class Polygon {
         edges = new ArrayList<>(polygon.getEdges());
     }
 
-    // Method automatically creates edges when creating polygon
+    /**
+     * Method automatically creates edges when creating polygon
+     * @param point new point to add
+     */
     public void addPoint(Vertex2D point) {
 
         if (points.size() == 1)
             edges.add(new Edge(getFirstPoint(), point).orientedEdge());
 
-        // Removing the inner line from edges when it is not a triangle
         if (points.size() >= 3)
             edges.remove(edges.size() - 1);
 
@@ -58,8 +60,12 @@ public class Polygon {
         return points.get(0);
     }
 
-    // Method for removing points logically return edges
-    // needed by renderer to remove edges in raster
+    /**
+     * Method for removing points logically
+     * @param point
+     * @return edges needed by renderer to remove edges in raster
+     *
+     */
     public List<Edge> removePoint(Vertex2D point) {
         List<Edge> edgesWithPoint = new ArrayList<>();
         if (points.contains(point))
@@ -148,15 +154,6 @@ public class Polygon {
             newPolyg.addEdge(e.xSortedEdge());
         }
         return newPolyg;
-    }
-
-    public boolean isInside(int x, int y) {
-        for (Edge e : edges) {
-            System.out.println(e + " " + e.isInside(x, y));
-            if (!e.isInside(x, y))
-                return false;
-        }
-        return true;
     }
 
     public void addEdge(Edge edge) {

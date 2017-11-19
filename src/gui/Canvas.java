@@ -26,7 +26,10 @@ public class Canvas extends JPanel implements MouseMotionListener {
 	private MouseMotionListener mouseMotionHandler;
 	private List<Polygon> polygons;
 
-	// constr with default color
+	/**
+	 * constr with default color
+	 * @param d
+	 */
 	public Canvas(Dimension d) {
 		setDimensions(d);
 		polygons = new ArrayList<>();
@@ -56,14 +59,18 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		repaint();
 	}
 
-	// Metoda pro mix originalniho bufferu a dynamicky kreslenych grafickych objektu
+	/**
+	 * Metoda pro mix originalniho bufferu a dynamicky kreslenych grafickych objektu
+	 */
 	public void mix() {
 		Graphics g = activeBuffer.getGraphics();
 		g.drawImage(mainBuffer, 0, 0, null);
 		repaint();
 	}
 
-	// Zapise hotovy graficky objekt tvoreny v ramci mouse I/O do hlavniho bufferu
+	/**
+	 * Zapise hotovy graficky objekt tvoreny v ramci mouse I/O do hlavniho bufferu
+ 	 */
 	public void drawInto() {
 		mainBuffer = deepCopy(activeBuffer);
 	}
@@ -93,7 +100,11 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		mouseMotionHandler = mouseHandler;
 	}
 
-	// Prevzata metoda pro kopirovani bufferu do jineho bufferu
+	/**
+	 * Prevzata metoda pro kopirovani bufferu do jineho bufferu
+	 * @param bi image to copy
+	 * @return
+	 */
 	private static BufferedImage deepCopy(BufferedImage bi) {
 		ColorModel cm = bi.getColorModel();
 		boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
@@ -101,7 +112,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
 	}
 
-	/////// Main methods for drawing pixels into the canvas
+	// Main methods for drawing pixels into the canvas
 	public void putPixel(Vertex2D position, Color color) {
 		putPixel(position.x, position.y, color);
 	}
@@ -120,8 +131,12 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		putText(text.toString(), x, y);
 	}
 
-	////// --------------------------------------------
-	// Super method for every case of escaping this canvas
+	/**
+	 * Super method for every case of escaping this canvas
+	 * @param x coordinate
+	 * @param y coordinate
+	 * @return true if can draw at [x,y]
+	 */
 	public boolean canDrawAt(int x, int y) {
 		if (x >= 0 && x < getWidth() && y >= 0 && y < getHeight())
 			return true;
@@ -137,7 +152,6 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		return activeBuffer.getRGB(x,y);
 	}
 
-
 	public Dimension getDimensions() {
 		return dimensions;
 	}
@@ -146,7 +160,6 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		this.dimensions = dimensions;
 	}
 
-	// Shows mouse coordinates in the bottom panel
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		SimpleDraw.gui.setTooltip("X:" + e.getX() + " Y: " + e.getY());
@@ -174,15 +187,6 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		return polygons;
 	}
 
-	//Method for getting the right polygon from canvas
-	public Polygon getPolygonAt(int x, int y) {
-		for (Polygon p : polygons) {
-			// Polygon must be a triangle and for each edge the point must be inside (left side)
-			if (p.size() > 2 && p.isInside(x, y))
-				return p;
-		}
-		return null;
-	}
 
 	@Override
 	public Component add(Component comp) {
@@ -194,5 +198,16 @@ public class Canvas extends JPanel implements MouseMotionListener {
 	public void remove(Component comp) {
 		repaint();
 		super.remove(comp);
+	}
+
+	public void clearPolygons() {
+		polygons.clear();
+	}
+
+	public Polygon getPolygon() {
+		if (polygons.size() > 0)
+			return polygons.get(0);
+		JOptionPane.showMessageDialog(SimpleDraw.gui,"There is no polygon on the canvas.");
+		return null;
 	}
 }

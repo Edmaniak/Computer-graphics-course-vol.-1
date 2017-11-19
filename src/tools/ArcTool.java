@@ -42,7 +42,6 @@ public class ArcTool extends Tool {
 					myCanvas.drawInto();
 					clear();
 				}
-
 			}
 
 			@Override

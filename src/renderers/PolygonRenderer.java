@@ -20,11 +20,6 @@ public class PolygonRenderer extends Renderer {
         lr = new LineRenderer(canvas);
     }
 
-    public PolygonRenderer(Canvas canvas, int space) {
-        super(canvas);
-        lr = new DashLineRenderer(canvas, space);
-    }
-
     public void render(Polygon polygon, Color color) {
         List<Edge> edges = polygon.getEdges();
         for (int i = 0; i < polygon.getEdges().size(); i++) {

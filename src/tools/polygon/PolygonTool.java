@@ -101,4 +101,6 @@ public class PolygonTool extends Tool {
 	public void clear() {
 
 	}
+
+
 }

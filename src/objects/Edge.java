@@ -27,12 +27,20 @@ public class Edge {
         return origin.y == end.y;
     }
 
-    // Existuje prusecik s vodorovnou linii zadanou parametrem y
+    /**
+     * Existuje prusecik s vodorovnou linii zadanou parametrem y
+     * @param y coordinate
+     * @return
+     */
     public boolean isIntersectional(int y) {
         return y >= origin.y && y < end.y;
     }
 
-    // Vraci prusecikovou souradnici x s vodorovnou lini Y
+    /**
+     * Vraci prusecikovou souradnici x s vodorovnou lini Y
+     * @param y
+     * @return
+     */
     public int getXIntersection(int y) {
         float dx = (float) (end.x - origin.x);
         float dy = (float) (end.y - origin.y);
@@ -56,6 +64,7 @@ public class Edge {
 
     public boolean isInside(int x, int y) {
         return (end.x - origin.x) * (y - origin.y) - (end.y - origin.y) * (x - origin.x) > 0;
+        // ((end.y - origin.y) * x) + ((end.x - origin.x) * y) + ((end.x * origin.y) - (end.y - origin.x)) > 0;
     }
 
     public Vertex2D getIntersection(Edge e) {

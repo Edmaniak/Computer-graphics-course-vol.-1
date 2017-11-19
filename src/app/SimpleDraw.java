@@ -1,5 +1,6 @@
 package app;
 
+import file.FileHandler;
 import gui.Canvas;
 import gui.MainFrame;
 import tools.Tool;
@@ -9,11 +10,11 @@ import java.awt.*;
 
 public class SimpleDraw {
 
-    public static String title = "SimpleDraw";
+    public static final String title = "SimpleDraw";
     public static MainFrame gui;
     public static SimpleDraw app;
-    public static final int WIDTH = 1080;
-    public static final int HEIGHT = 700;
+    public static final int WIDTH = 1200;
+    public static final int HEIGHT = 800;
 
     private Tool selectedTool;
     public Color colorToUse = AppColor.DEFAULT_DRAW;
@@ -30,8 +31,13 @@ public class SimpleDraw {
 
         gui.setVisible(true);
         canvas = gui.getCanvas();
+
     }
 
+    /**
+     * Handles all the logic needed for switching tools and calling switch events
+     * @param tool to switch
+     */
     public void changeTool(Tool tool) {
         if (selectedTool != null)
             selectedTool.doAfterSwitchOut();
@@ -43,12 +49,14 @@ public class SimpleDraw {
         canvas.setCursor(tool.cursor);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new SimpleDraw());
-    }
-
     public Tool getSelectedTool() {
         return selectedTool;
     }
+
+    public static void main(String[] args) {
+
+        SwingUtilities.invokeLater(() -> new SimpleDraw());
+    }
+
 
 }

@@ -5,7 +5,6 @@ import renderers.line.DashLineRenderer;
 
 import java.awt.*;
 
-
 public class DashLineTool extends LineTool {
 
     private int space = 5;

@@ -6,8 +6,8 @@ import java.util.Random;
 public class Pattern {
     private int[][] structure;
     private Random rand;
-    public final Color color1 = Color.ORANGE;;
-    public final Color color2 = Color.BLUE;;
+    public final Color color1 = Color.ORANGE;
+    public final Color color2 = Color.BLUE;
 
     public Pattern(int width, int height) {
         rand = new Random();
@@ -34,5 +34,9 @@ public class Pattern {
 
     public int[][] getStructure() {
         return structure;
+    }
+
+    public static Pattern generate(int width, int height) {
+        return new Pattern(width, height);
     }
 }

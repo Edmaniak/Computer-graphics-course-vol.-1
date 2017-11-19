@@ -76,6 +76,7 @@ public class EditPolygonTool extends PolygonTool {
             @Override
             public void mouseDragged(MouseEvent e) {
                 myCanvas.mix();
+
                 // Adding new point
                 if (foundPoint == null) {
                     drawing = true;
@@ -132,7 +133,6 @@ public class EditPolygonTool extends PolygonTool {
 
     /**
      * Removes the point logically and from the raster respectively
-     *
      * @param point point to remove
      */
     private void removePoint(Vertex2D point) {
@@ -151,7 +151,6 @@ public class EditPolygonTool extends PolygonTool {
 
     /**
      * Moves desired point in polygon and re-renders everything
-     *
      * @param point point to move
      */
     private void movePointTo(Vertex2D point) {
@@ -175,13 +174,16 @@ public class EditPolygonTool extends PolygonTool {
             lr.render(new Vertex2D(edge.getOrigin()), new Vertex2D(edge.getEnd()), color);
     }
 
-    // point circle method for better readability
+    /**
+     * draws circle around point
+     */
     private void renderCircleAt(Vertex2D point, Color color) {
         cr.render(new Vertex2D(point), RADIUS, color);
     }
 
-
-    // After leaving the tool re-render polygon nicely
+    /**
+     * After leaving the tool re-render polygon nicely
+     */
     private void renderClean() {
         for (Vertex2D p : polygon.getPoints())
             renderCircleAt(p, Color.BLACK);
