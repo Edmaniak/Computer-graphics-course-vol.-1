@@ -2,10 +2,9 @@ package gui;
 
 import app.AppColor;
 import app.SimpleDraw;
-import file.FileHandler;
-import patterns.Pattern;
 import tools.*;
 import tools.fill.ScanLineTool;
+import tools.fill.SeedFillPatternTool;
 import tools.fill.SeedFillerTool;
 import tools.line.DashLineTool;
 import tools.line.LineTool;
@@ -70,24 +69,9 @@ public class MainFrame extends JFrame {
     private void generateButtons() {
 
         // List of toolGroups
-        ToolGroup file = new ToolGroup(toolBar);
         ToolGroup task1 = new ToolGroup(toolBar);
         ToolGroup seedGroup = new ToolGroup(toolBar);
         ToolGroup task2 = new ToolGroup(toolBar);
-
-        ToolButton save = new ToolButton("Saves the file", "res/save.png", file);
-        save.addActionListener(e -> {
-            FileHandler fh = new FileHandler(canvas.getMainBuffer());
-            fh.save();
-        });
-        ToolButton load = new ToolButton("Loads the file", "res/load.png", file);
-        load.addActionListener(e-> {
-            FileHandler fh = new FileHandler(canvas.getMainBuffer());
-            fh.load();
-            canvas.repaint();
-        });
-
-
 
         // Button for new canvas
         ToolButton newCanvas = new ToolButton("New canvas", "res/new.png", task1);
@@ -149,7 +133,7 @@ public class MainFrame extends JFrame {
                     app.changeTool(new SeedFillerTool(canvas, app.colorToUse));
                     break;
                 case 1:
-                    app.changeTool(new SeedFillerTool(canvas, app.colorToUse, Color.ORANGE, Color.BLUE, new Pattern(6, 6)));
+                    app.changeTool(new SeedFillPatternTool(canvas, app.colorToUse));
                     break;
             }
         });
@@ -164,7 +148,7 @@ public class MainFrame extends JFrame {
                     app.changeTool(new SeedFillerTool(canvas, app.colorToUse));
                     break;
                 case 1:
-                    app.changeTool(new SeedFillerTool(canvas, app.colorToUse, Color.ORANGE, Color.BLUE, new Pattern(6, 6)));
+                    app.changeTool(new SeedFillPatternTool(canvas, app.colorToUse));
                     break;
             }
         });

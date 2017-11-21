@@ -1,8 +1,6 @@
 package objects;
 
-import static java.lang.Math.abs;
-import static java.lang.Math.atan2;
-import static java.lang.Math.toDegrees;
+import static java.lang.Math.*;
 
 public class Vertex2D {
 
@@ -14,9 +12,9 @@ public class Vertex2D {
 		this.y = y;
 	}
 
-	public Vertex2D(Vertex2D end) {
-		x = end.x;
-		y = end.y;
+	public Vertex2D(Vertex2D point) {
+		x = new Integer(point.x);
+		y = new Integer(point.y);
 	}
 
 	@Override

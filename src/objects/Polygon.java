@@ -18,25 +18,21 @@ public class Polygon {
         edges = new ArrayList<>(polygon.getEdges());
     }
 
+    public Polygon(List<Vertex2D> polyPoints) {
+        points = new ArrayList<>(polyPoints);
+    }
+
     /**
      * Method automatically creates edges when creating polygon
      * @param point new point to add
      */
     public void addPoint(Vertex2D point) {
 
-        if (points.size() == 1)
-            edges.add(new Edge(getFirstPoint(), point).orientedEdge());
-
-        if (points.size() >= 3)
-            edges.remove(edges.size() - 1);
-
-        if (points.size() >= 2) {
-            edges.add(new Edge(points.get(points.size() - 2), point).orientedEdge());
-            edges.add(new Edge(point, getLastPoint()).orientedEdge());
-        }
-
-        points.add(point);
-
+        if (points.size() >= 2)
+            points.add(points.size() - 1, point);
+        else
+            points.add(point);
+        System.out.println(getPoints());
     }
 
     public void addPointOnce(Vertex2D point) {

@@ -6,11 +6,11 @@ import objects.Vertex2D;
 import renderers.CircleRenderer;
 import renderers.Clipper;
 import renderers.PolygonRenderer;
-import renderers.line.DashLineRenderer;
 import tools.polygon.PolygonTool;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class ClipperTool extends PolygonTool {
 
@@ -38,10 +38,11 @@ public class ClipperTool extends PolygonTool {
         clip.setCursor(new Cursor(Cursor.HAND_CURSOR));
         clip.addActionListener(e -> {
             if (myCanvas.getPolygons().get(0) != null) {
-                Polygon in = myCanvas.getPolygons().get(0);
-                Polygon newPol = clipper.clip(in);
-                for (Vertex2D p : newPol.getPoints())
-                    cr.render(p, 5, Color.yellow);
+                Polygon in = new Polygon(myCanvas.getPolygons().get(0));
+                Polygon pol = clipper.clip(in);
+                for (Vertex2D v : pol.getPoints()) {
+                    cr.render(v, 5, Color.yellow);
+                }
                 myCanvas.repaint();
                 myCanvas.drawInto();
             }

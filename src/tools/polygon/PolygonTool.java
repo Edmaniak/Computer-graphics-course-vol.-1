@@ -89,7 +89,7 @@ public class PolygonTool extends Tool {
 
     @Override
 	public void doAfterSwitchOut() {
-		myCanvas.addToPolygons(polygon);
+		myCanvas.addToPolygons(new Polygon(polygon));
 	}
 
 	@Override

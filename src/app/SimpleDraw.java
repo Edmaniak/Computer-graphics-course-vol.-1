@@ -1,6 +1,5 @@
 package app;
 
-import file.FileHandler;
 import gui.Canvas;
 import gui.MainFrame;
 import tools.Tool;
@@ -13,7 +12,7 @@ public class SimpleDraw {
     public static final String title = "SimpleDraw";
     public static MainFrame gui;
     public static SimpleDraw app;
-    public static final int WIDTH = 1200;
+    public static final int WIDTH = 1055;
     public static final int HEIGHT = 800;
 
     private Tool selectedTool;

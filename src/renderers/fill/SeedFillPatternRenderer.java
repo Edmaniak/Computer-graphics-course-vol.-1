@@ -32,4 +32,8 @@ public class SeedFillPatternRenderer extends SeedFillRenderer {
             }
         }
     }
+
+    public void setPattern(Pattern pattern) {
+        this.pattern = pattern;
+    }
 }

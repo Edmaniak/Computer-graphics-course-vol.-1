@@ -75,39 +75,42 @@ public class EditPolygonTool extends PolygonTool {
         defineMotionHandler(new MouseAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                myCanvas.mix();
+                if (SwingUtilities.isLeftMouseButton(e)) {
+                    myCanvas.mix();
 
-                // Adding new point
-                if (foundPoint == null) {
-                    drawing = true;
+                    // Adding new point
+                    if (foundPoint == null) {
+                        drawing = true;
 
-                    // Line
-                    if (polygon.size() == 1) {
-                        Vertex2D newP = new Vertex2D(e.getX(), e.getY());
-                        Vertex2D p2 = new Vertex2D(polygon.getLastPoint());
-                        lr.render(newP, p2, color);
+                        // Line
+                        if (polygon.size() == 1) {
+                            Vertex2D newP = new Vertex2D(e.getX(), e.getY());
+                            Vertex2D p2 = new Vertex2D(polygon.getLastPoint());
+                            lr.render(newP, p2, color);
+                        }
+
+                        // Triangle or polygon
+                        if (polygon.size() > 1) {
+                            Vertex2D newP = new Vertex2D(e.getX(), e.getY());
+                            Vertex2D p1 = new Vertex2D(polygon.getLastPoint());
+                            Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 2));
+
+                            // Erasing connecting line
+                            if (polygon.size() > 2)
+                                lr.render(new Vertex2D(p1), new Vertex2D(p2), Color.BLACK);
+
+                            lr.render(new Vertex2D(newP), new Vertex2D(p1), color);
+                            lr.render(new Vertex2D(newP), new Vertex2D(p2), color);
+                        }
                     }
 
-                    // Triangle or polygon
-                    if (polygon.size() > 1) {
-                        Vertex2D newP = new Vertex2D(e.getX(), e.getY());
-                        Vertex2D p1 = new Vertex2D(polygon.getLastPoint());
-                        Vertex2D p2 = new Vertex2D(polygon.getPoint(polygon.size() - 2));
+                    // Modifying point
+                    if (foundPoint != null)
+                        movePointTo(new Vertex2D(e.getX(), e.getY()));
 
-                        // Erasing connecting line
-                        if (polygon.size() > 2)
-                            lr.render(new Vertex2D(p1), new Vertex2D(p2), Color.BLACK);
-
-                        lr.render(new Vertex2D(newP), new Vertex2D(p1), color);
-                        lr.render(new Vertex2D(newP), new Vertex2D(p2), color);
-                    }
+                    myCanvas.repaint();
                 }
 
-                // Modifying point
-                if (foundPoint != null)
-                    movePointTo(new Vertex2D(e.getX(), e.getY()));
-
-                myCanvas.repaint();
             }
 
             @Override
