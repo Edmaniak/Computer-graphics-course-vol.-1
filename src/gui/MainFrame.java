@@ -83,7 +83,7 @@ public class MainFrame extends JFrame {
         });
 
         // Button for making brush line
-        ToolButton brush = new ToolButton("Draw sa point", "res/brush.png", task1);
+        ToolButton brush = new ToolButton("Draws a line", "res/brush.png", task1);
         brush.addActionListener(e -> app.changeTool(new BrushTool(canvas, app.colorToUse)));
 
         // Button for making dots

@@ -11,8 +11,8 @@ import java.awt.event.MouseEvent;
 
 public class LineTool extends Tool {
 
-    protected Vertex2D origin;
-    protected Vertex2D end;
+    private Vertex2D origin;
+    private Vertex2D end;
     protected LineRenderer lr;
 
     public LineTool(Canvas canvas, Color color) {

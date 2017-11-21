@@ -13,7 +13,7 @@ import java.awt.event.MouseEvent;
 
 public class PolygonTool extends Tool {
 
-	protected LineRenderer lr;
+	protected final LineRenderer lr;
 	protected PolygonRenderer pr;
 	protected final Polygon polygon;
 

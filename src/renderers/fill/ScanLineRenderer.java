@@ -14,8 +14,8 @@ import java.util.List;
 
 public class ScanLineRenderer extends Renderer {
 
-    private List<Edge> relevantEdges;
-    private LineRenderer lr;
+    private final List<Edge> relevantEdges;
+    private final LineRenderer lr;
 
     public ScanLineRenderer(Canvas canvas) {
         super(canvas);

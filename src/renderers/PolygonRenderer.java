@@ -11,7 +11,7 @@ import java.util.List;
 
 public class PolygonRenderer extends Renderer {
 
-    private LineRenderer lr;
+    private final LineRenderer lr;
 
     public PolygonRenderer(Canvas canvas) {
         super(canvas);

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Polygon {
 
-    private List<Vertex2D> points;
+    private final List<Vertex2D> points;
 
     public Polygon() {
         points = new ArrayList<>();
@@ -92,10 +92,10 @@ public class Polygon {
 
     @Override
     public String toString() {
-        String output = "POINTS: ";
+        StringBuilder output = new StringBuilder("POINTS: ");
         for (Vertex2D point : points)
-            output += point + " ";
-        return output;
+            output.append(point).append(" ");
+        return output.toString();
     }
 
 }

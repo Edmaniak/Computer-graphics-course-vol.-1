@@ -24,7 +24,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
 	private Dimension dimensions;
 	private MouseListener mouseEventHandler;
 	private MouseMotionListener mouseMotionHandler;
-	private List<Polygon> polygons;
+	private final List<Polygon> polygons;
 
 	/**
      * Constructor with default color
@@ -141,10 +141,8 @@ public class Canvas extends JPanel implements MouseMotionListener {
      * @return true if can draw at [x,y]
 	 */
 	public boolean canDrawAt(int x, int y) {
-		if (x >= 0 && x < getWidth() && y >= 0 && y < getHeight())
-			return true;
-		return false;
-	}
+        return x >= 0 && x < getWidth() && y >= 0 && y < getHeight();
+    }
 
 	public int getCanvasColorAt(int x, int y) {
 		System.out.println(mainBuffer.getRGB(x,y));
@@ -207,7 +205,7 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		polygons.clear();
 	}
 
-    public Polygon getPolygon() {
+    public Polygon getFirstPolygon() {
         if (polygons.size() > 0)
             return polygons.get(0);
         JOptionPane.showMessageDialog(SimpleDraw.gui, "There is no polygon on the canvas.");

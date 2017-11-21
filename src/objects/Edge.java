@@ -2,8 +2,8 @@ package objects;
 
 public class Edge {
 
-    private Vertex2D origin;
-    private Vertex2D end;
+    private final Vertex2D origin;
+    private final Vertex2D end;
 
     public Edge(Vertex2D origin, Vertex2D end) {
         this.origin = origin;
@@ -46,18 +46,12 @@ public class Edge {
         float dy = (float) (end.y - origin.y);
         float k = dx / dy;
         float q = (float) origin.x - k * (float) origin.y;
-        float x = ((float) (k * (float) y) + q);
+        float x = (k * (float) y + q);
         return (int) x;
     }
 
     public Edge orientedEdge() {
         if (origin.y > end.y)
-            return new Edge(end, origin);
-        return this;
-    }
-
-    public Edge xSortedEdge() {
-        if (origin.x > end.x)
             return new Edge(end, origin);
         return this;
     }
@@ -77,14 +71,6 @@ public class Edge {
                 ((origin.x - end.x) * (e.origin.y - e.end.y) - (origin.y - end.y) * (e.origin.x - e.end.x));
 
         return new Vertex2D((int) x, (int) y);
-    }
-
-    public boolean containsPoint(Vertex2D point) {
-        return point == origin || point == end;
-    }
-
-    public boolean containsPointAt(int x, int y) {
-        return (origin.x == x && origin.y == y) || (end.x == x && end.y == y);
     }
 
     @Override

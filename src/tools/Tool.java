@@ -13,7 +13,7 @@ public abstract class Tool implements Switchable {
 	protected final Canvas myCanvas;
 	public final Cursor cursor = new Cursor(Cursor.CROSSHAIR_CURSOR);
 
-	public Tool(Canvas canvas, Color color) {
+	protected Tool(Canvas canvas, Color color) {
 		myCanvas = canvas;
 		this.color = color;
 	}
@@ -42,9 +42,9 @@ public abstract class Tool implements Switchable {
 
 	/**
 	 * Allows defining the behaviour related to mouse motion events
-	 * @param motionHandler
+	 * @param motionHandler adapter for mouse motion
 	 */
-	public void defineMotionHandler(MouseAdapter motionHandler) {
+	protected void defineMotionHandler(MouseAdapter motionHandler) {
 		this.motionHandler = motionHandler;
 	}
 
@@ -57,9 +57,9 @@ public abstract class Tool implements Switchable {
 
 	/**
 	 * Allows defining the behaviour related to mouse clicking events
-	 * @param clickHandler
+	 * @param clickHandler adapter for mouse click
 	 */
-	public void defineClickHandler(MouseAdapter clickHandler) {
+	protected void defineClickHandler(MouseAdapter clickHandler) {
 		this.clickHandler = clickHandler;
 	}
 

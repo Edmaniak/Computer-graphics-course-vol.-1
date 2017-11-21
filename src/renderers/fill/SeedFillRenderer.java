@@ -8,7 +8,7 @@ import java.awt.*;
 public class SeedFillRenderer extends Renderer {
 
     protected int bgColor;
-    protected Color fillColor;
+    private Color fillColor;
 
     public SeedFillRenderer(Canvas canvas, Color c) {
         super(canvas);

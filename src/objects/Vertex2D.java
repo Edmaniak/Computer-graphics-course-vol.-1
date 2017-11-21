@@ -13,8 +13,8 @@ public class Vertex2D {
 	}
 
 	public Vertex2D(Vertex2D point) {
-		x = new Integer(point.x);
-		y = new Integer(point.y);
+		x = point.x;
+		y = point.y;
 	}
 
 	@Override

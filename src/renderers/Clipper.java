@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Clipper {
 
-    private Polygon clippingArea;
+    private final Polygon clippingArea;
 
     public Clipper(Polygon clippingArea) {
         this.clippingArea = clippingArea;

@@ -1,7 +1,6 @@
 package tools.polygon;
 
 import gui.Canvas;
-import objects.Edge;
 import objects.Polygon;
 import objects.Vertex2D;
 import renderers.CircleRenderer;
@@ -10,7 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
 
 public class EditPolygonTool extends PolygonTool {
 

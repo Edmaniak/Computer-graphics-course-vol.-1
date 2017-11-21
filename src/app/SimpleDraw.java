@@ -17,7 +17,7 @@ public class SimpleDraw {
 
     private Tool selectedTool;
     public Color colorToUse = AppColor.DEFAULT_DRAW;
-    private Canvas canvas;
+    private final Canvas canvas;
 
     private SimpleDraw() {
 

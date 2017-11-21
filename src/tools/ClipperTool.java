@@ -2,7 +2,6 @@ package tools;
 
 import gui.Canvas;
 import objects.Polygon;
-import renderers.CircleRenderer;
 import renderers.Clipper;
 import renderers.PolygonRenderer;
 import tools.polygon.PolygonTool;
@@ -16,15 +15,13 @@ public class ClipperTool extends PolygonTool {
     private Polygon clippingArea;
     private Polygon in;
     private Polygon result;
-    private Clipper clipper;
-    private CircleRenderer cr;
+    private final Clipper clipper;
 
     public ClipperTool(Canvas canvas, Color color) {
         super(canvas, Color.BLUE);
         clippingArea = polygon;
         clipper = new Clipper(clippingArea);
         pr = new PolygonRenderer(canvas);
-        cr = new CircleRenderer(canvas);
     }
 
     @Override
@@ -37,7 +34,7 @@ public class ClipperTool extends PolygonTool {
         btnClip = new JButton("- CLIP -");
         btnClip.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnClip.addActionListener(e -> {
-            if (myCanvas.getPolygons().get(0) != null) {
+            if (myCanvas.getFirstPolygon() != null) {
                 in = myCanvas.getPolygons().get(0);
                 result = clipper.clip(in);
                 reRender();

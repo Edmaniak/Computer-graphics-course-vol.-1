@@ -37,7 +37,7 @@ public class ArcTool extends Tool {
 			public void mouseClicked(MouseEvent e) {
 				if (radPoint != null) {
 					// mazani cerveneho voditka
-					lr.render(center, radPoint, color.BLACK);
+					lr.render(center, radPoint, Color.BLACK);
 					myCanvas.repaint();
 					myCanvas.drawInto();
 					clear();

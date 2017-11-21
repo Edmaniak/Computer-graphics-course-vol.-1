@@ -2,7 +2,6 @@ package tools.fill;
 
 import app.SimpleDraw;
 import gui.Canvas;
-import jdk.nashorn.internal.scripts.JO;
 import objects.Polygon;
 import objects.Vertex2D;
 import renderers.PolygonRenderer;
@@ -13,12 +12,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
 
 public class ScanLineTool extends Tool {
 
-    private ScanLineRenderer slr;
-    private PolygonRenderer pr;
+    private final ScanLineRenderer slr;
+    private final PolygonRenderer pr;
 
     public ScanLineTool(Canvas canvas, Color color) {
         super(canvas, color);
