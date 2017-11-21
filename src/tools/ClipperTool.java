@@ -2,7 +2,6 @@ package tools;
 
 import gui.Canvas;
 import objects.Polygon;
-import objects.Vertex2D;
 import renderers.CircleRenderer;
 import renderers.Clipper;
 import renderers.PolygonRenderer;
@@ -10,12 +9,13 @@ import tools.polygon.PolygonTool;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.List;
 
 public class ClipperTool extends PolygonTool {
 
-    private JButton clip;
+    private JButton btnClip;
     private Polygon clippingArea;
+    private Polygon in;
+    private Polygon result;
     private Clipper clipper;
     private CircleRenderer cr;
 
@@ -29,29 +29,37 @@ public class ClipperTool extends PolygonTool {
 
     @Override
     public void doAfterSwitchOut() {
-        myCanvas.remove(clip);
+        myCanvas.remove(btnClip);
     }
 
     @Override
     public void doOnSwitchIn() {
-        clip = new JButton("- CLIP -");
-        clip.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        clip.addActionListener(e -> {
+        btnClip = new JButton("- CLIP -");
+        btnClip.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnClip.addActionListener(e -> {
             if (myCanvas.getPolygons().get(0) != null) {
-                Polygon in = new Polygon(myCanvas.getPolygons().get(0));
-                Polygon pol = clipper.clip(in);
-                for (Vertex2D v : pol.getPoints()) {
-                    cr.render(v, 5, Color.yellow);
-                }
-                myCanvas.repaint();
-                myCanvas.drawInto();
+                in = myCanvas.getPolygons().get(0);
+                result = clipper.clip(in);
+                reRender();
             }
         });
-        myCanvas.add(clip);
+        myCanvas.add(btnClip);
     }
 
     @Override
     public void clear() {
 
+    }
+
+    private void reRender() {
+        if (result != null) {
+            pr.render(in, Color.BLACK);
+            pr.render(clippingArea, Color.BLACK);
+            pr.render(result, Color.RED);
+            myCanvas.repaint();
+            myCanvas.drawInto();
+            myCanvas.clearPolygons();
+            myCanvas.addToPolygons(result);
+        }
     }
 }

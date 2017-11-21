@@ -42,8 +42,6 @@ public class EditPolygonTool extends PolygonTool {
                 }
                 if (e.getButton() == MouseEvent.BUTTON1 && foundPoint != null) {
                     removeFromRaster(polygon);
-                    myCanvas.repaint();
-                    myCanvas.drawInto();
                 }
             }
 
@@ -62,7 +60,7 @@ public class EditPolygonTool extends PolygonTool {
             @Override
             public void mouseReleased(MouseEvent e) {
                 drawing = false;
-                // Drawing other points when left mouse button released
+                // Drawing new points when left mouse button released
                 if (e.getButton() == MouseEvent.BUTTON1 && foundPoint == null) {
                     Vertex2D point = new Vertex2D(e.getX(), e.getY());
                     polygon.addPoint(point);
@@ -70,13 +68,14 @@ public class EditPolygonTool extends PolygonTool {
                 renderPoints(polygon, Color.yellow);
                 myCanvas.repaint();
                 myCanvas.drawInto();
+                System.out.println(polygon);
             }
         });
         defineMotionHandler(new MouseAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                if (SwingUtilities.isLeftMouseButton(e)) {
-                    myCanvas.mix();
+
+                myCanvas.mix();
 
                     // Adding new point
                     if (foundPoint == null) {
@@ -109,7 +108,7 @@ public class EditPolygonTool extends PolygonTool {
                         movePointTo(new Vertex2D(e.getX(), e.getY()));
 
                     myCanvas.repaint();
-                }
+
 
             }
 
@@ -163,8 +162,10 @@ public class EditPolygonTool extends PolygonTool {
     }
 
     private void removeFromRaster(Polygon polygon) {
-        renderEdges(polygon, Color.BLACK);
-        renderPoints(polygon, Color.BLACK);
+        pr.render(polygon,Color.BLACK);
+        renderPoints(polygon,Color.BLACK);
+        myCanvas.repaint();
+        myCanvas.drawInto();
     }
 
     private void renderPoints(Polygon polygon, Color color) {
@@ -172,10 +173,6 @@ public class EditPolygonTool extends PolygonTool {
             renderCircleAt(p, color);
     }
 
-    private void renderEdges(Polygon polygon, Color color) {
-        for (Edge edge : polygon.getEdges())
-            lr.render(new Vertex2D(edge.getOrigin()), new Vertex2D(edge.getEnd()), color);
-    }
 
     /**
      * draws circle around point

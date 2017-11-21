@@ -30,7 +30,6 @@ public class PolygonTool extends Tool {
 				if (polygon.size() == 0) {
 					Vertex2D point = new Vertex2D(e.getX(), e.getY());
 					polygon.addPoint(point);
-					myCanvas.putText(point,e.getX(),e.getY());
 					myCanvas.repaint();
 					myCanvas.drawInto();
 				}
@@ -41,10 +40,8 @@ public class PolygonTool extends Tool {
 				Vertex2D point = new Vertex2D(e.getX(), e.getY());
 				polygon.addPoint(point);
 				pr.render(polygon, color);
-				myCanvas.putText(point,e.getX(),e.getY());
 				myCanvas.repaint();
 				myCanvas.drawInto();
-
 			}
 		});
 

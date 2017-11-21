@@ -11,8 +11,8 @@ public class Edge {
     }
 
     public Edge(Edge edge) {
-        origin = edge.getOrigin();
-        end = edge.getEnd();
+        origin = new Vertex2D(edge.getOrigin());
+        end = new Vertex2D(edge.getEnd());
     }
 
     public Vertex2D getEnd() {
@@ -28,7 +28,7 @@ public class Edge {
     }
 
     /**
-     * Existuje prusecik s vodorovnou linii zadanou parametrem y
+     * Existuje prusecik s vodorovnou linii zadanou parametrem y ?
      * @param y coordinate
      * @return
      */
@@ -39,14 +39,14 @@ public class Edge {
     /**
      * Vraci prusecikovou souradnici x s vodorovnou lini Y
      * @param y
-     * @return
+     * @return x coordinate of intersection
      */
     public int getXIntersection(int y) {
         float dx = (float) (end.x - origin.x);
         float dy = (float) (end.y - origin.y);
         float k = dx / dy;
         float q = (float) origin.x - k * (float) origin.y;
-        float x =   ((float)(k * (float) y) + q);
+        float x = ((float) (k * (float) y) + q);
         return (int) x;
     }
 
@@ -57,14 +57,13 @@ public class Edge {
     }
 
     public Edge xSortedEdge() {
-        if(origin.x > end.x)
-            return new Edge(end,origin);
+        if (origin.x > end.x)
+            return new Edge(end, origin);
         return this;
     }
 
     public boolean isInside(Vertex2D p) {
         return (end.x - origin.x) * (p.y - origin.y) - (end.y - origin.y) * (p.x - origin.x) > 0;
-        // ((end.y - origin.y) * x) + ((end.x - origin.x) * y) + ((end.x * origin.y) - (end.y - origin.x)) > 0;
     }
 
     public Vertex2D getIntersection(Edge e) {

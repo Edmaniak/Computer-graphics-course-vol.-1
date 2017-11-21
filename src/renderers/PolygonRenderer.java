@@ -2,10 +2,8 @@ package renderers;
 
 
 import gui.Canvas;
-import objects.Edge;
 import objects.Polygon;
 import objects.Vertex2D;
-import renderers.line.DashLineRenderer;
 import renderers.line.LineRenderer;
 
 import java.awt.*;
@@ -21,10 +19,9 @@ public class PolygonRenderer extends Renderer {
     }
 
     public void render(Polygon polygon, Color color) {
-        List<Edge> edges = polygon.getEdges();
-        for (int i = 0; i < polygon.getEdges().size(); i++) {
-            Edge e = edges.get(i);
-            lr.render(new Vertex2D(e.getOrigin()), new Vertex2D(e.getEnd()), color);
+        List<Vertex2D> points = polygon.getPoints();
+        for (int i = 0; i < points.size(); i++) {
+            lr.render(new Vertex2D(points.get(i)), new Vertex2D(points.get((i + 1) % points.size())), color);
         }
     }
 

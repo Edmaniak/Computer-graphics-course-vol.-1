@@ -28,16 +28,30 @@ public class Polygon {
      */
     public void addPoint(Vertex2D point) {
 
-        if (points.size() >= 2)
-            points.add(points.size() - 1, point);
-        else
+        // Adding points
+        if (points.size() < 2)
             points.add(point);
-        System.out.println(getPoints());
+        else
+            points.add(points.size() - 1, point);
+
+        // Adding edges
+        if (points.size() == 2)
+            addEdge(new Edge(getPoint(0), getPoint(1)).orientedEdge());
+
+        // Removing inter-edge when polygon is not a triangle
+        if (points.size() > 3)
+            edges.remove(edges.size() - 1);
+
+        // Connecting new added point to neighbour points by edges
+        if (points.size() > 2) {
+            addEdge(new Edge(point, getPoint(points.indexOf(point) - 1)).orientedEdge());
+            addEdge(new Edge(point, getPoint(points.indexOf(point) + 1)).orientedEdge());
+        }
+
     }
 
-    public void addPointOnce(Vertex2D point) {
-        if (!points.contains(point))
-            addPoint(point);
+    private void addEdge(Edge edge) {
+        edges.add(edge);
     }
 
     public int size() {
@@ -45,19 +59,22 @@ public class Polygon {
     }
 
     public Vertex2D getPoint(int i) {
-        return points.get(i);
+        return new Vertex2D(points.get(i));
     }
 
     public Vertex2D getLastPoint() {
-        return points.get(points.size() - 1);
+        return new Vertex2D(points.get(points.size() - 1));
     }
 
     public Vertex2D getFirstPoint() {
-        return points.get(0);
+        return new Vertex2D(points.get(0));
     }
 
     /**
      * Method for removing points logically
+     * Poznamka: sice by stacilo vymazat pozadi odebrat bod a prekreslit polygon
+     * nicmene timto zpusobem muze raster zůstat vicemene neporusen a prekresli se
+     * pouze polygon.
      * @param point
      * @return edges needed by renderer to remove edges in raster
      *
@@ -66,9 +83,9 @@ public class Polygon {
         List<Edge> edgesWithPoint = new ArrayList<>();
         if (points.contains(point))
             for (Edge edge : edges)
-                if (edge.containsPoint(point))
+                if (edge.containsPointAt(point.x, point.y))
                     edgesWithPoint.add(edge);
-        edges.removeIf(edge -> edge.containsPoint(point));
+        edges.removeIf(edge -> edge.containsPointAt(point.x, point.y));
         points.remove(point);
         List<Vertex2D> pointsToConnect = getOpenPoints();
         if (size() >= 2) {
@@ -137,24 +154,9 @@ public class Polygon {
         String output = "POINTS: ";
         for (Vertex2D point : points)
             output += point + " ";
-        output += "EDGES ";
-        for (Edge e : edges)
-            output += e;
+        for(Edge e : edges)
+            output += "\n" + e ;
         return output;
     }
 
-    public Polygon sortX() {
-        Polygon newPolyg = new Polygon();
-        for (Edge edge : getEdges()) {
-            Edge e = new Edge(edge.getOrigin(), edge.getEnd());
-            newPolyg.addEdge(e.xSortedEdge());
-        }
-        return newPolyg;
-    }
-
-    public void addEdge(Edge edge) {
-        edges.add(edge);
-        points.add(edge.getOrigin());
-        points.add(edge.getEnd());
-    }
 }
