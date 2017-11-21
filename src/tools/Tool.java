@@ -5,7 +5,7 @@ import gui.Canvas;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 
-public abstract class Tool {
+public abstract class Tool implements Switchable {
 
 	protected Color color = Color.white;
 	private MouseAdapter clickHandler;
@@ -21,16 +21,6 @@ public abstract class Tool {
 	public void setColor(Color color) {
 		this.color = color;
 	}
-
-	/**
-	 * Event triggered when switched from this tool to another
-	 */
-	public abstract void doAfterSwitchOut();
-
-	/**
-	 * Event triggered when switched to this tool from another
-	 */
-	public abstract void doOnSwitchIn();
 
 	/**
 	 * Defines the instruction string that is used by tooltip bar

@@ -7,6 +7,9 @@ import objects.Vertex2D;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Sutherland-Hogdman algorithm for clipping
+ */
 public class Clipper {
 
     private Polygon clippingArea;
@@ -21,40 +24,30 @@ public class Clipper {
         List<Vertex2D> result = new ArrayList<>(inPoints);
         List<Vertex2D> clipper = new ArrayList<>(clippingArea.getPoints());
 
-        int len = clipper.size();
-        for (int i = 0; i < len; i++) {
+        for (int i = 0; i < clipper.size(); i++) {
 
-            int len2 = result.size();
             List<Vertex2D> input = result;
-            result = new ArrayList<>(len2);
+            result = new ArrayList<>();
 
-            Vertex2D A = clipper.get((i + len - 1) % len);
-            Vertex2D B = clipper.get(i);
+            Vertex2D cv1 = clipper.get((i));
+            Vertex2D cv2 = clipper.get((i + 1) % clipper.size());
+            Edge e1 = new Edge(cv1, cv2);
 
-            for (int j = 0; j < len2; j++) {
+            for (int j = 0; j < input.size(); j++) {
 
-                Vertex2D P = input.get((j + len2 - 1) % len2);
-                Vertex2D Q = input.get(j);
+                Vertex2D pv1 = input.get(j);
+                Vertex2D pv2 = input.get((j + 1) % input.size());
+                Edge e2 = new Edge(pv1, pv2);
 
-                Edge e1 = new Edge(A, B);
-                Edge e2 = new Edge(P, Q);
-
-                if (e1.isInside(Q)) {
-                    if (!e1.isInside(P))
+                if (e1.isInside(pv2)) {
+                    if (!e1.isInside(pv1))
                         result.add(e1.getIntersection(e2));
-                    result.add(Q);
-                } else if (e1.isInside(P))
+                    result.add(pv2);
+                } else if (e1.isInside(pv1))
                     result.add(e1.getIntersection(e2));
             }
         }
         return new Polygon(result);
     }
 
-    public void setClippingArea(Polygon clippingArea) {
-        this.clippingArea = clippingArea;
-    }
-
-    public Polygon getClippingArea() {
-        return clippingArea;
-    }
 }

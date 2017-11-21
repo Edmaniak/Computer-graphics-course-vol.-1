@@ -1,11 +1,15 @@
 package tools.fill;
 
+import app.SimpleDraw;
 import gui.Canvas;
+import jdk.nashorn.internal.scripts.JO;
 import objects.Polygon;
+import objects.Vertex2D;
 import renderers.PolygonRenderer;
 import renderers.fill.ScanLineRenderer;
 import tools.Tool;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -20,24 +24,30 @@ public class ScanLineTool extends Tool {
         super(canvas, color);
         slr = new ScanLineRenderer(canvas);
         pr = new PolygonRenderer(canvas);
-        removeAllButFirstPolygon();
         defineClickHandler(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                Polygon polygonToFill = myCanvas.getPolygon();
+                Polygon polygonToFill = myCanvas.getPolygonAt(new Vertex2D(e.getX(),e.getY()));
                 if (polygonToFill != null) {
                     slr.fill(polygonToFill, color);
                     pr.render(polygonToFill, color);
                     myCanvas.repaint();
                     myCanvas.drawInto();
-                }
+                } else
+                    JOptionPane.showMessageDialog(
+                            SimpleDraw.gui,
+                            "There is no polygon around this position " + new Vertex2D(e.getX(),e.getY()),
+                            "Cannot fill",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+
             }
         });
     }
 
     @Override
     public String getInstruction() {
-        return null;
+        return "Click into the outlined polygon";
     }
 
     @Override
@@ -55,15 +65,4 @@ public class ScanLineTool extends Tool {
 
     }
 
-    private void removeAllButFirstPolygon() {
-        List<Polygon> pls = myCanvas.getPolygons();
-        if (pls.size() > 1) {
-            for (int i = 1; i < pls.size(); i++) {
-                pr.render(pls.get(i), color.BLACK);
-                pls.remove(i);
-            }
-        }
-        myCanvas.repaint();
-        myCanvas.drawInto();
-    }
 }

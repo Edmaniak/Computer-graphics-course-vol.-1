@@ -50,11 +50,8 @@ public class EditPolygonTool extends PolygonTool {
                 // Right button
                 if (e.getButton() == MouseEvent.BUTTON3)
                     // Erasing founded point
-                    if (foundPoint != null) {
+                    if (foundPoint != null)
                         removePoint(foundPoint);
-                        myCanvas.repaint();
-                        myCanvas.drawInto();
-                    }
             }
 
             @Override
@@ -74,8 +71,8 @@ public class EditPolygonTool extends PolygonTool {
         defineMotionHandler(new MouseAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-
-                myCanvas.mix();
+                if (SwingUtilities.isLeftMouseButton(e)) {
+                    myCanvas.mix();
 
                     // Adding new point
                     if (foundPoint == null) {
@@ -109,7 +106,7 @@ public class EditPolygonTool extends PolygonTool {
 
                     myCanvas.repaint();
 
-
+                }
             }
 
             @Override
@@ -138,15 +135,14 @@ public class EditPolygonTool extends PolygonTool {
      * @param point point to remove
      */
     private void removePoint(Vertex2D point) {
-        renderCircleAt(point, Color.BLACK);
-        List<Edge> removedEdges = polygon.removePoint(point);
-
-        for (Edge e : removedEdges)
-            lr.render(new Vertex2D(e.getOrigin()), new Vertex2D(e.getEnd()), Color.BLACK);
-
-        renderPoints(polygon, Color.yellow);
-
+        // in raster
+        removeFromRaster(polygon);
+        myCanvas.repaint();
+        myCanvas.drawInto();
+        // logically
+        polygon.removePoint(point);
         pr.render(polygon, color);
+        renderPoints(polygon,Color.yellow);
         myCanvas.setCursor(cursor);
         foundPoint = null;
     }
@@ -173,9 +169,8 @@ public class EditPolygonTool extends PolygonTool {
             renderCircleAt(p, color);
     }
 
-
     /**
-     * draws circle around point
+     * Draws a circle around one point
      */
     private void renderCircleAt(Vertex2D point, Color color) {
         cr.render(new Vertex2D(point), RADIUS, color);

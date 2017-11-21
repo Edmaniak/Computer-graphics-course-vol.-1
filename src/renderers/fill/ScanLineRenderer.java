@@ -4,8 +4,8 @@ import gui.Canvas;
 import objects.Edge;
 import objects.Polygon;
 import objects.Vertex2D;
-import renderers.line.LineRenderer;
 import renderers.Renderer;
+import renderers.line.LineRenderer;
 import utilities.InsertionSort;
 
 import java.awt.*;
@@ -28,15 +28,16 @@ public class ScanLineRenderer extends Renderer {
         // List pruseciku staci mit lokalne v metode fill
         List<Integer> xIntersections = new ArrayList<>();
 
-        // Inicializace potencionalne nejvestich bodu v polygonu
+        // Inicializace potencionalne extremnich bodu v polygonu
         int yMax = polygon.getTopPoint().y;
         int yMin = polygon.getBottomPoint().y;
 
-        // Adding all not-horizontal edges to the working edges list
-        for (Edge edge : polygon.getEdges())
-            if (!edge.isHorizontal())
-                relevantEdges.add(edge);
-
+        // Creating oriented edges from points and adding all non-horizontal lines
+        for (int i = 0; i < polygon.size(); i++) {
+            Edge e = new Edge(polygon.getPoint(i), polygon.getPoint((i + 1) % polygon.size())).orientedEdge();
+            if (!e.isHorizontal())
+                relevantEdges.add(e);
+        }
 
         for (int y = yMin; y < yMax; y++) {
             xIntersections.clear();

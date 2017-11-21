@@ -49,7 +49,7 @@ public class LineTool extends Tool {
 
     @Override
     public String getInstruction() {
-        return "Drag the mouse";
+        return "Drag the mouse from point A to B";
     }
 
     @Override

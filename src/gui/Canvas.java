@@ -27,10 +27,10 @@ public class Canvas extends JPanel implements MouseMotionListener {
 	private List<Polygon> polygons;
 
 	/**
-	 * constr with default color
-	 * @param d
-	 */
-	public Canvas(Dimension d) {
+     * Constructor with default color
+     * @param d
+     */
+    public Canvas(Dimension d) {
 		setDimensions(d);
 		polygons = new ArrayList<>();
 		activeBuffer = new BufferedImage(d.width, d.height, BufferedImage.TYPE_INT_RGB);
@@ -39,10 +39,15 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		addMouseMotionListener(this);
 	}
 
-	// constr with custom color - not used really
-	public Canvas(Dimension d, Color bgColor) {
-		this(d);
-		setBgColor(bgColor);
+    /**
+     * Constructor with custom color
+     *
+     * @param d
+     * @param bgColor
+     */
+    public Canvas(Dimension d, Color bgColor) {
+        this(d);
+        setBgColor(bgColor);
 	}
 
 	@Override
@@ -110,15 +115,13 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
 		WritableRaster raster = bi.copyData(null);
 		return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
-	}
+    }
 
-	// Main methods for drawing pixels into the canvas
-	public void putPixel(Vertex2D position, Color color) {
-		putPixel(position.x, position.y, color);
-	}
-
-	public void putPixel(int x, int y, Color color) {
-		if (canDrawAt(x,y))
+    /**
+     * Main method for drawing pixel into the canvas
+     */
+    public void putPixel(int x, int y, Color color) {
+        if (canDrawAt(x,y))
 			activeBuffer.setRGB(x, y, color.hashCode());
 	}
 
@@ -131,11 +134,11 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		putText(text.toString(), x, y);
 	}
 
-	/**
-	 * Super method for every case of escaping this canvas
-	 * @param x coordinate
-	 * @param y coordinate
-	 * @return true if can draw at [x,y]
+    /**
+     * Super method for dealing with every case of escaping canvas
+     * @param x coordinate
+     * @param y coordinate
+     * @return true if can draw at [x,y]
 	 */
 	public boolean canDrawAt(int x, int y) {
 		if (x >= 0 && x < getWidth() && y >= 0 && y < getHeight())
@@ -204,10 +207,24 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		polygons.clear();
 	}
 
-	public Polygon getPolygon() {
-		if (polygons.size() > 0)
-			return polygons.get(0);
-		JOptionPane.showMessageDialog(SimpleDraw.gui,"There is no polygon on the canvas.");
-		return null;
-	}
+    public Polygon getPolygon() {
+        if (polygons.size() > 0)
+            return polygons.get(0);
+        JOptionPane.showMessageDialog(SimpleDraw.gui, "There is no polygon on the canvas.");
+        return null;
+    }
+
+    public Polygon getPolygonAt(Vertex2D point) {
+        boolean c = false;
+        for (Polygon p : polygons) {
+            List<Vertex2D> points = p.getPoints();
+            for (int i = 0, j = p.size() - 1; i < p.size(); j = i++) {
+                if (((points.get(i).y > point.y) != (points.get(j).y > point.y)) &&
+                        (point.x < (points.get(j).x - points.get(i).x) * (point.y - points.get(i).y) / (points.get(j).y - points.get(i).y) + points.get(i).x))
+                    c = !c;
+            }
+            if (c) return p;
+        }
+        return null;
+    }
 }

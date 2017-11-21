@@ -26,6 +26,7 @@ public class DotTool extends Tool {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				myCanvas.drawInto();
+				myCanvas.getPolygonAt(new Vertex2D(e.getX(),e.getY()));
 			}
 		});
 	}

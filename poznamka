@@ -1,0 +1,11 @@
+SimpleDraw /ÚLOHA 2/
+********************
+
+Do programu byl navíc implementován algoritmus PNPOLY (W. Randolph Franklin) [https://wrf.ecse.rpi.edu//Research/Short_Notes/pnpoly.html],
+který umožňuje, aby ve scéně bylo možné udržovat více polygonů a za pomocí algoritmu scan-line vybarvit ten, který se nachází
+na pozici kliku. Problematické zůstávají polygony, které se překrývají. V takovém případě vrací algoritmus dřívější polygon v seznamu.
+
+Tento algoritmus byl autorem implementován tak říkajíc drze, neboť on skutečně netuší jak přesně funguje a hlouběji se tím ani nezabýval.
+
+Krásný den přeje,
+autor projektu

@@ -50,7 +50,7 @@ public class CircleTool extends Tool {
 
 	@Override
 	public String getInstruction() {
-		return "Drag the radius with mouse";
+		return "Drag the radius with your mouse";
 	}
 
 	@Override
