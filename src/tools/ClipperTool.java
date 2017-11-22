@@ -52,7 +52,7 @@ public class ClipperTool extends PolygonTool {
         if (result != null) {
             pr.render(in, Color.BLACK);
             pr.render(clippingArea, Color.BLACK);
-            pr.render(result, Color.RED);
+            pr.render(result, color);
             myCanvas.repaint();
             myCanvas.drawInto();
             myCanvas.clearPolygons();

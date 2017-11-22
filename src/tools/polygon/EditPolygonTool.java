@@ -63,7 +63,6 @@ public class EditPolygonTool extends PolygonTool {
                 renderPoints(polygon, Color.yellow);
                 myCanvas.repaint();
                 myCanvas.drawInto();
-                System.out.println(polygon);
             }
         });
         defineMotionHandler(new MouseAdapter() {

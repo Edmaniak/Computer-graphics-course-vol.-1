@@ -10,11 +10,6 @@ public class Edge {
         this.end = end;
     }
 
-    public Edge(Edge edge) {
-        origin = new Vertex2D(edge.getOrigin());
-        end = new Vertex2D(edge.getEnd());
-    }
-
     public Vertex2D getEnd() {
         return end;
     }

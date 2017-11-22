@@ -145,7 +145,6 @@ public class Canvas extends JPanel implements MouseMotionListener {
     }
 
 	public int getCanvasColorAt(int x, int y) {
-		System.out.println(mainBuffer.getRGB(x,y));
 		return mainBuffer.getRGB(x, y);
 	}
 
@@ -181,7 +180,6 @@ public class Canvas extends JPanel implements MouseMotionListener {
 
 	public void addToPolygons(Polygon p) {
 		polygons.add(p);
-		System.out.println(p);
 	}
 
 	public List<Polygon> getPolygons() {
@@ -212,6 +210,11 @@ public class Canvas extends JPanel implements MouseMotionListener {
         return null;
     }
 
+    /**
+     * PNPOLY (W. Randolph Franklin) [https://wrf.ecse.rpi.edu//Research/Short_Notes/pnpoly.html]
+     * @param point cursor click
+     * @return polygon which has the point inside its inner space
+     */
     public Polygon getPolygonAt(Vertex2D point) {
         boolean c = false;
         for (Polygon p : polygons) {
