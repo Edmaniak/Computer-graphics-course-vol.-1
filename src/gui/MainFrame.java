@@ -162,7 +162,7 @@ public class MainFrame extends JFrame {
 
         // Button for clipper
         ToolButton clipper = new ToolButton("Drag an clipping area around the polygon you want to clip", "res/cut.png", task2);
-        clipper.addActionListener(e -> app.changeTool(new ClipperTool(canvas, app.colorToUse)));
+        clipper.addActionListener(e -> app.changeTool(new ClipperTool(canvas)));
 
         // Button for editable Polygon
         ToolButton editablePolygon = new ToolButton("Draw an editable polygon","res/polygon.png",task2);
@@ -172,10 +172,6 @@ public class MainFrame extends JFrame {
 
     public Canvas getCanvas() {
         return canvas;
-    }
-
-    public JToolBar getToolBar() {
-        return toolBar;
     }
 
     public void setTooltip(String tooltip) {

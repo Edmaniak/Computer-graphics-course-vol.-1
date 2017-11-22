@@ -17,7 +17,7 @@ public class ClipperTool extends PolygonTool {
     private Polygon result;
     private final Clipper clipper;
 
-    public ClipperTool(Canvas canvas, Color color) {
+    public ClipperTool(Canvas canvas) {
         super(canvas, Color.BLUE);
         clippingArea = polygon;
         clipper = new Clipper(clippingArea);
@@ -46,6 +46,11 @@ public class ClipperTool extends PolygonTool {
     @Override
     public void clear() {
 
+    }
+
+    @Override
+    public String getInstruction() {
+        return "Define an area around the first polygon in the scene";
     }
 
     private void reRender() {

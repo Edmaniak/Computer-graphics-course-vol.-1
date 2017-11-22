@@ -31,7 +31,6 @@ public class SeedFillerTool extends Tool {
         });
     }
 
-
     @Override
     public String getInstruction() {
         return "Click into outlined area";

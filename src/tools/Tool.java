@@ -18,6 +18,10 @@ public abstract class Tool implements Switchable {
 		this.color = color;
 	}
 
+	protected Tool(Canvas canvas) {
+		myCanvas = canvas;
+	}
+
 	public void setColor(Color color) {
 		this.color = color;
 	}

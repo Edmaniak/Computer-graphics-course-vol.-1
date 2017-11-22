@@ -186,7 +186,6 @@ public class Canvas extends JPanel implements MouseMotionListener {
 		return polygons;
 	}
 
-
 	@Override
 	public Component add(Component comp) {
 		repaint();

@@ -54,9 +54,8 @@ public class DashLineRenderer extends LineRenderer {
 
     // Primitivní kritérium pro rozhodnutí o tom zda-li pixel umístit či ne na základně vzoru
     private void decide(int x, int y, Color color) {
-        if (state <= space) {
+        if (state <= space)
             myCanvas.putPixel(x, y, color);
-        }
         state++;
         if (state == space * 2)
             state = 0;

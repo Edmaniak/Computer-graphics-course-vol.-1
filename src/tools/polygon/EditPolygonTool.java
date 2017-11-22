@@ -29,7 +29,7 @@ public class EditPolygonTool extends PolygonTool {
                 drawing = true;
                 // Left button
                 if (e.getButton() == MouseEvent.BUTTON1 && foundPoint == null) {
-                    // First point draw
+                    // First point draw by dragging
                     if (polygon.size() == 0) {
                         Vertex2D point = new Vertex2D(e.getX(), e.getY());
                         polygon.addPoint(point);

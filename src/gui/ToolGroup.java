@@ -6,7 +6,6 @@ import java.awt.*;
 
 public class ToolGroup extends JPanel {
 
-
     public ToolGroup(JToolBar toolBar){
         super(new FlowLayout());
         setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));

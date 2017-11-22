@@ -25,5 +25,4 @@ public class PolygonRenderer extends Renderer {
         }
     }
 
-
 }

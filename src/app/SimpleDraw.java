@@ -53,7 +53,6 @@ public class SimpleDraw {
     }
 
     public static void main(String[] args) {
-
         SwingUtilities.invokeLater(() -> new SimpleDraw());
     }
 
