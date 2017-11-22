@@ -5,7 +5,7 @@ SimpleDraw /ÚLOHA 2/
 Do programu byl navíc implementován algoritmus PNPOLY (W. Randolph Franklin) [https://wrf.ecse.rpi.edu//Research/Short_Notes/pnpoly.html],
 který umožňuje, aby ve scéně, kde je udržováno více polygonů, bylo možné za pomocí scan-line vybarvit ten polygon, který se nachází
 na pozici kliku. Problematické zůstávají polygony, které se na pozici kliku překrývají. V takovém případě vrací algoritmus dřívější polygon v seznamu.
-Diky tomuto algoritmu je možné za pomocí scan-line alg. vybarvovat jak ořezané polygony, tak polygony editovatelné.
+Diky tomuto algoritmu je možné za pomocí scan-line algoritmu vybarvovat jak ořezané polygony, tak polygony editovatelné.
 
 Tento algoritmus byl autorem implementován tak říkajíc drze, neboť on skutečně netuší jak přesně funguje a hlouběji se tím zatím ani nezabýval.
 
